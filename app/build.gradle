@@ -33,6 +33,7 @@ dependencies {
 
     implementation project(':feature-perumahan')
     implementation project(':feature-calonpemilik')
+    implementation project(':feature-tipe-rumah')
 
     implementation deps.koin
 

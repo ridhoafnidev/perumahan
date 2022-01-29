@@ -152,6 +152,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                             MenuStatus.CalonPembeli() -> {
                                 navigateToCalonPembeliActivity()
                             }
+                            MenuStatus.TipeRumah() -> {
+                                navigateToTipeRumahActivity()
+                            }
                         }
                     }
                 }

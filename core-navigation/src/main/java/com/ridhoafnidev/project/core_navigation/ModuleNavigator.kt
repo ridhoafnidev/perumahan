@@ -43,6 +43,12 @@ interface ModuleNavigator{
         startActivity(ActivityClassPath.Pemilik, finishCurrent)
     }
 
+    fun<T> T.navigateToTipeRumahActivity(
+        finishCurrent: Boolean = false
+    ) where T : Fragment, T : ModuleNavigator {
+        startActivity(ActivityClassPath.TipeRumah, finishCurrent)
+    }
+
     fun<T> T.navigateToPerumahanActivity(
         finishCurrent: Boolean = false
     ) where T : AppCompatActivity, T : ModuleNavigator {

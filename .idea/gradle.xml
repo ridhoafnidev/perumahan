@@ -20,6 +20,7 @@
             <option value="$PROJECT_DIR$/feature-calonpemilik" />
             <option value="$PROJECT_DIR$/feature-home" />
             <option value="$PROJECT_DIR$/feature-perumahan" />
+            <option value="$PROJECT_DIR$/feature-tipe-rumah" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

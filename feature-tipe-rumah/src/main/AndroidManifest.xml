@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ridhoafnidev.project.feature.tipe_rumah">
+
+    <application>
+        <activity
+            android:name=".TipeRumahActivity"
+            android:exported="true"
+            android:theme="@style/BaseTheme" />
+    </application>
+
+</manifest>
