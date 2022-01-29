@@ -57,7 +57,7 @@ interface ModuleNavigator{
 private fun AppCompatActivity.startActivity(intent: Intent, finnishCurrent: Boolean) {
     startActivity(intent)
     if (finnishCurrent) finish()
-    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+//    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 }
 
 private fun AppCompatActivity.startActivity(
