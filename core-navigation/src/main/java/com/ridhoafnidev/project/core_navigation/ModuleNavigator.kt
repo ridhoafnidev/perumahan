@@ -37,6 +37,12 @@ interface ModuleNavigator{
         startActivity(ActivityClassPath.Perumahan, finishCurrent)
     }
 
+    fun<T> T.navigateToCalonPembeliActivity(
+        finishCurrent: Boolean = false
+    ) where T : Fragment, T : ModuleNavigator {
+        startActivity(ActivityClassPath.Pemilik, finishCurrent)
+    }
+
     fun<T> T.navigateToPerumahanActivity(
         finishCurrent: Boolean = false
     ) where T : AppCompatActivity, T : ModuleNavigator {
@@ -62,7 +68,7 @@ private fun AppCompatActivity.startActivity(
 private fun Fragment.startActivity(intent: Intent, finnishCurrent: Boolean) {
     startActivity(intent)
     if (finnishCurrent) activity?.finish()
-    activity?.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+//    activity?.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 }
 
 private fun Fragment.startActivity(activityClassPath: ActivityClassPath, finnishCurrent: Boolean) =

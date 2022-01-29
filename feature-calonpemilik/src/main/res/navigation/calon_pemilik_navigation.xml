@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/calon_pemilik_navigation"
+    app:startDestination="@id/calonPemilikFragment">
+
+    <fragment
+        android:id="@+id/calonPemilikFragment"
+        android:name="com.ridhoafnidev.project.feature.calonpemilik.CalonPemilikFragment"
+        android:label="fragment_calon_pemilik"
+        tools:layout="@layout/fragment_calon_pemilik" />
+</navigation>

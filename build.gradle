@@ -7,7 +7,7 @@ buildscript {
     }
     dependencies {
         classpath plugin.agp
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
+        classpath plugin.kotlin
         classpath plugin.navigation_safe_args
     }
 }
