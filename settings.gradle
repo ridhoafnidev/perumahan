@@ -1,0 +1,19 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+        jcenter() // Warning: this repository is going to shut down soon
+    }
+}
+rootProject.name = "Perumahan"
+include ':app'
+include ':core-data'
+include ':core-navigation'
+include ':core-resource'
+include ':core-util'
+include ':feature-auth'
+include ':feature-home'
+include ':feature-perumahan'
+include ':core-domain'

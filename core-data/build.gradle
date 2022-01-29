@@ -1,0 +1,57 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+apply(from: "../shared_dependencies.gradle")
+
+android {
+    String schemaDatabaseVersion
+    String BASE_URL = "\"http://192.168.100.28/digi-service/public/api/\""
+    String COOKIE_NAME = "\"ridho_afni_edtc_test_skill_cookies\""
+    String DB_NAME = "\"ridho_afni_edtc_test_skill\""
+
+    defaultConfig {
+        schemaDatabaseVersion = versions.schemaDatabaseVersion.toString()
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+        buildConfigField("String", "COOKIE_NAME", COOKIE_NAME)
+        buildConfigField("String", "DB_NAME", DB_NAME)
+    }
+
+    buildTypes {
+        release {
+            buildConfigField("String", "BASE_URL", BASE_URL)
+            buildConfigField("int", "schemaDatabaseVersion", schemaDatabaseVersion)
+        }
+        debug {
+            buildConfigField("String", "BASE_URL", BASE_URL)
+            buildConfigField("int", "schemaDatabaseVersion", schemaDatabaseVersion)
+        }
+    }
+}
+
+dependencies {
+
+    implementation project(path: ':core-util')
+    implementation project(path: ':core-domain')
+
+    implementation deps.moshi
+    kapt deps.moshi_compiler
+    implementation deps.okhttp
+    implementation deps.retrofit
+    implementation deps.cookiejar
+    implementation deps.core
+
+    implementation deps.koin
+    implementation deps.coroutines
+
+    implementation deps.room
+    kapt deps.room_compiler
+
+    debugImplementation deps.chucker_debug
+
+    implementation deps.timber
+
+}

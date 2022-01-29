@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.appbar.AppBarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:elevation="0dp"
+    android:elevation="0dp"
+    tools:targetApi="lollipop">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackgroundSecondary"
+        app:popupTheme="@style/BaseTheme">
+
+        <com.ridhoafnidev.project.core_resource.components.BaseTextView
+            android:id="@+id/toolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/text_medium_fit"
+            app:base_font_style="bold" />
+
+        <ImageView
+            android:id="@+id/imageProfilePicture"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:src="@drawable/shape_circle_placeholder"
+            android:visibility="gone"
+            tools:ignore="ContentDescription" />
+
+        <com.ridhoafnidev.project.core_resource.components.BaseEditText
+            android:id="@+id/toolbarSearch"
+            style="@style/BaseTheme.EditText.Accent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin_big"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="@dimen/component_medium"
+            android:hint="@string/text_search_chat"
+            android:textSize="@dimen/text_medium"
+            android:visibility="gone" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <View
+        android:id="@+id/lineDivider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider"
+        android:background="@color/colorDivider"/>
+</com.google.android.material.appbar.AppBarLayout>

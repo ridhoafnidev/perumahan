@@ -1,0 +1,13 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+apply(from: "../shared_dependencies.gradle")
+
+dependencies {
+    //region Common
+
+    implementation project(path: ':core-util')
+
+    //endregion
+}

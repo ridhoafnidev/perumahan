@@ -1,0 +1,12 @@
+<resources>
+    <string name="title_create_perumahan">Tambah Perumahan</string>
+    <string name="hint_nama_perusahaan">Nama Perumahan</string>
+    <string name="hint_luas_tanah">Luas Tanah (m<sup>2</sup>)</string>
+    <string name="hint_alamat">Alamat</string>
+    <string name="hint_keterangan">Keterangan</string>
+    <string name="require_nama_perumahan">Nama Perumahan harus diisi!</string>
+    <string name="require_luas_tanah">Luas Tanah (m<sup>2</sup>) harus diisi!</string>
+    <string name="require_alamat">Alamat harus diisi!</string>
+    <string name="require_keterangan">Keterangan diisi!</string>
+    <string name="submit">SIMPAN</string>
+</resources>

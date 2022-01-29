@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="150dp"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_user"
+            android:layout_width="@dimen/profile_picture"
+            android:layout_height="@dimen/profile_picture"
+            android:layout_margin="@dimen/medium"
+            android:contentDescription="@string/image_user"
+            android:src="@drawable/shape_circle_placeholder"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_welcome"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_welcome" />
+
+        <com.ridhoafnidev.project.core_resource.components.BaseTextView
+            android:id="@+id/tv_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium"
+            android:gravity="center"
+            android:textColor="@color/colorTextLight"
+            app:base_font_style="medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/welcome" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/medium"
+            android:layout_marginTop="@dimen/medium_fit"
+            android:background="@color/colorBackgroundPrimary"
+            android:clipToPadding="true"
+            android:elevation="@dimen/small"
+            app:cardCornerRadius="@dimen/component_extra"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_welcome">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_grid_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/medium" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.ridhoafnidev.project.core_resource.components.BaseTextView
+            android:id="@+id/tv_title_new_event"
+            style="@style/BaseTheme.Margin.Horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium"
+            android:text="@string/new_info"
+            android:textSize="@dimen/text_medium"
+            app:base_font_style="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+
+        <com.ridhoafnidev.project.core_resource.components.BaseTextView
+            style="@style/BaseTheme.Margin.Horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lihat Semua"
+            android:textColor="@color/colorTextAccent"
+            android:textSize="@dimen/text_medium"
+            app:base_font_style="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_title_new_event"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_title_new_event" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_new_event"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_new_event" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

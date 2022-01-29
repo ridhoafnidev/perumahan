@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Feature Home</string>
+    <string name="image_user">Image User</string>
+    <string name="welcome">Halo Selamat Pagi, \nJohn Doe Simalakama</string>
+    <string name="image_icon_menu">Image Icon Menu</string>
+    <string name="title_menu">Buat Event</string>
+    <string name="new_info">Info Terbaru</string>
+    <string name="image_event">Image Event</string>
+    <string name="welcome_name">John Doe Simalakama</string>
+    <string name="welcome_hello">Halo </string>
+</resources>

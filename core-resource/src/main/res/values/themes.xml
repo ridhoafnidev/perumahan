@@ -1,0 +1,182 @@
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:ns2="http://schemas.android.com/apk/res-auto">
+    <!-- Base application theme. -->
+    <style name="BaseTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/colorBackgroundSecondary</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:navigationBarColor">@color/colorBackgroundSecondary</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationStyle</item>
+    </style>
+
+    <style name="WindowAnimationStyle">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <style name="BaseTheme.Home">
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+    </style>
+
+    <style name="BaseTheme.Auth">
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:navigationBarColor">@color/colorBackgroundSecondary</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+    </style>
+
+    <style name="BaseTheme.Splash">
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:navigationBarColor">@color/colorBackgroundSecondary</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <item name="android:colorBackground">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="BaseTheme.EditText">
+        <item name="base_font_family">GoogleSans</item>
+        <item name="base_font_style">bold</item>
+        <item name="android:textSize">@dimen/text_normal</item>
+        <item name="android:textColorHint">@color/colorTextSecondary</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:paddingLeft">@dimen/component_normal</item>
+        <item name="android:paddingRight">@dimen/component_tiny</item>
+        <item name="android:paddingTop">@dimen/component_big</item>
+        <item name="android:paddingBottom">@dimen/component_big</item>
+    </style>
+
+    <style name="BaseTheme.EditText.Primary">
+        <item name="base_edit_text_style">primary</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+
+    <style name="BaseTheme.EditText.Secondary">
+        <item name="base_edit_text_style">secondary</item>
+        <item name="android:textColorHint">@color/colorTextSecondary</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+
+    <style name="BaseTheme.EditText.Accent">
+        <item name="base_edit_text_style">accent</item>
+        <item name="android:textColor">@color/colorTextLight</item>
+        <item name="android:textColorHint">@color/colorTextLightHint</item>
+        <item name="android:layout_height">@dimen/input_height</item>
+        <item name="android:minHeight">@dimen/input_height</item>
+        <item name="android:maxHeight">@dimen/input_height</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <style name="BaseTheme.Button" parent="Widget.MaterialComponents.Button">
+        <item name="base_font_family">GoogleSans</item>
+        <item name="base_font_style">bold</item>
+        <item name="android:textSize">@dimen/text_very_small</item>
+        <item name="android:paddingHorizontal" tools:targetApi="o">@dimen/component_big</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/component_normal</item>
+        <item name="cornerRadius">@dimen/radius_small</item>
+    </style>
+
+    <style name="BaseTheme.Button.Primary">
+        <item name="android:textColor">@color/colorInputPrimary</item>
+        <item name="materialThemeOverlay">@style/Primary</item>
+    </style>
+
+    <style name="BaseTheme.Button.Secondary">
+        <item name="android:textColor">@color/colorInputPrimary</item>
+        <item name="materialThemeOverlay">@style/Secondary</item>
+    </style>
+
+    <style name="BaseTheme.Button.Accent">
+        <item name="android:textColor">@color/colorInputPrimary</item>
+        <item name="materialThemeOverlay">@style/Accent</item>
+    </style>
+
+    <style name="Primary">
+        <item name="colorPrimary">@color/colorButtonPrimary</item>
+    </style>
+
+    <style name="Secondary">
+        <item name="colorPrimary">@color/colorButtonSecondary</item>
+    </style>
+
+    <style name="Accent">
+        <item name="colorPrimary">@color/colorAccent</item>
+    </style>
+
+    <style name="BaseTheme.Margin">
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginTop">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginBottom">@dimen/activity_horizontal_margin</item>
+    </style>
+
+    <style name="BaseTheme.Margin.Horizontal">
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
+    </style>
+
+    <style name="BaseTheme.Margin.Vertical">
+        <item name="android:layout_marginTop">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginBottom">@dimen/activity_horizontal_margin</item>
+    </style>
+
+    <style name="BaseTheme.Margin.Small">
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin_small</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin_small</item>
+        <item name="android:layout_marginTop">@dimen/activity_vertical_margin_small</item>
+        <item name="android:layout_marginBottom">@dimen/activity_vertical_margin_small</item>
+    </style>
+
+    <style name="BaseTheme.Layout" />
+
+    <style name="BaseTheme.Layout.Parent.Small">
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin_small</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin_small</item>
+        <item name="android:paddingTop">@dimen/activity_vertical_margin_small</item>
+        <item name="android:paddingBottom">@dimen/activity_vertical_margin_small</item>
+    </style>
+
+    <style name="BaseTheme.Layout.Parent">
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingTop">@dimen/activity_vertical_margin</item>
+        <item name="android:paddingBottom">@dimen/activity_vertical_margin</item>
+    </style>
+
+    <style name="BaseTheme.Layout.Horizontal">
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+    </style>
+
+    <style name="BaseTheme.Layout.Vertical">
+        <item name="android:paddingBottom">@dimen/activity_vertical_margin</item>
+        <item name="android:paddingTop">@dimen/activity_vertical_margin</item>
+    </style>
+
+    <style name="CoreTheme" parent="BaseTheme"/>
+
+    <style name="BaseTheme.EditText.TextInputLayoutFilledBoxPadding" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="materialThemeOverlay">@style/BaseThemeOverlayFilledPadding</item>
+    </style>
+
+    <style name="BaseThemeOverlayFilledPadding">
+        <item name="editTextStyle">@style/MyTextInputEditText_filledBox_padding</item>
+    </style>
+
+    <style name="MyTextInputEditText_filledBox_padding" parent="@style/Widget.MaterialComponents.TextInputEditText.FilledBox">
+        <item name="android:paddingStart" ns2:ignore="NewApi">2dp</item>
+        <item name="android:paddingEnd" ns2:ignore="NewApi">2dp</item>
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <!-- top and bottom padding -->
+        <item name="android:paddingTop">28dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+
+</resources>
