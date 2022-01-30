@@ -90,6 +90,11 @@
         <item name="materialThemeOverlay">@style/Secondary</item>
     </style>
 
+    <style name="BaseTheme.Button.Delete">
+        <item name="android:textColor">@color/colorInputPrimary</item>
+        <item name="materialThemeOverlay">@style/Delete</item>
+    </style>
+
     <style name="BaseTheme.Button.Accent">
         <item name="android:textColor">@color/colorInputPrimary</item>
         <item name="materialThemeOverlay">@style/Accent</item>
@@ -101,6 +106,10 @@
 
     <style name="Secondary">
         <item name="colorPrimary">@color/colorButtonSecondary</item>
+    </style>
+
+    <style name="Delete">
+        <item name="colorPrimary">@color/colorActionDelete</item>
     </style>
 
     <style name="Accent">

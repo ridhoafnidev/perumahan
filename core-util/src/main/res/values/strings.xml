@@ -7,4 +7,6 @@
     <string name="title">Judul</string>
     <string name="time_suffix">>></string>
     <string name="time_prefix"><![CDATA[<<]]></string>
+    <string name="ok">Oke</string>
+    <string name="cancel">Batal</string>
 </resources>

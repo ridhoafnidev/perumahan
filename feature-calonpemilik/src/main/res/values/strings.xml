@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">feature-calon-pemilik</string>
+    <string name="title_create_perumahan">Tambah Data Calon Pemilik</string>
+
+
+    <string-array name="dummy_perumahan">
+        <item>Perumahan 4x4</item>
+        <item>Perumahan 4x8</item>
+        <item>Perumahan 4x12</item>
+    </string-array>
+</resources>
