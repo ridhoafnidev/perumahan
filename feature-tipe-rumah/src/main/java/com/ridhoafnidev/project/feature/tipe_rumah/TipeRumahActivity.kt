@@ -12,6 +12,5 @@ class TipeRumahActivity : BaseActivity<ActivityTipeRumahBinding>(ActivityTipeRum
     }
 
     override fun initListener() {
-
     }
 }

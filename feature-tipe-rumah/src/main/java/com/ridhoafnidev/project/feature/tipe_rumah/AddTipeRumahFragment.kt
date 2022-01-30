@@ -24,6 +24,7 @@ class AddTipeRumahFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        activity?.actionBar?.title = getString(R.string.add_tipe_rumah)
     }
 
     override fun onDestroyView() {
