@@ -3,11 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tipe_rumah_navigation"
-    app:startDestination="@id/tipeRumahFragment">
+    app:startDestination="@id/addTipeRumahFragment">
 
     <fragment
         android:id="@+id/tipeRumahFragment"
         android:name="com.ridhoafnidev.project.feature.tipe_rumah.TipeRumahFragment"
         android:label="fragment_tipe_rumah"
         tools:layout="@layout/fragment_tipe_rumah" />
+    <fragment
+        android:id="@+id/addTipeRumahFragment"
+        android:name="com.ridhoafnidev.project.feature.tipe_rumah.AddTipeRumahFragment"
+        android:label="fragment_add_tipe_rumah"
+        tools:layout="@layout/fragment_add_tipe_rumah" />
 </navigation>
