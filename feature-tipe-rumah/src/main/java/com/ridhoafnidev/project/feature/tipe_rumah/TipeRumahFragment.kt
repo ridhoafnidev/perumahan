@@ -1,17 +1,20 @@
 package com.ridhoafnidev.project.feature.tipe_rumah
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.afollestad.recyclical.datasource.dataSourceTypedOf
 import com.afollestad.recyclical.setup
 import com.afollestad.recyclical.withItem
 import com.ridhoafnidev.project.core_domain.model.TipeRumah
+import com.ridhoafnidev.project.core_util.showAlertDialog
 import com.ridhoafnidev.project.feature.tipe_rumah.databinding.FragmentTipeRumahBinding
+import kotlinx.parcelize.Parcelize
 
 class TipeRumahFragment : Fragment() {
 
@@ -41,8 +44,7 @@ class TipeRumahFragment : Fragment() {
         setupRecyclerTipeRumah(dummyTipeRumah)
 
         binding.btnTambahTipeRumah.setOnClickListener {
-            val toAddTipeRumah = TipeRumahFragmentDirections.actionTipeRumahFragmentToAddTipeRumahFragment()
-            findNavController().navigate(toAddTipeRumah)
+            toFormTipeRumah(TipeRumahAction.Add)
         }
     }
 
@@ -56,23 +58,49 @@ class TipeRumahFragment : Fragment() {
                     tvUkuran.text = item.ukuran.toString()
 
                     btnEdit.setOnClickListener {
-                        Toast.makeText(requireContext(), "Edit tipe tumah", Toast.LENGTH_SHORT)
-                            .show()
+                        toFormTipeRumah(TipeRumahAction.Edit)
                     }
                     btnDelete.setOnClickListener {
-                        Toast.makeText(requireContext(), "Delete tipe tumah", Toast.LENGTH_SHORT)
-                            .show()
+                        showAlertDialog(
+                            getString(R.string.delete_tipe_rumah_title),
+                            null
+                        ) {
+                            Toast.makeText(
+                                context,
+                                "Tipe rumah berhasil dihapus!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
                 onClick {
-                    Toast.makeText(requireContext(), "Detail tipe rumah", Toast.LENGTH_SHORT).show()
+                    toFormTipeRumah(TipeRumahAction.Detail)
                 }
             }
         }
     }
 
+    private fun toFormTipeRumah(actionType: TipeRumahAction) {
+        val toAddTipeRumah = TipeRumahFragmentDirections
+            .actionTipeRumahFragmentToAddTipeRumahFragment(actionType)
+        findNavController().navigate(toAddTipeRumah)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        sealed class TipeRumahAction : Parcelable {
+            @Parcelize
+            object Add : TipeRumahAction()
+            @Parcelize
+            object Detail : TipeRumahAction()
+            @Parcelize
+            object Edit : TipeRumahAction()
+            @Parcelize
+            object Delete : TipeRumahAction()
+        }
     }
 }

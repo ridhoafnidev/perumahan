@@ -18,5 +18,9 @@
         android:id="@+id/addTipeRumahFragment"
         android:name="com.ridhoafnidev.project.feature.tipe_rumah.AddTipeRumahFragment"
         android:label="fragment_add_tipe_rumah"
-        tools:layout="@layout/fragment_add_tipe_rumah" />
+        tools:layout="@layout/fragment_add_tipe_rumah" >
+        <argument
+            android:name="actionType"
+            app:argType="com.ridhoafnidev.project.feature.tipe_rumah.TipeRumahFragment$Companion$TipeRumahAction" />
+    </fragment>
 </navigation>

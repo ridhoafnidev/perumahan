@@ -12,7 +12,7 @@
     <string name="air">Air</string>
     <string name="sanitasi">Sanitasi</string>
     <string name="rangka_atap">Rangka Atap</string>
-    <string name="kamar_mandi">Kamar Mandi</string>
+    <string name="dinding_kamar_mandi">Dinding Kamar Mandi</string>
     <string name="plafon">Plafon</string>
     <string name="dinding">Dinding</string>
     <string name="harga_rp">Harga (Rp)</string>
@@ -23,4 +23,8 @@
     <string name="lantai">Lantai</string>
     <string name="pondasi">Pondasi</string>
     <string name="add_tipe_rumah">Tambah Tipe Rumah</string>
+    <string name="tambah_foto_rumah">Tambah foto rumah</string>
+    <string name="delete_tipe_rumah_title">Apakah kamu yakin ingin menghapus tipe rumah ini?</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Hapus</string>
 </resources>

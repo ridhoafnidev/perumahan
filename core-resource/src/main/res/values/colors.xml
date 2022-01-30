@@ -44,5 +44,5 @@
 
     <!--  Action Color  -->
     <color name="colorActionDelete">#e63946</color>
-    <color name="colorActionEdit">#3f37c9</color>
+    <color name="colorActionEdit">@color/colorButtonSecondary</color>
 </resources>
