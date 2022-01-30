@@ -10,4 +10,9 @@
         android:name="com.ridhoafnidev.project.feature.calonpemilik.CalonPemilikFragment"
         android:label="fragment_calon_pemilik"
         tools:layout="@layout/fragment_calon_pemilik" />
+    <fragment
+        android:id="@+id/addCalonPemilikFragment"
+        android:name="com.ridhoafnidev.project.feature.calonpemilik.AddCalonPemilikFragment"
+        android:label="fragment_add_calon_pemilik"
+        tools:layout="@layout/fragment_add_calon_pemilik" />
 </navigation>

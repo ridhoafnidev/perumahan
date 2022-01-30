@@ -188,4 +188,9 @@
         <item name="android:paddingBottom">12dp</item>
     </style>
 
+    <style name="BaseTheme.Chip" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="chipBackgroundColor">@color/colorAccent</item>
+        <item name="chipIconVisible">false</item>
+        <item name="android:enabled">false</item>
+    </style>
 </resources>

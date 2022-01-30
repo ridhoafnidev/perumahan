@@ -6,7 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import com.afollestad.recyclical.datasource.dataSourceTypedOf
+import com.afollestad.recyclical.setup
+import com.afollestad.recyclical.withItem
+import com.ridhoafnidev.project.core_domain.model.CalonPemilik
 import com.ridhoafnidev.project.feature.calonpemilik.databinding.FragmentCalonPemilikBinding
+import java.util.ArrayList
 
 class CalonPemilikFragment : Fragment() {
 
@@ -25,13 +30,43 @@ class CalonPemilikFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val listCalonPemilik = arrayListOf<CalonPemilik>()
+
+        (1..10).forEach {
+            listCalonPemilik.add(
+                CalonPemilik(
+                    "Nama ke $it",
+                    "Jl. Merbau $it",
+                    "Belum Dihubungi",
+                    "Enau - Perumahan Citra $it"
+                )
+            )
+        }
+
+        setupRvCalonPemilik(listCalonPemilik)
+
         val dummyPerumahan = resources.getStringArray(R.array.dummy_perumahan)
         setupEdtPerumahan(dummyPerumahan)
     }
 
+    private fun setupRvCalonPemilik(listCalonPemilik: ArrayList<CalonPemilik>) {
+        val dataSource = dataSourceTypedOf(listCalonPemilik)
+        binding.rvCalonPemilik.setup {
+            withDataSource(dataSource)
+            withItem<CalonPemilik, CalonPemilikViewHolder>(R.layout.item_calon_pemilik) {
+                onBind(::CalonPemilikViewHolder) { _, item ->
+                    tvNamaCalonPemilik.text = item.namaLengkap
+                    tvAlamatCalonPemilik.text = item.alamat
+                    tvTipeRumahCalonPemilik.text = item.tipeRumah
+                    chipStatusCalonPemilik.text = item.status
+                }
+            }
+        }
+    }
+
     private fun setupEdtPerumahan(listPerumahan: Array<String>) {
         val adapter = ArrayAdapter(requireContext(), R.layout.item_perumahan, listPerumahan)
-        binding.edtPerumahan.setAdapter(adapter)
+//        binding.edtPerumahan.setAdapter(adapter)
     }
 
     override fun onDestroyView() {
