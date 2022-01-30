@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.navigation.fragment.findNavController
 import com.afollestad.recyclical.datasource.dataSourceTypedOf
 import com.afollestad.recyclical.setup
 import com.afollestad.recyclical.withItem
@@ -44,9 +45,6 @@ class CalonPemilikFragment : Fragment() {
         }
 
         setupRvCalonPemilik(listCalonPemilik)
-
-        val dummyPerumahan = resources.getStringArray(R.array.dummy_perumahan)
-        setupEdtPerumahan(dummyPerumahan)
     }
 
     private fun setupRvCalonPemilik(listCalonPemilik: ArrayList<CalonPemilik>) {
@@ -60,13 +58,13 @@ class CalonPemilikFragment : Fragment() {
                     tvTipeRumahCalonPemilik.text = item.tipeRumah
                     chipStatusCalonPemilik.text = item.status
                 }
+                onClick {
+                    val toAddCalonPemilikFragment = CalonPemilikFragmentDirections
+                        .actionCalonPemilikFragmentToAddCalonPemilikFragment()
+                    findNavController().navigate(toAddCalonPemilikFragment)
+                }
             }
         }
-    }
-
-    private fun setupEdtPerumahan(listPerumahan: Array<String>) {
-        val adapter = ArrayAdapter(requireContext(), R.layout.item_perumahan, listPerumahan)
-//        binding.edtPerumahan.setAdapter(adapter)
     }
 
     override fun onDestroyView() {
