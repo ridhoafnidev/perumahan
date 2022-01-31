@@ -1,27 +1,4 @@
 <resources>
     <string name="app_name">feature-calon-pemilik</string>
     <string name="title_create_perumahan">Tambah Data Calon Pemilik</string>
-
-
-    <string-array name="dummy_perumahan">
-        <item>Perumahan 4x4</item>
-        <item>Perumahan 4x8</item>
-        <item>Perumahan 4x12</item>
-    </string-array>
-
-    <string-array name="dummy_status">
-        <item>Belum Dihubungi</item>
-        <item>Sudah Dihubungi</item>
-    </string-array>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="tipe_rumah">Tipe Rumah</string>
-    <string name="perumahan">Perumahan</string>
-    <string name="email">Email</string>
-    <string name="no_hp">No Hp</string>
-    <string name="alamat">Alamat</string>
-    <string name="nama_lengkap">Nama Lengkap</string>
-    <string name="simpan">SIMPAN</string>
-    <string name="upload_bukti_dp">Upload bukti dp</string>
-    <string name="status">Status</string>
 </resources>

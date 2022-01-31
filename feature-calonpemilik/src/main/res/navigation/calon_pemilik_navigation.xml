@@ -12,13 +12,13 @@
         tools:layout="@layout/fragment_calon_pemilik" >
         <action
             android:id="@+id/action_calonPemilikFragment_to_addCalonPemilikFragment"
-            app:destination="@id/addCalonPemilikFragment" />
+            app:destination="@id/editCalonPemilikFragment" />
     </fragment>
     <fragment
-        android:id="@+id/addCalonPemilikFragment"
-        android:name="com.ridhoafnidev.project.feature.calonpemilik.AddCalonPemilikFragment"
+        android:id="@+id/editCalonPemilikFragment"
+        android:name="com.ridhoafnidev.project.feature.calonpemilik.EditCalonPemilikFragment"
         android:label="fragment_add_calon_pemilik"
-        tools:layout="@layout/fragment_add_calon_pemilik" >
+        tools:layout="@layout/fragment_edit_calon_pemilik" >
         <argument
             android:name="action_type"
             app:argType="com.ridhoafnidev.project.core_navigation.ActionType" />

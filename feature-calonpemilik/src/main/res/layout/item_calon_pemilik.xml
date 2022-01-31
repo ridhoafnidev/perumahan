@@ -19,7 +19,7 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="Nama" />
+            android:text="@string/nama_lengkap" />
 
         <TextView
             android:id="@+id/tv_nama_calon_pemilik"
@@ -40,7 +40,7 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_nama_calon_pemilik"
-            android:text="Alamat" />
+            android:text="@string/alamat" />
 
         <TextView
             android:id="@+id/tv_alamat_calon_pemilik"
@@ -61,7 +61,7 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_alamat_calon_pemilik"
-            android:text="Tipe Rumah" />
+            android:text="@string/tipe_rumah" />
 
         <TextView
             android:id="@+id/tv_tipe_rumah_calon_pemilik"

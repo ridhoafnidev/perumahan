@@ -298,7 +298,7 @@
             android:weightSum="2">
 
             <com.ridhoafnidev.project.core_resource.components.BaseButton
-                android:id="@+id/btn_edit"
+                android:id="@+id/btn_simulasi"
                 style="@style/BaseTheme.Button.Secondary"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -308,7 +308,7 @@
                 android:layout_weight="1"/>
 
             <com.ridhoafnidev.project.core_resource.components.BaseButton
-                android:id="@+id/btn_delete"
+                android:id="@+id/btn_checkout"
                 style="@style/BaseTheme.Button.Delete"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

@@ -1,4 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="text_search_chat">Cari</string>
+    <string name="nama_tipe">Nama Tipe</string>
+    <string name="ukuran_">Ukuran</string>
+    <string name="edit_tipe_rumah">Edit tipe rumah</string>
+    <string name="tambah_tipe_rumah">Tambah Tipe Rumah</string>
+    <string name="simpan">SIMPAN</string>
+    <string name="jumlah_unit_">Jumlah Unit</string>
+    <string name="air">Air</string>
+    <string name="sanitasi">Sanitasi</string>
+    <string name="rangka_atap">Rangka Atap</string>
+    <string name="dinding_kamar_mandi">Dinding Kamar Mandi</string>
+    <string name="plafon">Plafon</string>
+    <string name="dinding">Dinding</string>
+    <string name="harga_rp">Harga (Rp)</string>
+    <string name="listrik">Listrik</string>
+    <string name="atap">Atap</string>
+    <string name="kusen">Kusen</string>
+    <string name="pintu_depan">Pintu Depan</string>
+    <string name="lantai">Lantai</string>
+    <string name="pondasi">Pondasi</string>
+    <string name="add_tipe_rumah">Tambah Tipe Rumah</string>
+    <string name="tambah_foto_rumah">Tambah foto rumah</string>
+    <string name="delete_tipe_rumah_title">Apakah kamu yakin ingin menghapus tipe rumah ini?</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Hapus</string>
+
+    <string name="tipe_rumah">Tipe Rumah</string>
+    <string name="perumahan">Perumahan</string>
+    <string name="email">Email</string>
+    <string name="no_hp">No Hp</string>
+    <string name="alamat">Alamat</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="upload_bukti_dp">Upload bukti dp</string>
+    <string name="status">Status</string>
+
+    <string-array name="dummy_perumahan">
+        <item>Perumahan 4x4</item>
+        <item>Perumahan 4x8</item>
+        <item>Perumahan 4x12</item>
+    </string-array>
+
+    <string-array name="dummy_status">
+        <item>Belum Dihubungi</item>
+        <item>Sudah Dihubungi</item>
+    </string-array>
 </resources>

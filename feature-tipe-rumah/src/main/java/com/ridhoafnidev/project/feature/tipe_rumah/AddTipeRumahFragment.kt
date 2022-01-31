@@ -7,13 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.ridhoafnidev.project.core_navigation.ActionType
+import com.ridhoafnidev.project.core_resource.databinding.CompontentFormTambahCalonPemilikBinding
 import com.ridhoafnidev.project.feature.tipe_rumah.databinding.FragmentAddTipeRumahBinding
 
 class AddTipeRumahFragment : Fragment() {
 
     private var _binding: FragmentAddTipeRumahBinding? = null
-    private val binding: FragmentAddTipeRumahBinding
-        get() = _binding!!
+    private val binding: CompontentFormTambahCalonPemilikBinding
+        get() = _binding!!.componentAddCalonPemilik
 
     private lateinit var actionType: ActionType
     private val args: AddTipeRumahFragmentArgs by navArgs()

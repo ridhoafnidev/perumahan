@@ -54,6 +54,10 @@ class DetailPerumahanFragment : Fragment() {
         perumahanId = activity?.intent?.getStringExtra(EXTRA_PERUMAHAN_ID)
 
         setupDetailPerumahan(dummyPerumahan)
+
+        binding.btnCheckout.setOnClickListener {
+
+        }
     }
 
     private fun setupDetailPerumahan(perumahan: TipeRumah) {
