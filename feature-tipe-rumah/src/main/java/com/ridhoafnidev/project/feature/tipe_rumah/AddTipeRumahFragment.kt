@@ -13,8 +13,8 @@ import com.ridhoafnidev.project.feature.tipe_rumah.databinding.FragmentAddTipeRu
 class AddTipeRumahFragment : Fragment() {
 
     private var _binding: FragmentAddTipeRumahBinding? = null
-    private val binding: CompontentFormTambahCalonPemilikBinding
-        get() = _binding!!.componentAddCalonPemilik
+    private val binding: FragmentAddTipeRumahBinding
+        get() = _binding!!
 
     private lateinit var actionType: ActionType
     private val args: AddTipeRumahFragmentArgs by navArgs()
