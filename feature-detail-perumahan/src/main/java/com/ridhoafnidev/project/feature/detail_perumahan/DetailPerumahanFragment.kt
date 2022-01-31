@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.ridhoafnidev.project.core_domain.model.TipeRumah
 import com.ridhoafnidev.project.core_navigation.EXTRA_PERUMAHAN_ID
 import com.ridhoafnidev.project.feature.detail_perumahan.databinding.FragmentDetailPerumahanBinding
@@ -56,7 +57,9 @@ class DetailPerumahanFragment : Fragment() {
         setupDetailPerumahan(dummyPerumahan)
 
         binding.btnCheckout.setOnClickListener {
-
+            val toCheckoutFragment = DetailPerumahanFragmentDirections
+                .actionDetailPerumahanFragmentToCheckoutFragment()
+            findNavController().navigate(toCheckoutFragment)
         }
     }
 

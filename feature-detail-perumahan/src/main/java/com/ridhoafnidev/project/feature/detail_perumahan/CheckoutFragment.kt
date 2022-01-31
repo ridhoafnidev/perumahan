@@ -15,6 +15,10 @@ class CheckoutFragment : Fragment() {
     private val binding: FragmentCheckoutBinding
         get() = _binding!!
 
+    private val dummyPerumahan by lazy {
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -32,7 +32,8 @@
     <string name="no_hp">No Hp</string>
     <string name="alamat">Alamat</string>
     <string name="nama_lengkap">Nama Lengkap</string>
-    <string name="upload_bukti_dp">Upload bukti dp</string>
+    <string name="upload_bukti_dp">Upload bukti DP</string>
+    <string name="dp">Masukan DP</string>
     <string name="status">Status</string>
 
     <string-array name="dummy_perumahan">
