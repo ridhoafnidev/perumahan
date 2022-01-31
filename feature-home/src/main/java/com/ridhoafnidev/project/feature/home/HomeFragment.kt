@@ -150,6 +150,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                     tvTotalPerumahan.text = getString(R.string.total, item.jumlahUnit.toString())
                     tvHargaPerumahan.text = getString(R.string.harga, item.harga.toString())
                 }
+                onClick {
+                    navigateToDetailPerumahActivity()
+                }
             }
         }
     }

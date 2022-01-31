@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detail_perumahan_navigation"
+    app:startDestination="@id/detailPerumahanFragment">
+
+    <fragment
+        android:id="@+id/detailPerumahanFragment"
+        android:name="com.ridhoafnidev.project.feature.detail_perumahan.DetailPerumahanFragment"
+        android:label="fragment_detail_perumahan"
+        tools:layout="@layout/fragment_detail_perumahan" />
+</navigation>
