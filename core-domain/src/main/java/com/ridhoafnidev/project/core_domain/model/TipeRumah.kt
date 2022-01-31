@@ -1,6 +1,7 @@
 package com.ridhoafnidev.project.core_domain.model
 
 data class TipeRumah(
+    val id: String,
     val namaTipe: String,
     val ukuran: Int,
     val pondasi: String,

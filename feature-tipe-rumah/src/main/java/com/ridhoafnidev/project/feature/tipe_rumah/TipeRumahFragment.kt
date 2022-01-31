@@ -39,6 +39,7 @@ class TipeRumahFragment : Fragment() {
         (1..10).forEach {
             dummyTipeRumah.add(
                 TipeRumah(
+                    id = it.toString(),
                     namaTipe = "Rumah tipe $it",
                     ukuran = it + 100,
                     pondasi = "Semen",

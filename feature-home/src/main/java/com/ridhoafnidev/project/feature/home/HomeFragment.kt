@@ -1,5 +1,6 @@
 package com.ridhoafnidev.project.feature.home
 
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
@@ -23,6 +24,7 @@ import com.ridhoafnidev.project.core_util.setSnapHelper
 import com.ridhoafnidev.project.feature.home.viewholder.ItemCurrentEventViewHolder
 import com.bumptech.glide.Glide
 import com.ridhoafnidev.project.core_domain.model.TipeRumah
+import com.ridhoafnidev.project.core_navigation.EXTRA_PERUMAHAN_ID
 import com.ridhoafnidev.project.feature.home.viewholder.ItemPerumahanViewHolder
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate), ModuleNavigator {
@@ -76,6 +78,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private val dummyPerumahan by lazy {
         (1..10).map {
             TipeRumah(
+                id = "P$it",
                 namaTipe = "Enau - Perumahan Citra $it",
                 ukuran = it * 1000,
                 pondasi = "Semen",
@@ -151,7 +154,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                     tvHargaPerumahan.text = getString(R.string.harga, item.harga.toString())
                 }
                 onClick {
-                    navigateToDetailPerumahActivity()
+                    navigateToDetailPerumahActivity(
+                        extras = bundleOf(EXTRA_PERUMAHAN_ID to item.id)
+                    )
                 }
             }
         }

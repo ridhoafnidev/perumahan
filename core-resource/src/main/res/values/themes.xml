@@ -190,7 +190,7 @@
 
     <style name="BaseTheme.Chip" parent="Widget.MaterialComponents.Chip.Action">
         <item name="chipBackgroundColor">@color/colorAccent</item>
-        <item name="chipIconVisible">false</item>
-        <item name="android:enabled">false</item>
+        <item name="android:clickable">false</item>
+        <item name="android:focusable">false</item>
     </style>
 </resources>

@@ -16,3 +16,5 @@ enum class ActivityClassPath(private val className: String) {
 
 private const val BASE_PATH = "com.ridhoafnidev.project.feature"
 private const val SUB_PATH = "com.ridhoafnidev.project.subfeature"
+
+const val EXTRA_PERUMAHAN_ID = "perumahan_id"
