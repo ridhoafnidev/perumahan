@@ -38,7 +38,25 @@ class TipeRumahFragment : Fragment() {
 
         (1..10).forEach {
             dummyTipeRumah.add(
-                TipeRumah("Rumah tipe $it", it+100)
+                TipeRumah(
+                    namaTipe = "Rumah tipe $it",
+                    ukuran = it + 100,
+                    pondasi = "Semen",
+                    dinding = "Semen",
+                    lantai = "Granit",
+                    plafon = "Plafon $it",
+                    pintuDepan = "Baja ringan",
+                    dindingKamarMandi = "Granit",
+                    kusen = "Baja",
+                    rangkapAtap = "Baja ringan",
+                    atap = "Seng",
+                    sanitasi = "Air",
+                    listrik = "PLTA",
+                    air = "Bor",
+                    10000,
+                    jumlahUnit = it,
+                    photo = ""
+                )
             )
         }
 

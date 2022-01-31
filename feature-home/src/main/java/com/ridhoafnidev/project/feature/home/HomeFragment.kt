@@ -8,14 +8,12 @@ import com.afollestad.recyclical.datasource.dataSourceOf
 import com.afollestad.recyclical.setup
 import com.afollestad.recyclical.withItem
 import com.ridhoafnidev.project.core_data.domain.Event
-import com.ridhoafnidev.project.core_data.domain.ListEvents
 import com.ridhoafnidev.project.core_data.domain.MenuStatus
 import com.ridhoafnidev.project.core_domain.model.Menu
 import com.ridhoafnidev.project.core_navigation.ModuleNavigator
 import com.ridhoafnidev.project.core_resource.components.base.BaseFragment
 import com.ridhoafnidev.project.core_util.dayTimeGreeting
 import com.ridhoafnidev.project.feature.home.viewholder.ItemMenuViewHolder
-import com.ridhoafnidev.project.feature.home.viewholder.ItemNewEventViewHolder
 import com.ridhoafnidev.home.R
 import com.ridhoafnidev.home.databinding.FragmentHomeBinding
 import lt.neworld.spanner.Spanner
@@ -24,10 +22,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.ridhoafnidev.project.core_util.setSnapHelper
 import com.ridhoafnidev.project.feature.home.viewholder.ItemCurrentEventViewHolder
 import com.bumptech.glide.Glide
-import com.ridhoafnidev.project.core_util.BaseDateTime
-import com.ridhoafnidev.project.core_util.BaseDateTime.Companion.convertTo12H
-import com.ridhoafnidev.project.core_util.BaseDateTime.Companion.currentDate
-import com.ridhoafnidev.project.core_util.BaseDateTime.Companion.withIndFormat
+import com.ridhoafnidev.project.core_domain.model.TipeRumah
+import com.ridhoafnidev.project.feature.home.viewholder.ItemPerumahanViewHolder
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate), ModuleNavigator {
 
@@ -77,11 +73,35 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         )
     }
 
+    private val dummyPerumahan by lazy {
+        (1..10).map {
+            TipeRumah(
+                namaTipe = "Enau - Perumahan Citra $it",
+                ukuran = it * 1000,
+                pondasi = "Semen",
+                dinding = "Semen",
+                lantai = "Granit",
+                plafon = "Plafon $it",
+                pintuDepan = "Baja ringan",
+                dindingKamarMandi = "Granit",
+                kusen = "Baja",
+                rangkapAtap = "Baja ringan",
+                atap = "Seng",
+                sanitasi = "Air",
+                listrik = "PLTA",
+                air = "Bor",
+                harga = it * 1000000,
+                jumlahUnit = it,
+                photo = ""
+            )
+        }
+    }
+
     private val homeViewModel: HomeViewModel by viewModel()
 
     private val recyclerViewMenus by lazy { binding.rvGridMenu }
 
-    private val recyclerViewNewEvents by lazy { binding.rvNewEvent }
+    private val recyclerViewPerumahan by lazy { binding.rvPerumahan }
 
     override fun initView() {
         getEvent()
@@ -95,11 +115,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun setupEvent() {
-        homeViewModel.newEvent.observe(viewLifecycleOwner) { listEvent ->
-            if (listEvent != null) {
-                setupCurrentEvents(listEvent)
-            }
-        }
+//        homeViewModel.newEvent.observe(viewLifecycleOwner) { listEvent ->
+//            if (listEvent != null) {
+//                setupCurrentEvents()
+//            }
+//        }
+        setupRvPerumahan(dummyPerumahan)
     }
 
     private fun setupItems() {
@@ -115,22 +136,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-    private fun setupCurrentEvents(listEvent: ListEvents) {
+    private fun setupRvPerumahan(listEvent: List<TipeRumah>) {
 
-        setSnapHelper(recyclerViewNewEvents)
+        setSnapHelper(recyclerViewPerumahan)
 
-        recyclerViewNewEvents.setup {
-            withLayoutManager(LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false))
+        recyclerViewPerumahan.setup {
             withDataSource(dataSourceOf(listEvent))
-            withItem<Event, ItemCurrentEventViewHolder>(R.layout.layout_item_current_event){
-                onBind(::ItemCurrentEventViewHolder){_, item ->
-                    Glide.with(requireActivity()).load(item.image).into(imageEvent)
-                    titleEvent.text = item.name
-                    dateEvent.text = item.startDate.take(2)
-                    mounthEvent.text = item.startDate.trim().slice(3..6)
-                    placeEvent.text = Spanner().append(item.location)
-                        .append(" - ")
-                        .append(item.poweredBy)
+            withItem<TipeRumah, ItemPerumahanViewHolder>(R.layout.layout_item_perumahan){
+                onBind(::ItemPerumahanViewHolder){_, item ->
+//                    Glide.with(requireActivity()).load(item.photo).into(ivPhotoPerumahan)
+                    tvNamaTipePerumahan.text = item.namaTipe
+                    tvUkuranPerumahan.text = getString(R.string.ukuran, item.ukuran.toString())
+                    tvTotalPerumahan.text = getString(R.string.total, item.jumlahUnit.toString())
+                    tvHargaPerumahan.text = getString(R.string.harga, item.harga.toString())
                 }
             }
         }
