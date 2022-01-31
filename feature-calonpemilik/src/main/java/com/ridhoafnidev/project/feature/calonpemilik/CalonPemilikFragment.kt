@@ -11,6 +11,7 @@ import com.afollestad.recyclical.datasource.dataSourceTypedOf
 import com.afollestad.recyclical.setup
 import com.afollestad.recyclical.withItem
 import com.ridhoafnidev.project.core_domain.model.CalonPemilik
+import com.ridhoafnidev.project.core_navigation.ActionType
 import com.ridhoafnidev.project.feature.calonpemilik.databinding.FragmentCalonPemilikBinding
 import java.util.ArrayList
 
@@ -36,10 +37,13 @@ class CalonPemilikFragment : Fragment() {
         (1..10).forEach {
             listCalonPemilik.add(
                 CalonPemilik(
-                    "Nama ke $it",
-                    "Jl. Merbau $it",
-                    "Belum Dihubungi",
-                    "Enau - Perumahan Citra $it"
+                    namaLengkap = "Nama ke $it",
+                    alamat = "Jl. Merbau $it",
+                    status = "Belum Dihubungi",
+                    tipeRumah = "Enau - Perumahan Citra $it",
+                    noHp = "0902390213901",
+                    email = "fwfw@gmail.com",
+                    perumahan = "Perumahan $it"
                 )
             )
         }
@@ -60,7 +64,7 @@ class CalonPemilikFragment : Fragment() {
                 }
                 onClick {
                     val toAddCalonPemilikFragment = CalonPemilikFragmentDirections
-                        .actionCalonPemilikFragmentToAddCalonPemilikFragment()
+                        .actionCalonPemilikFragmentToAddCalonPemilikFragment(ActionType.Edit)
                     findNavController().navigate(toAddCalonPemilikFragment)
                 }
             }

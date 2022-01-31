@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
+import com.ridhoafnidev.project.core_navigation.ActionType
 import com.ridhoafnidev.project.feature.tipe_rumah.databinding.FragmentAddTipeRumahBinding
 
 class AddTipeRumahFragment : Fragment() {
@@ -14,7 +15,7 @@ class AddTipeRumahFragment : Fragment() {
     private val binding: FragmentAddTipeRumahBinding
         get() = _binding!!
 
-    private lateinit var actionType: TipeRumahFragment.Companion.TipeRumahAction
+    private lateinit var actionType: ActionType
     private val args: AddTipeRumahFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -31,18 +32,18 @@ class AddTipeRumahFragment : Fragment() {
         actionType = args.actionType
 
         when (actionType) {
-            TipeRumahFragment.Companion.TipeRumahAction.Add -> {
+            ActionType.Add -> {
 
             }
-            TipeRumahFragment.Companion.TipeRumahAction.Detail -> {
+            ActionType.Detail -> {
                 disableEditText()
                 showActionDetailButtons()
                 setupFormTipeRumah()
             }
-            TipeRumahFragment.Companion.TipeRumahAction.Edit -> {
+            ActionType.Edit -> {
                 setupFormTipeRumah()
             }
-            TipeRumahFragment.Companion.TipeRumahAction.Delete -> {
+            ActionType.Delete -> {
             }
         }
 

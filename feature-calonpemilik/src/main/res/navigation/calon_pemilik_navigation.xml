@@ -18,5 +18,9 @@
         android:id="@+id/addCalonPemilikFragment"
         android:name="com.ridhoafnidev.project.feature.calonpemilik.AddCalonPemilikFragment"
         android:label="fragment_add_calon_pemilik"
-        tools:layout="@layout/fragment_add_calon_pemilik" />
+        tools:layout="@layout/fragment_add_calon_pemilik" >
+        <argument
+            android:name="action_type"
+            app:argType="com.ridhoafnidev.project.core_navigation.ActionType" />
+    </fragment>
 </navigation>
