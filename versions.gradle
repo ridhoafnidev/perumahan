@@ -75,6 +75,7 @@ ext.versions = [
         recycler_view_divider: '3.5.0',
         time_picker          : '1.0.3',
         glide                : '4.12.0',
+        subsampling_scale_image_view: '3.10.0',
 
         // endregion
 ]
@@ -189,5 +190,6 @@ ext.deps = [
                 "com.github.bumptech.glide:glide:$versions.glide",
                 "com.github.bumptech.glide:compiler:$versions.glide"
         ],
+        subsampling_scale_image_view : "com.davemorrissey.labs:subsampling-scale-image-view:$versions.subsampling_scale_image_view"
         // endregion
 ]

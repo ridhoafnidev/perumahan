@@ -4,6 +4,10 @@
 
     <application>
         <activity
+            android:name=".PreviewDPActivity"
+            android:exported="false"
+            android:theme="@style/BaseTheme.PreviewDP"/>
+        <activity
             android:name=".DetailPerumahanActivity"
             android:exported="false"
             android:theme="@style/BaseTheme" />

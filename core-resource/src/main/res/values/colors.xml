@@ -6,6 +6,7 @@
     <color name="colorBackgroundPrimary">#F7F7F7</color>
     <color name="colorBackgroundSecondary">#FFFFFF</color>
     <color name="colorBackgroundAlternative">#EFF3F6</color>
+    <color name="colorBackgroundBlack">#000000</color>
     <color name="colorDivider">#F5F5F5</color>
     <color name="colorTextAccent">#F7A664</color>
     <color name="colorTextPrimary">#101010</color>

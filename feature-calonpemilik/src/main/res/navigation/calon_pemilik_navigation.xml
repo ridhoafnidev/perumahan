@@ -22,5 +22,13 @@
         <argument
             android:name="action_type"
             app:argType="com.ridhoafnidev.project.core_navigation.ActionType" />
+        <action
+            android:id="@+id/action_editCalonPemilikFragment_to_previewDPActivity"
+            app:destination="@id/previewDPActivity" />
     </fragment>
+    <activity
+        android:id="@+id/previewDPActivity"
+        android:name="com.ridhoafnidev.project.feature.calonpemilik.PreviewDPActivity"
+        android:label="activity_preview_dp_activity"
+        tools:layout="@layout/activity_preview_dp_activity" />
 </navigation>

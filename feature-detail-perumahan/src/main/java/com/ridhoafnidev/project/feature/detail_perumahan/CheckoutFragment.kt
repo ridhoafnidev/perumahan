@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.ridhoafnidev.project.core_resource.databinding.CompontentFormTambahCalonPemilikBinding
 import com.ridhoafnidev.project.feature.detail_perumahan.databinding.FragmentCheckoutBinding
 
@@ -30,8 +31,15 @@ class CheckoutFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnSubmit.setOnClickListener {
-            Toast.makeText(requireContext(), "Checkout berhasil", Toast.LENGTH_SHORT).show()
+        binding.apply {
+            btnSubmit.setOnClickListener {
+                Toast.makeText(requireContext(), "Checkout berhasil", Toast.LENGTH_SHORT).show()
+            }
+            btnBuktiDp.setOnClickListener {
+                val toPreviewDPActivity = CheckoutFragmentDirections
+                    .actionCheckoutFragmentToPreviewDPActivity()
+                findNavController().navigate(toPreviewDPActivity)
+            }
         }
     }
 

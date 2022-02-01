@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.ridhoafnidev.project.core_domain.model.CalonPemilik
 import com.ridhoafnidev.project.core_navigation.ActionType
@@ -57,6 +58,13 @@ class EditCalonPemilikFragment : Fragment() {
 
         val dummyStatus = resources.getStringArray(R.array.dummy_status)
         setupEdtStatus(dummyStatus)
+
+        binding.btnBuktiDp.setOnClickListener {
+            val toPreviewDPActivity = EditCalonPemilikFragmentDirections
+                .actionEditCalonPemilikFragmentToPreviewDPActivity()
+            findNavController()
+                .navigate(toPreviewDPActivity)
+        }
     }
 
     private fun setupFormAddCalonPemilik(calonPemilik: CalonPemilik) {
