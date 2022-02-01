@@ -61,7 +61,10 @@
                 android:id="@+id/rv_grid_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/medium" />
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="4"
+                android:padding="@dimen/medium"
+                tools:listitem="@layout/layout_item_menu"/>
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -81,7 +84,7 @@
             style="@style/BaseTheme.Margin.Horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lihat Semua"
+            android:text="@string/lihat_semua"
             android:textColor="@color/colorTextAccent"
             android:textSize="@dimen/text_medium"
             app:base_font_style="bold"
@@ -90,13 +93,16 @@
             app:layout_constraintTop_toTopOf="@+id/tv_title_new_event" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_new_event"
+            android:id="@+id/rv_perumahan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title_new_event" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_new_event"
+            tools:listitem="@layout/layout_item_perumahan"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

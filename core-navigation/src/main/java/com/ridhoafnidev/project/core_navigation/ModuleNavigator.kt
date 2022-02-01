@@ -1,9 +1,10 @@
 package com.ridhoafnidev.project.core_navigation
 
 import android.content.Intent
+import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import com.ridhoafnidev.core_navigation.R
 
 interface ModuleNavigator{
 
@@ -49,6 +50,17 @@ interface ModuleNavigator{
         startActivity(ActivityClassPath.TipeRumah, finishCurrent)
     }
 
+    fun<T> T.navigateToDetailPerumahActivity(
+        extras: Bundle,
+        finishCurrent: Boolean = false
+    ) where T : Fragment, T : ModuleNavigator {
+        startActivity(
+            activityClassPath = ActivityClassPath.DetailPerumahan,
+            extras = extras,
+            finishCurrent = finishCurrent
+        )
+    }
+
     fun<T> T.navigateToPerumahanActivity(
         finishCurrent: Boolean = false
     ) where T : AppCompatActivity, T : ModuleNavigator {
@@ -77,7 +89,16 @@ private fun Fragment.startActivity(intent: Intent, finnishCurrent: Boolean) {
 //    activity?.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 }
 
-private fun Fragment.startActivity(activityClassPath: ActivityClassPath, finnishCurrent: Boolean) =
-    startActivity(activityClassPath.getIntent(requireContext()), finnishCurrent)
+private fun Fragment.startActivity(
+    activityClassPath: ActivityClassPath,
+    finishCurrent: Boolean,
+    extras: Bundle = bundleOf()
+) =
+    startActivity(
+        activityClassPath
+            .getIntent(requireContext())
+            .putExtras(extras),
+        finishCurrent
+    )
 
 //endregion

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ridhoafnidev.project.feature.detail_perumahan">
+
+    <application>
+        <activity
+            android:name=".PreviewDPActivity"
+            android:exported="false"
+            android:theme="@style/BaseTheme.PreviewDP"/>
+        <activity
+            android:name=".DetailPerumahanActivity"
+            android:exported="false"
+            android:theme="@style/BaseTheme" />
+    </application>
+
+</manifest>

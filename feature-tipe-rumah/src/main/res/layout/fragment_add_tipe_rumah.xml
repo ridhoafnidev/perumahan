@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="@dimen/medium"
-            android:background="@color/white"
+            android:background="@color/colorBackgroundSecondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -201,7 +201,7 @@
                     style="@style/BaseTheme.EditText.Primary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/ukuran"
+                    android:hint="@string/ukuran_"
                     android:inputType="number"
                     android:lines="1" />
 
@@ -334,7 +334,7 @@
                     style="@style/BaseTheme.EditText.Primary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/jumlah_unit"
+                    android:hint="@string/jumlah_unit_"
                     android:inputType="number"
                     android:lines="1" />
 
@@ -404,6 +404,4 @@
                 android:textAllCaps="true"
                 android:layout_weight="1"/>
         </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView></androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Feature Detail Perumahan</string>
+    <string name="title_detail_perumahan">Detail Perumahan</string>
+    <string name="photo_perumahan">Photo perumahan</string>
+    <string name="simulasi">Simulasi</string>
+    <string name="checkout">Checkout</string>
+    <string name="detail_produk">Detail Produk</string>
+    <string name="ukuran_">Ukuran</string>
+    <string name="pondasi">Pondasi</string>
+    <string name="dinding">Dinding</string>
+    <string name="lantai">Lantai</string>
+    <string name="plafon">Plafon</string>
+    <string name="pintu_depan">Pintu Depan</string>
+    <string name="dinding_kamar_mandi">Dinding Kamar Mandi</string>
+    <string name="kusen">Kusen</string>
+    <string name="rangkap_atap">Rankap Atap</string>
+    <string name="sanitasi">Sanitasi</string>
+    <string name="listrik">Listrik</string>
+    <string name="air">Air</string>
+
+    <string name="harga">Rp. %s</string>
+    <string name="jumlah_unit">%d Unit</string>
+    <string name="satuan_meter">%s Meter</string>
+    <string name="table_body">: %s</string>
+    <string name="table_body_ukuran">: %s Meter</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="kembali">Kembali</string>
+</resources>

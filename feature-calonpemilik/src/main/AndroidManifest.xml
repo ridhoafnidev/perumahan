@@ -4,6 +4,10 @@
 
     <application>
         <activity
+            android:name=".PreviewDPActivity"
+            android:exported="false"
+            android:theme="@style/BaseTheme.PreviewDP"/>
+        <activity
             android:name=".CalonPemilikActivity"
             android:exported="true"
             android:theme="@style/BaseTheme" />

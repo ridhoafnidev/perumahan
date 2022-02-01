@@ -6,7 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.navigation.fragment.findNavController
+import com.afollestad.recyclical.datasource.dataSourceTypedOf
+import com.afollestad.recyclical.setup
+import com.afollestad.recyclical.withItem
+import com.ridhoafnidev.project.core_domain.model.CalonPemilik
+import com.ridhoafnidev.project.core_navigation.ActionType
 import com.ridhoafnidev.project.feature.calonpemilik.databinding.FragmentCalonPemilikBinding
+import java.util.ArrayList
 
 class CalonPemilikFragment : Fragment() {
 
@@ -25,13 +32,43 @@ class CalonPemilikFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val dummyPerumahan = resources.getStringArray(R.array.dummy_perumahan)
-        setupEdtPerumahan(dummyPerumahan)
+        val listCalonPemilik = arrayListOf<CalonPemilik>()
+
+        (1..10).forEach {
+            listCalonPemilik.add(
+                CalonPemilik(
+                    namaLengkap = "Nama ke $it",
+                    alamat = "Jl. Merbau $it",
+                    status = "Belum Dihubungi",
+                    tipeRumah = "Enau - Perumahan Citra $it",
+                    noHp = "0902390213901",
+                    email = "fwfw@gmail.com",
+                    perumahan = "Perumahan $it"
+                )
+            )
+        }
+
+        setupRvCalonPemilik(listCalonPemilik)
     }
 
-    private fun setupEdtPerumahan(listPerumahan: Array<String>) {
-        val adapter = ArrayAdapter(requireContext(), R.layout.item_perumahan, listPerumahan)
-        binding.edtPerumahan.setAdapter(adapter)
+    private fun setupRvCalonPemilik(listCalonPemilik: ArrayList<CalonPemilik>) {
+        val dataSource = dataSourceTypedOf(listCalonPemilik)
+        binding.rvCalonPemilik.setup {
+            withDataSource(dataSource)
+            withItem<CalonPemilik, CalonPemilikViewHolder>(R.layout.item_calon_pemilik) {
+                onBind(::CalonPemilikViewHolder) { _, item ->
+                    tvNamaCalonPemilik.text = item.namaLengkap
+                    tvAlamatCalonPemilik.text = item.alamat
+                    tvTipeRumahCalonPemilik.text = item.tipeRumah
+                    chipStatusCalonPemilik.text = item.status
+                }
+                onClick {
+                    val toAddCalonPemilikFragment = CalonPemilikFragmentDirections
+                        .actionCalonPemilikFragmentToAddCalonPemilikFragment(ActionType.Edit)
+                    findNavController().navigate(toAddCalonPemilikFragment)
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {

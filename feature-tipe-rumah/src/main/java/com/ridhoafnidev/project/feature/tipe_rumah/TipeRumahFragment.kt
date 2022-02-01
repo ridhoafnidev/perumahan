@@ -12,6 +12,7 @@ import com.afollestad.recyclical.datasource.dataSourceTypedOf
 import com.afollestad.recyclical.setup
 import com.afollestad.recyclical.withItem
 import com.ridhoafnidev.project.core_domain.model.TipeRumah
+import com.ridhoafnidev.project.core_navigation.ActionType
 import com.ridhoafnidev.project.core_util.showAlertDialog
 import com.ridhoafnidev.project.feature.tipe_rumah.databinding.FragmentTipeRumahBinding
 import kotlinx.parcelize.Parcelize
@@ -37,14 +38,33 @@ class TipeRumahFragment : Fragment() {
 
         (1..10).forEach {
             dummyTipeRumah.add(
-                TipeRumah("Rumah tipe $it", it+100)
+                TipeRumah(
+                    id = it.toString(),
+                    namaTipe = "Rumah tipe $it",
+                    ukuran = it + 100,
+                    pondasi = "Semen",
+                    dinding = "Semen",
+                    lantai = "Granit",
+                    plafon = "Plafon $it",
+                    pintuDepan = "Baja ringan",
+                    dindingKamarMandi = "Granit",
+                    kusen = "Baja",
+                    rangkapAtap = "Baja ringan",
+                    atap = "Seng",
+                    sanitasi = "Air",
+                    listrik = "PLTA",
+                    air = "Bor",
+                    10000,
+                    jumlahUnit = it,
+                    photo = ""
+                )
             )
         }
 
         setupRecyclerTipeRumah(dummyTipeRumah)
 
         binding.btnTambahTipeRumah.setOnClickListener {
-            toFormTipeRumah(TipeRumahAction.Add)
+            toFormTipeRumah(ActionType.Add)
         }
     }
 
@@ -58,7 +78,7 @@ class TipeRumahFragment : Fragment() {
                     tvUkuran.text = item.ukuran.toString()
 
                     btnEdit.setOnClickListener {
-                        toFormTipeRumah(TipeRumahAction.Edit)
+                        toFormTipeRumah(ActionType.Edit)
                     }
                     btnDelete.setOnClickListener {
                         showAlertDialog(
@@ -74,13 +94,13 @@ class TipeRumahFragment : Fragment() {
                     }
                 }
                 onClick {
-                    toFormTipeRumah(TipeRumahAction.Detail)
+                    toFormTipeRumah(ActionType.Detail)
                 }
             }
         }
     }
 
-    private fun toFormTipeRumah(actionType: TipeRumahAction) {
+    private fun toFormTipeRumah(actionType: ActionType) {
         val toAddTipeRumah = TipeRumahFragmentDirections
             .actionTipeRumahFragmentToAddTipeRumahFragment(actionType)
         findNavController().navigate(toAddTipeRumah)
@@ -89,18 +109,5 @@ class TipeRumahFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-        sealed class TipeRumahAction : Parcelable {
-            @Parcelize
-            object Add : TipeRumahAction()
-            @Parcelize
-            object Detail : TipeRumahAction()
-            @Parcelize
-            object Edit : TipeRumahAction()
-            @Parcelize
-            object Delete : TipeRumahAction()
-        }
     }
 }

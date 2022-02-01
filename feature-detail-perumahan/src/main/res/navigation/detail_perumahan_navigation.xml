@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detail_perumahan_navigation"
+    app:startDestination="@id/detailPerumahanFragment">
+
+    <fragment
+        android:id="@+id/detailPerumahanFragment"
+        android:name="com.ridhoafnidev.project.feature.detail_perumahan.DetailPerumahanFragment"
+        android:label="fragment_detail_perumahan"
+        tools:layout="@layout/fragment_detail_perumahan" >
+        <action
+            android:id="@+id/action_detailPerumahanFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.ridhoafnidev.project.feature.detail_perumahan.CheckoutFragment"
+        android:label="fragment_checkout"
+        tools:layout="@layout/fragment_checkout" >
+        <action
+            android:id="@+id/action_checkoutFragment_to_previewDPActivity"
+            app:destination="@id/previewDPActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/previewDPActivity"
+        android:name="com.ridhoafnidev.project.feature.detail_perumahan.PreviewDPActivity"
+        android:label="activity_preview_dp_activity"
+        tools:layout="@layout/activity_preview_dp_activity" />
+</navigation>
