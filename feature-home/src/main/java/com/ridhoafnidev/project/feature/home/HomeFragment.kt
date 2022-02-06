@@ -1,31 +1,35 @@
 package com.ridhoafnidev.project.feature.home
 
+import android.util.Log
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.afollestad.recyclical.datasource.dataSourceOf
 import com.afollestad.recyclical.setup
 import com.afollestad.recyclical.withItem
-import com.ridhoafnidev.project.core_data.domain.Event
+import com.bumptech.glide.Glide
+import com.ridhoafnidev.home.R
+import com.ridhoafnidev.home.databinding.FragmentHomeBinding
+import com.ridhoafnidev.project.core_data.data.APP_TIPE_PERUMAHAN_PHOTO_URL
+import com.ridhoafnidev.project.core_data.data.remote.ApiEvent
 import com.ridhoafnidev.project.core_data.domain.MenuStatus
 import com.ridhoafnidev.project.core_domain.model.Menu
+import com.ridhoafnidev.project.core_domain.model.TipeRumah
+import com.ridhoafnidev.project.core_domain.model.tipe_rumah.ListTipePerumahanGetAll
+import com.ridhoafnidev.project.core_domain.model.tipe_rumah.TipePerumahanGetAll
+import com.ridhoafnidev.project.core_navigation.EXTRA_PERUMAHAN_ID
 import com.ridhoafnidev.project.core_navigation.ModuleNavigator
 import com.ridhoafnidev.project.core_resource.components.base.BaseFragment
 import com.ridhoafnidev.project.core_util.dayTimeGreeting
+import com.ridhoafnidev.project.core_util.setSnapHelper
 import com.ridhoafnidev.project.feature.home.viewholder.ItemMenuViewHolder
-import com.ridhoafnidev.home.R
-import com.ridhoafnidev.home.databinding.FragmentHomeBinding
+import com.ridhoafnidev.project.feature.home.viewholder.ItemPerumahanViewHolder
+import com.ridhoafnidev.project.feature.home.viewmodel.HomeViewModel
 import lt.neworld.spanner.Spanner
 import lt.neworld.spanner.Spans.bold
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import com.ridhoafnidev.project.core_util.setSnapHelper
-import com.ridhoafnidev.project.feature.home.viewholder.ItemCurrentEventViewHolder
-import com.bumptech.glide.Glide
-import com.ridhoafnidev.project.core_domain.model.TipeRumah
-import com.ridhoafnidev.project.core_navigation.EXTRA_PERUMAHAN_ID
-import com.ridhoafnidev.project.feature.home.viewholder.ItemPerumahanViewHolder
+import timber.log.Timber
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate), ModuleNavigator {
 
@@ -107,23 +111,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private val recyclerViewPerumahan by lazy { binding.rvPerumahan }
 
     override fun initView() {
-        getEvent()
-        setupEvent()
+        getTipePerumahan()
+        setupTipePerumahan()
         setupItems()
         setupMenus()
     }
 
-    private fun getEvent() {
-        homeViewModel.getEvent()
+    private fun getTipePerumahan() {
+        homeViewModel.tipeRumahGetAll()
     }
 
-    private fun setupEvent() {
-//        homeViewModel.newEvent.observe(viewLifecycleOwner) { listEvent ->
-//            if (listEvent != null) {
-//                setupCurrentEvents()
-//            }
-//        }
-        setupRvPerumahan(dummyPerumahan)
+    private fun setupTipePerumahan() {
+        homeViewModel.listTipeRumah.observe(requireActivity()) { listEvent ->
+            when (listEvent) {
+                is ApiEvent.OnProgress -> {}
+                is ApiEvent.OnSuccess -> {
+                    Timber.d("${listEvent.getData()}")
+                    setupRvPerumahan(listEvent.getData())
+                }
+                is ApiEvent.OnFailed -> {}
+            }
+        }
     }
 
     private fun setupItems() {
@@ -139,19 +147,24 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-    private fun setupRvPerumahan(listEvent: List<TipeRumah>) {
+    private fun setupRvPerumahan(listEvent: ListTipePerumahanGetAll) {
 
         setSnapHelper(recyclerViewPerumahan)
 
         recyclerViewPerumahan.setup {
             withDataSource(dataSourceOf(listEvent))
-            withItem<TipeRumah, ItemPerumahanViewHolder>(R.layout.layout_item_perumahan){
+            withItem<TipePerumahanGetAll, ItemPerumahanViewHolder>(R.layout.layout_item_perumahan){
                 onBind(::ItemPerumahanViewHolder){_, item ->
-//                    Glide.with(requireActivity()).load(item.photo).into(ivPhotoPerumahan)
                     tvNamaTipePerumahan.text = item.namaTipe
-                    tvUkuranPerumahan.text = getString(R.string.ukuran, item.ukuran.toString())
-                    tvTotalPerumahan.text = getString(R.string.total, item.jumlahUnit.toString())
-                    tvHargaPerumahan.text = getString(R.string.harga, item.harga.toString())
+                    tvUkuranPerumahan.text = getString(R.string.ukuran, item.ukuran)
+                    tvTotalPerumahan.text = getString(R.string.total, item.jumlahUnit)
+                    tvHargaPerumahan.text = getString(R.string.harga, item.harga)
+
+                    if (item.foto.isNotEmpty()) {
+                        Glide.with(requireActivity())
+                            .load(APP_TIPE_PERUMAHAN_PHOTO_URL + item.foto[0].foto)
+                            .into(ivPhotoPerumahan)
+                    }
                 }
                 onClick {
                     navigateToDetailPerumahActivity(
