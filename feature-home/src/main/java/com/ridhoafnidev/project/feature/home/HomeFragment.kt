@@ -1,6 +1,5 @@
 package com.ridhoafnidev.project.feature.home
 
-import android.util.Log
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.GridLayoutManager
 import coil.load
@@ -15,7 +14,6 @@ import com.ridhoafnidev.project.core_data.data.APP_TIPE_PERUMAHAN_PHOTO_URL
 import com.ridhoafnidev.project.core_data.data.remote.ApiEvent
 import com.ridhoafnidev.project.core_data.domain.MenuStatus
 import com.ridhoafnidev.project.core_domain.model.Menu
-import com.ridhoafnidev.project.core_domain.model.TipeRumah
 import com.ridhoafnidev.project.core_domain.model.tipe_rumah.ListTipePerumahanGetAll
 import com.ridhoafnidev.project.core_domain.model.tipe_rumah.TipePerumahanGetAll
 import com.ridhoafnidev.project.core_navigation.EXTRA_PERUMAHAN_ID
@@ -79,31 +77,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         )
     }
 
-    private val dummyPerumahan by lazy {
-        (1..10).map {
-            TipeRumah(
-                id = "P$it",
-                namaTipe = "Enau - Perumahan Citra $it",
-                ukuran = it * 1000,
-                pondasi = "Semen",
-                dinding = "Semen",
-                lantai = "Granit",
-                plafon = "Plafon $it",
-                pintuDepan = "Baja ringan",
-                dindingKamarMandi = "Granit",
-                kusen = "Baja",
-                rangkapAtap = "Baja ringan",
-                atap = "Seng",
-                sanitasi = "Air",
-                listrik = "PLTA",
-                air = "Bor",
-                harga = it * 1000000,
-                jumlahUnit = it,
-                photo = ""
-            )
-        }
-    }
-
     private val homeViewModel: HomeViewModel by viewModel()
 
     private val recyclerViewMenus by lazy { binding.rvGridMenu }
@@ -126,7 +99,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             when (listEvent) {
                 is ApiEvent.OnProgress -> {}
                 is ApiEvent.OnSuccess -> {
-                    Timber.d("${listEvent.getData()}")
                     setupRvPerumahan(listEvent.getData())
                 }
                 is ApiEvent.OnFailed -> {}
