@@ -4,11 +4,13 @@ import com.ridhoafnidev.project.core_data.data.remote.ApiEvent
 import com.ridhoafnidev.project.core_data.data.remote.ApiExecutor
 import com.ridhoafnidev.project.core_data.data.remote.ApiResult
 import com.ridhoafnidev.project.core_data.data.remote.response.calon_pemilik.toDomain
+import com.ridhoafnidev.project.core_data.data.remote.response.detail_calon_pemilik.toDomain
 import com.ridhoafnidev.project.core_data.data.remote.response.detail_tipe_rumah.toDomain
 import com.ridhoafnidev.project.core_data.data.remote.response.tipe_rumah.toDomain
 import com.ridhoafnidev.project.core_data.data.remote.service.PerumahanService
 import com.ridhoafnidev.project.core_data.data.remote.toFailedEvent
 import com.ridhoafnidev.project.core_domain.model.calon_pemilik.ListCalonPemilik
+import com.ridhoafnidev.project.core_domain.model.detail_calon_pemilik.DetailCalonPemilik
 import com.ridhoafnidev.project.core_domain.model.detail_tipe_rumah.DetailTipeRumah
 import com.ridhoafnidev.project.core_domain.model.tipe_rumah.ListPerumahanGetAll
 import com.ridhoafnidev.project.core_domain.model.tipe_rumah.ListTipePerumahanGetAll
@@ -93,4 +95,24 @@ class PerumahanRepository internal constructor(
         }
     }
 
+    fun getDetailCalonPemilik(id: Int): Flow<ApiEvent<DetailCalonPemilik>> = flow {
+        runCatching {
+            val apiId = PerumahanService.GetDetailCalonPemilik
+            val apiResult = apiExecutor.callApi(apiId) {
+                perumahanService.getDetailCalonPemilik(id)
+            }
+
+            val apiEvent: ApiEvent<DetailCalonPemilik> = when (apiResult) {
+                is ApiResult.OnFailed -> apiResult
+                    .exception
+                    .toFailedEvent()
+                is ApiResult.OnSuccess -> ApiEvent.OnSuccess
+                    .fromServer(apiResult.response.result.toDomain())
+            }
+
+            emit(apiEvent)
+        }.onFailure {
+            emit(it.toFailedEvent())
+        }
+    }
 }

@@ -1,91 +1,80 @@
 package com.ridhoafnidev.project.feature.calonpemilik
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.ridhoafnidev.project.core_domain.model.CalonPemilik
-import com.ridhoafnidev.project.core_navigation.ActionType
+import com.bumptech.glide.Glide
+import com.ridhoafnidev.project.core_data.data.APP_BUKTI_TRANSFER_PHOTO_URL
+import com.ridhoafnidev.project.core_data.data.remote.ApiEvent
+import com.ridhoafnidev.project.core_domain.model.detail_calon_pemilik.DetailCalonPemilik
+import com.ridhoafnidev.project.core_resource.components.base.BaseFragment
 import com.ridhoafnidev.project.feature.calonpemilik.databinding.FragmentEditCalonPemilikBinding
+import com.ridhoafnidev.project.feature.calonpemilik.viewmodel.CalonPemilikViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class EditCalonPemilikFragment : Fragment() {
+class EditCalonPemilikFragment : BaseFragment<FragmentEditCalonPemilikBinding>(FragmentEditCalonPemilikBinding::inflate) {
 
-    private var _binding: FragmentEditCalonPemilikBinding? = null
-    private val binding: FragmentEditCalonPemilikBinding
-        get() = _binding!!
+    private val args: EditCalonPemilikFragmentArgs by navArgs()
+    private val calonPemilikID: Int
+        get() = args.calonPemilikID
 
-    private lateinit var actionType: ActionType
-    private val args by navArgs<EditCalonPemilikFragmentArgs>()
+    private val calonPemilikViewModel: CalonPemilikViewModel by viewModel()
 
-    private val dummyCalonPemilik by lazy {
-        CalonPemilik(
-            namaLengkap = "Hitler",
-            alamat = "Jl. Merbau",
-            status = "Belum Dihubungi",
-            tipeRumah = "Enau - Perumahan Citra",
-            noHp = "0902390213901",
-            email = "fwfw@gmail.com",
-            perumahan = "Perumahan"
-        )
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentEditCalonPemilikBinding.inflate(inflater, container, false)
-        return _binding?.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        actionType = args.actionType
-
-        when (actionType) {
-            ActionType.Add -> {
-
-            }
-            ActionType.Edit -> {
-                setupFormAddCalonPemilik(dummyCalonPemilik)
-            }
-            else -> {}
-        }
-
+    override fun initView() {
         val dummyStatus = resources.getStringArray(R.array.dummy_status)
         setupEdtStatus(dummyStatus)
 
-        binding.btnBuktiDp.setOnClickListener {
-            val toPreviewDPActivity = EditCalonPemilikFragmentDirections
-                .actionEditCalonPemilikFragmentToPreviewDPActivity()
-            findNavController()
-                .navigate(toPreviewDPActivity)
+        getDetailCalonPemilik(calonPemilikID)
+        setDetailCalonPemilik()
+    }
+
+    override fun initListener() {
+
+    }
+
+    private fun getDetailCalonPemilik(id: Int) {
+        calonPemilikViewModel.getDetailCalonPemilik(id)
+    }
+
+    private fun setDetailCalonPemilik() {
+        calonPemilikViewModel.detailCalonPemilik.observe(requireActivity()) { apiEvent ->
+            when (apiEvent) {
+                is ApiEvent.OnProgress -> {}
+                is ApiEvent.OnSuccess -> {
+                    setupFormAddCalonPemilik(apiEvent.getData())
+                }
+                is ApiEvent.OnFailed -> {}
+            }
         }
     }
 
-    private fun setupFormAddCalonPemilik(calonPemilik: CalonPemilik) {
+    private fun setupFormAddCalonPemilik(calonPemilik: DetailCalonPemilik) {
         binding.apply {
-            edtNamaLengkap.setText(calonPemilik.namaLengkap)
-            edtAlamat.setText(calonPemilik.alamat)
-            edtNoHp.setText(calonPemilik.noHp)
-            edtEmail.setText(calonPemilik.email)
+            edtNamaLengkap.setText(calonPemilik.konsumenNama)
+            edtAlamat.setText(calonPemilik.konsumenAlamat)
+            edtNoHp.setText(calonPemilik.konsumenNoHp)
+            edtEmail.setText(calonPemilik.konsumenEmail)
             edtPerumahan.setText(calonPemilik.perumahan)
-            edtStatus.setText(calonPemilik.status)
+            edtStatus.setText(calonPemilik.statusPengajuan)
             edtTipeRumah.setText(calonPemilik.tipeRumah)
+
+            val photoUrl = APP_BUKTI_TRANSFER_PHOTO_URL + calonPemilik.buktiTransfer
+
+            Glide.with(requireActivity())
+                .load(photoUrl)
+                .into(btnBuktiDp)
+
+            binding.btnBuktiDp.setOnClickListener {
+                val toPreviewDPActivity = EditCalonPemilikFragmentDirections
+                    .actionEditCalonPemilikFragmentToPreviewDPActivity(photoUrl)
+                findNavController()
+                    .navigate(toPreviewDPActivity)
+            }
         }
     }
 
     private fun setupEdtStatus(listStatus: Array<String>) {
         val adapter = ArrayAdapter(requireContext(), R.layout.item_perumahan, listStatus)
         binding.edtStatus.setAdapter(adapter)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

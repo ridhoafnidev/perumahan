@@ -56,7 +56,7 @@ class CalonPemilikFragment : BaseFragment<FragmentCalonPemilikBinding>(FragmentC
                 }
                 onClick {
                     val toAddCalonPemilikFragment = CalonPemilikFragmentDirections
-                        .actionCalonPemilikFragmentToAddCalonPemilikFragment(ActionType.Edit)
+                        .actionCalonPemilikFragmentToAddCalonPemilikFragment(item.id)
                     findNavController().navigate(toAddCalonPemilikFragment)
                 }
             }

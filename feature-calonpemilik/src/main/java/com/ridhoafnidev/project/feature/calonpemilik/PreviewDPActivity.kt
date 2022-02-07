@@ -1,24 +1,26 @@
 package com.ridhoafnidev.project.feature.calonpemilik
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import com.davemorrissey.labs.subscaleview.ImageSource
+import androidx.navigation.navArgs
+import com.bumptech.glide.Glide
+import com.ridhoafnidev.project.core_resource.components.base.BaseActivity
 import com.ridhoafnidev.project.feature.calonpemilik.databinding.ActivityPreviewDpActivityBinding
 
-class PreviewDPActivity : AppCompatActivity() {
+class PreviewDPActivity : BaseActivity<ActivityPreviewDpActivityBinding>(ActivityPreviewDpActivityBinding::inflate) {
 
-    private lateinit var binding: ActivityPreviewDpActivityBinding
+    private val args: PreviewDPActivityArgs by navArgs()
+    private val photoUrl: String
+        get() = args.photoUrl
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityPreviewDpActivityBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun initView() {
+        Glide.with(application)
+            .load(photoUrl)
+            .into(binding.subDpPreview)
+    }
 
-        binding.apply {
-            btnClose.setOnClickListener {
-                onBackPressed()
-            }
-            subDpPreview.setImage(ImageSource.resource(R.drawable.dummy_rumah))
+    override fun initListener() {
+        binding.btnClose.setOnClickListener {
+            onBackPressed()
         }
     }
+
 }

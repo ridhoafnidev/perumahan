@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.ridhoafnidev.project.core_data.data.PerumahanRepository
 import com.ridhoafnidev.project.core_data.data.remote.ApiEvent
 import com.ridhoafnidev.project.core_domain.model.calon_pemilik.ListCalonPemilik
+import com.ridhoafnidev.project.core_domain.model.detail_calon_pemilik.DetailCalonPemilik
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
@@ -19,6 +20,10 @@ class CalonPemilikViewModel(
     val listCalonPemilik: LiveData<ApiEvent<ListCalonPemilik>>
         get() = _listCalonPemilik
 
+    private val _detailCalonPemilik = MutableLiveData<ApiEvent<DetailCalonPemilik>>()
+    val detailCalonPemilik: LiveData<ApiEvent<DetailCalonPemilik>>
+        get() = _detailCalonPemilik
+
     fun getCalonPemilikAll() {
         viewModelScope.launch {
             perumahanRepository.calonPemilikGetAll()
@@ -27,4 +32,11 @@ class CalonPemilikViewModel(
         }
     }
 
+    fun getDetailCalonPemilik(id: Int) {
+        viewModelScope.launch {
+            perumahanRepository.getDetailCalonPemilik(id)
+                .onStart { emit(ApiEvent.OnProgress()) }
+                .collect { _detailCalonPemilik.value = it }
+        }
+    }
 }

@@ -19,16 +19,20 @@
         android:name="com.ridhoafnidev.project.feature.calonpemilik.EditCalonPemilikFragment"
         android:label="fragment_add_calon_pemilik"
         tools:layout="@layout/fragment_edit_calon_pemilik" >
-        <argument
-            android:name="action_type"
-            app:argType="com.ridhoafnidev.project.core_navigation.ActionType" />
         <action
             android:id="@+id/action_editCalonPemilikFragment_to_previewDPActivity"
             app:destination="@id/previewDPActivity" />
+        <argument
+            android:name="calonPemilikID"
+            app:argType="integer" />
     </fragment>
     <activity
         android:id="@+id/previewDPActivity"
         android:name="com.ridhoafnidev.project.feature.calonpemilik.PreviewDPActivity"
         android:label="activity_preview_dp_activity"
-        tools:layout="@layout/activity_preview_dp_activity" />
+        tools:layout="@layout/activity_preview_dp_activity" >
+        <argument
+            android:name="photoUrl"
+            app:argType="string" />
+    </activity>
 </navigation>

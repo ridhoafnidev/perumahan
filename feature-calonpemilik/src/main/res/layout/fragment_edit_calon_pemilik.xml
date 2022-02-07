@@ -187,7 +187,7 @@
                 android:contentDescription="@string/upload_bukti_dp"
                 android:focusable="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/dummy_rumah" />
+                android:src="@color/cardview_dark_background" />
 
             <View
                 android:layout_width="match_parent"

@@ -7,10 +7,11 @@
     android:background="@color/colorBlack"
     tools:context=".PreviewDPActivity">
 
-    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+    <com.impulsive.zoomimageview.ZoomImageView
         android:id="@+id/sub_dp_preview"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:rotation="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/small"
         android:contentDescription="@string/kembali"
+        android:backgroundTint="@android:color/transparent"
         android:src="@drawable/ic_back"
         android:tint="@color/white"
         app:layout_constraintStart_toStartOf="parent"
