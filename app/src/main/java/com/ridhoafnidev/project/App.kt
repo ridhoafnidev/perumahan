@@ -4,6 +4,7 @@ import android.app.Application
 import com.ridhoafnidev.project.core_data.di.dataModule
 import com.ridhoafnidev.project.core_data.di.domainModule
 import com.ridhoafnidev.project.feature.auth.authModule
+import com.ridhoafnidev.project.feature.calonpemilik.calonPemilikModule
 import com.ridhoafnidev.project.feature.detail_perumahan.detailPerumahanModule
 import com.ridhoafnidev.project.feature.home.homeModule
 import com.ridhoafnidev.project.feature.perumahan.createEventModule
@@ -40,7 +41,8 @@ class App : Application() {
                     domainModule,
                     createEventModule,
                     homeModule,
-                    detailPerumahanModule
+                    detailPerumahanModule,
+                    calonPemilikModule
                 )
             )
         }
