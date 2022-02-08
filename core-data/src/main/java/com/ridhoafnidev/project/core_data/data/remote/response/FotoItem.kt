@@ -1,7 +1,7 @@
-package com.ridhoafnidev.project.core_data.data.remote.response.tipe_rumah
+package com.ridhoafnidev.project.core_data.data.remote.response
 
-import com.ridhoafnidev.project.core_domain.model.tipe_rumah.FotoGetAll
-import com.ridhoafnidev.project.core_domain.model.tipe_rumah.ListFotoGetAll
+import com.ridhoafnidev.project.core_domain.model.FotoGetAll
+import com.ridhoafnidev.project.core_domain.model.ListFotoGetAll
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

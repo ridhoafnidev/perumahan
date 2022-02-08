@@ -12,7 +12,6 @@ import com.ridhoafnidev.project.core_data.data.remote.toFailedEvent
 import com.ridhoafnidev.project.core_domain.model.calon_pemilik.ListCalonPemilik
 import com.ridhoafnidev.project.core_domain.model.detail_calon_pemilik.DetailCalonPemilik
 import com.ridhoafnidev.project.core_domain.model.detail_tipe_rumah.DetailTipeRumah
-import com.ridhoafnidev.project.core_domain.model.tipe_rumah.ListPerumahanGetAll
 import com.ridhoafnidev.project.core_domain.model.tipe_rumah.ListTipePerumahanGetAll
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

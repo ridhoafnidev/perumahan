@@ -1,7 +1,7 @@
-package com.ridhoafnidev.project.core_data.data.remote.response.tipe_rumah
+package com.ridhoafnidev.project.core_data.data.remote.response
 
-import com.ridhoafnidev.project.core_domain.model.tipe_rumah.ListPerumahanGetAll
-import com.ridhoafnidev.project.core_domain.model.tipe_rumah.PerumahanGetAll
+import com.ridhoafnidev.project.core_domain.model.ListPerumahanGetAll
+import com.ridhoafnidev.project.core_domain.model.PerumahanGetAll
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

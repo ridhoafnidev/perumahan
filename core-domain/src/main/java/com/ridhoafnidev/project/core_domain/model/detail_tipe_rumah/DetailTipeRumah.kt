@@ -1,8 +1,13 @@
 package com.ridhoafnidev.project.core_domain.model.detail_tipe_rumah
 
+import com.ridhoafnidev.project.core_domain.model.ListFotoGetAll
+import com.ridhoafnidev.project.core_domain.model.ListPerumahanGetAll
+
 data class DetailTipeRumah(
     val id: Int,
     val perumahanId: Int,
+    val perumahan: ListPerumahanGetAll,
+    val foto: ListFotoGetAll,
     val ukuran: String,
     val pondasi: String,
     val dindingKm: String,

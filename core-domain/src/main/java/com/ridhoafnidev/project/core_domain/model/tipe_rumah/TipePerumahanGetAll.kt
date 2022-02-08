@@ -1,5 +1,8 @@
 package com.ridhoafnidev.project.core_domain.model.tipe_rumah
 
+import com.ridhoafnidev.project.core_domain.model.ListFotoGetAll
+import com.ridhoafnidev.project.core_domain.model.ListPerumahanGetAll
+
 data class TipePerumahanGetAll(
     val id: Int,
     val perumahanId: Int,

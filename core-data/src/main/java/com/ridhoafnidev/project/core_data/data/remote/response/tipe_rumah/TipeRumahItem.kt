@@ -1,6 +1,8 @@
 package com.ridhoafnidev.project.core_data.data.remote.response.tipe_rumah
 
-import com.ridhoafnidev.project.core_domain.model.tipe_rumah.ListPerumahanGetAll
+import com.ridhoafnidev.project.core_data.data.remote.response.ListFotoItem
+import com.ridhoafnidev.project.core_data.data.remote.response.ListPerumahanItem
+import com.ridhoafnidev.project.core_data.data.remote.response.toDomain
 import com.ridhoafnidev.project.core_domain.model.tipe_rumah.ListTipePerumahanGetAll
 import com.ridhoafnidev.project.core_domain.model.tipe_rumah.TipePerumahanGetAll
 import com.squareup.moshi.Json
@@ -82,8 +84,8 @@ fun TipeRumahItem.toDomain(): TipePerumahanGetAll =
     TipePerumahanGetAll(
         id = id ?: 0,
         perumahanId = perumahanId ?: 0,
-        perumahan = perumahan.toDomain() ?: emptyList(),
-        foto = foto.toDomain() ?: emptyList(),
+        perumahan = perumahan.toDomain(),
+        foto = foto.toDomain(),
         ukuran = ukuran ?: "",
         pondasi = pondasi ?: "",
         dindingKm = dindingKm ?: "",

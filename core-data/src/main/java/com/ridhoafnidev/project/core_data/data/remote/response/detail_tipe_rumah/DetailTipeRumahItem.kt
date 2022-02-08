@@ -1,5 +1,8 @@
 package com.ridhoafnidev.project.core_data.data.remote.response.detail_tipe_rumah
 
+import com.ridhoafnidev.project.core_data.data.remote.response.ListFotoItem
+import com.ridhoafnidev.project.core_data.data.remote.response.ListPerumahanItem
+import com.ridhoafnidev.project.core_data.data.remote.response.toDomain
 import com.ridhoafnidev.project.core_domain.model.detail_tipe_rumah.DetailTipeRumah
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -12,6 +15,12 @@ data class DetailTipeRumahItem(
 
     @Json(name="perumahan_id")
     val perumahanId: Int? = null,
+
+    @Json(name="perumahan")
+    val perumahan: ListPerumahanItem = null,
+
+    @Json(name="foto")
+    val foto: ListFotoItem = null,
 
     @Json(name="ukuran")
     val ukuran: String? = null,
@@ -66,6 +75,8 @@ fun DetailTipeRumahItem.toDomain(): DetailTipeRumah =
     DetailTipeRumah(
         id = id ?: 0,
         perumahanId = perumahanId ?: 0,
+        perumahan = perumahan.toDomain(),
+        foto = foto.toDomain(),
         ukuran = ukuran ?: "",
         pondasi = pondasi ?: "",
         dindingKm = dindingKm ?: "",

@@ -1,4 +1,4 @@
-package com.ridhoafnidev.project.core_domain.model.tipe_rumah
+package com.ridhoafnidev.project.core_domain.model
 
 data class FotoGetAll(
     val id: Int,

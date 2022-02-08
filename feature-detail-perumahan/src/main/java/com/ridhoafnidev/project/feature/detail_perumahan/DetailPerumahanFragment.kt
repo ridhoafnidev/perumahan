@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.afdhal_fa.imageslider.model.SlideUIModel
+import com.ridhoafnidev.project.core_data.data.APP_TIPE_PERUMAHAN_PHOTO_URL
 import com.ridhoafnidev.project.core_data.data.remote.ApiEvent
 import com.ridhoafnidev.project.core_domain.model.detail_tipe_rumah.DetailTipeRumah
 import com.ridhoafnidev.project.core_navigation.EXTRA_PERUMAHAN_ID
@@ -13,6 +15,7 @@ import com.ridhoafnidev.project.core_resource.components.base.BaseFragment
 import com.ridhoafnidev.project.feature.detail_perumahan.databinding.FragmentDetailPerumahanBinding
 import com.ridhoafnidev.project.feature.detail_perumahan.viewmodel.DetailPerumahanViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class DetailPerumahanFragment : Fragment() {
 
@@ -66,14 +69,24 @@ class DetailPerumahanFragment : Fragment() {
     }
 
     private fun setupDetailPerumahan(perumahan: DetailTipeRumah) {
+        Timber.d(perumahan.toString())
         binding.apply {
             val unit = "${perumahan.jumlahUnit} Unit"
             chipJumlahPerumahan.text = unit
 
-            tvNamaTipePerumahan.text = perumahan.namaTipe
-            tvHargaPerumahan.text = getString(R.string.harga, perumahan.harga.toString())
+            val perumahanItem = if (perumahan.perumahan.isNotEmpty()) perumahan.perumahan[0] else null
 
-            tbUkuran.text = getString(R.string.table_body_ukuran, perumahan.ukuran.toString())
+            tvNamaPerumahan.text = perumahanItem?.namaPerumahan ?: "-"
+
+            tbNamaPerumahan.text = getString(R.string.table_body, perumahanItem?.namaPerumahan ?: "-")
+            tbLuasTanahPerumahan.text = getString(R.string.table_body, perumahanItem?.luasTanah.toString() ?: "")
+            tbAlamatPerumahan.text = getString(R.string.table_body, perumahanItem?.alamat ?: "-")
+            tbKeteranganPerumahan.text = getString(R.string.table_body, perumahanItem?.keterangan ?: "-")
+
+            tvNamaTipePerumahan.text = perumahan.namaTipe
+            tvHargaPerumahan.text = getString(R.string.harga, perumahan.harga)
+
+            tbUkuran.text = getString(R.string.table_body_ukuran, perumahan.ukuran)
             tbPondasi.text = getString(R.string.table_body, perumahan.pondasi)
             tbDinding.text = getString(R.string.table_body, perumahan.dinding)
             tbLantai.text = getString(R.string.table_body, perumahan.lantai)
@@ -86,8 +99,17 @@ class DetailPerumahanFragment : Fragment() {
             tbListrik.text = getString(R.string.table_body, perumahan.listrik)
             tbAir.text = getString(R.string.table_body, perumahan.air)
 
-//            Glide.with(this@DetailPerumahanFragment)
-//                .load()
+            val imageList = perumahan.foto.map {
+                SlideUIModel(APP_TIPE_PERUMAHAN_PHOTO_URL + it.foto)
+            }
+            setupPhotoPerumahan(imageList)
+        }
+    }
+
+    private fun setupPhotoPerumahan(imageList: List<SlideUIModel>) {
+        binding.ivPerumahan.apply {
+            setImageList(imageList)
+            stopSliding()
         }
     }
 

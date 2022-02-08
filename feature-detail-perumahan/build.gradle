@@ -13,4 +13,5 @@ dependencies {
     implementation deps.fragment
     implementation deps.activity
     implementation deps.glide
+    implementation deps.Auto_Image_Slider
 }
