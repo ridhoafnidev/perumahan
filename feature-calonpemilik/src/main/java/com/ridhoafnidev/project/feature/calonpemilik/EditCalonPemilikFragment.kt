@@ -4,13 +4,16 @@ import android.widget.ArrayAdapter
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.ridhoafnidev.project.core_data.data.APP_BUKTI_TRANSFER_PHOTO_URL
 import com.ridhoafnidev.project.core_data.data.remote.ApiEvent
 import com.ridhoafnidev.project.core_domain.model.detail_calon_pemilik.DetailCalonPemilik
+import com.ridhoafnidev.project.core_domain.model.status_pengajuan.ListStatusPengajuan
 import com.ridhoafnidev.project.core_resource.components.base.BaseFragment
 import com.ridhoafnidev.project.feature.calonpemilik.databinding.FragmentEditCalonPemilikBinding
 import com.ridhoafnidev.project.feature.calonpemilik.viewmodel.CalonPemilikViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class EditCalonPemilikFragment : BaseFragment<FragmentEditCalonPemilikBinding>(FragmentEditCalonPemilikBinding::inflate) {
 
@@ -20,20 +23,37 @@ class EditCalonPemilikFragment : BaseFragment<FragmentEditCalonPemilikBinding>(F
 
     private val calonPemilikViewModel: CalonPemilikViewModel by viewModel()
 
-    override fun initView() {
-        val dummyStatus = resources.getStringArray(R.array.dummy_status)
-        setupEdtStatus(dummyStatus)
+    private lateinit var listStatusPengajuan: ListStatusPengajuan
 
+    override fun initView() {
         getDetailCalonPemilik(calonPemilikID)
+        getStatusPengajuan()
         setDetailCalonPemilik()
+        setStatusPengajuan()
+        setUpdateStatusPengajuan()
     }
 
     override fun initListener() {
-
+        binding.btnSubmit.setOnClickListener {
+            val selectedStatusPengajuan = binding.edtStatus.text.toString()
+            val statusPengajuan = listStatusPengajuan.find {
+                it.nama == selectedStatusPengajuan
+            }
+            if (statusPengajuan != null) {
+                calonPemilikViewModel.updateStatusPengajuan(
+                    calonPemilikID,
+                    statusPengajuan
+                )
+            }
+        }
     }
 
     private fun getDetailCalonPemilik(id: Int) {
         calonPemilikViewModel.getDetailCalonPemilik(id)
+    }
+
+    private fun getStatusPengajuan() {
+        calonPemilikViewModel.getStatusPengajuanAll()
     }
 
     private fun setDetailCalonPemilik() {
@@ -44,6 +64,47 @@ class EditCalonPemilikFragment : BaseFragment<FragmentEditCalonPemilikBinding>(F
                     setupFormAddCalonPemilik(apiEvent.getData())
                 }
                 is ApiEvent.OnFailed -> {}
+            }
+        }
+    }
+
+    private fun setStatusPengajuan() {
+        calonPemilikViewModel.listStatusPengajuan.observe(requireActivity()) { apiEvent ->
+            when (apiEvent) {
+                is ApiEvent.OnProgress -> {
+                    binding.btnSubmit.isEnabled = false
+                }
+                is ApiEvent.OnSuccess -> {
+                    listStatusPengajuan = apiEvent.getData()
+                    val listStringStatusPengajuan = listStatusPengajuan.map {
+                        it.nama
+                    }
+                    setupEdtStatus(listStringStatusPengajuan)
+                    binding.btnSubmit.isEnabled = true
+                }
+                is ApiEvent.OnFailed -> {
+                    binding.btnSubmit.isEnabled = true
+                }
+            }
+        }
+    }
+
+    private fun setUpdateStatusPengajuan() {
+        calonPemilikViewModel.updateStatusPengajuan.observe(requireActivity()) { apiEvent ->
+            when (apiEvent) {
+                is ApiEvent.OnProgress -> {
+                    binding.btnSubmit.isEnabled = false
+                }
+                is ApiEvent.OnSuccess -> {
+                    binding.btnSubmit.isEnabled = true
+                    Snackbar.make(requireView(), apiEvent.getData().message, Snackbar.LENGTH_SHORT)
+                        .show()
+                }
+                is ApiEvent.OnFailed -> {
+                    binding.btnSubmit.isEnabled = true
+                    Snackbar.make(requireView(), "Gagal mengupdate status pengajuan!", Snackbar.LENGTH_SHORT)
+                        .show()
+                }
             }
         }
     }
@@ -73,7 +134,7 @@ class EditCalonPemilikFragment : BaseFragment<FragmentEditCalonPemilikBinding>(F
         }
     }
 
-    private fun setupEdtStatus(listStatus: Array<String>) {
+    private fun setupEdtStatus(listStatus: List<String>) {
         val adapter = ArrayAdapter(requireContext(), R.layout.item_perumahan, listStatus)
         binding.edtStatus.setAdapter(adapter)
     }

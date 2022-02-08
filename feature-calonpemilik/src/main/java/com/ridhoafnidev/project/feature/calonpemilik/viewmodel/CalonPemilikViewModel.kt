@@ -6,8 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ridhoafnidev.project.core_data.data.PerumahanRepository
 import com.ridhoafnidev.project.core_data.data.remote.ApiEvent
+import com.ridhoafnidev.project.core_data.data.remote.response.CommonResponse
 import com.ridhoafnidev.project.core_domain.model.calon_pemilik.ListCalonPemilik
 import com.ridhoafnidev.project.core_domain.model.detail_calon_pemilik.DetailCalonPemilik
+import com.ridhoafnidev.project.core_domain.model.status_pengajuan.ListStatusPengajuan
+import com.ridhoafnidev.project.core_domain.model.status_pengajuan.StatusPengajuan
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
@@ -24,6 +27,14 @@ class CalonPemilikViewModel(
     val detailCalonPemilik: LiveData<ApiEvent<DetailCalonPemilik>>
         get() = _detailCalonPemilik
 
+    private val _listStatusPengajuan = MutableLiveData<ApiEvent<ListStatusPengajuan>>()
+    val listStatusPengajuan: LiveData<ApiEvent<ListStatusPengajuan>>
+        get() = _listStatusPengajuan
+
+    private val _updateStatusPengajuan = MutableLiveData<ApiEvent<CommonResponse>>()
+    val updateStatusPengajuan: LiveData<ApiEvent<CommonResponse>>
+        get() = _updateStatusPengajuan
+
     fun getCalonPemilikAll() {
         viewModelScope.launch {
             perumahanRepository.calonPemilikGetAll()
@@ -37,6 +48,25 @@ class CalonPemilikViewModel(
             perumahanRepository.getDetailCalonPemilik(id)
                 .onStart { emit(ApiEvent.OnProgress()) }
                 .collect { _detailCalonPemilik.value = it }
+        }
+    }
+
+    fun getStatusPengajuanAll() {
+        viewModelScope.launch {
+            perumahanRepository.statusPengajuanGetAll()
+                .onStart { emit(ApiEvent.OnProgress()) }
+                .collect { _listStatusPengajuan.value = it }
+        }
+    }
+
+    fun updateStatusPengajuan(
+        id: Int,
+        statusPengajuan: StatusPengajuan
+    ) {
+        viewModelScope.launch {
+            perumahanRepository.updateStatusPengajuan(id, statusPengajuan)
+                .onStart { emit(ApiEvent.OnProgress()) }
+                .collect { _updateStatusPengajuan.value = it }
         }
     }
 }
