@@ -25,7 +25,9 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
     }
 
     private fun getCurrentUser() {
-        authViewModel.getCurrentUser()
+        Handler(Looper.getMainLooper()).postDelayed({
+            authViewModel.getCurrentUser()
+        }, 1500)
     }
 
     private fun observeCurrentUser() {

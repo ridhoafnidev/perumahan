@@ -11,6 +11,8 @@ import com.bumptech.glide.Glide
 import com.ridhoafnidev.home.R
 import com.ridhoafnidev.home.databinding.FragmentHomeBinding
 import com.ridhoafnidev.project.core_data.data.APP_TIPE_PERUMAHAN_PHOTO_URL
+import com.ridhoafnidev.project.feature.home.menu.AdminMenu
+import com.ridhoafnidev.project.feature.home.menu.KonsumenMenu
 import com.ridhoafnidev.project.core_data.data.remote.ApiEvent
 import com.ridhoafnidev.project.core_data.domain.MenuStatus
 import com.ridhoafnidev.project.core_domain.model.Menu
@@ -23,75 +25,49 @@ import com.ridhoafnidev.project.core_util.dayTimeGreeting
 import com.ridhoafnidev.project.core_util.setSnapHelper
 import com.ridhoafnidev.project.feature.home.viewholder.ItemMenuViewHolder
 import com.ridhoafnidev.project.feature.home.viewholder.ItemPerumahanViewHolder
+import com.ridhoafnidev.project.feature.home.viewmodel.AuthViewModel
 import com.ridhoafnidev.project.feature.home.viewmodel.HomeViewModel
 import lt.neworld.spanner.Spanner
 import lt.neworld.spanner.Spans.bold
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate), ModuleNavigator {
 
-    private val itemsMenu by lazy {
-        listOf(
-            Menu(
-                1,
-                "Pengguna",
-                R.drawable.ic_user
-            ),
-            Menu(
-                2,
-                "Perumahan",
-                 R.drawable.ic_houses
-            ),
-            Menu(
-                3,
-                "Calon Pembeli",
-                R.drawable.ic_seller
-            ),
-            Menu(
-                4,
-                "Tipe Rumah",
-                R.drawable.ic_house_type
-            ),
-
-            Menu(
-                5,
-                "Persyaratan",
-                R.drawable.ic_requirement
-            ),
-            Menu(
-                6,
-                "Simulasi KPR",
-                R.drawable.ic_simultion
-            ),
-            Menu(
-                7,
-                "Info Perumahan",
-                R.drawable.ic_info
-            ),
-            Menu(
-                8,
-                "Laporan",
-                R.drawable.ic_reservation
-            )
-        )
-    }
-
+    private val authViewModel: AuthViewModel by viewModel()
     private val homeViewModel: HomeViewModel by viewModel()
 
     private val recyclerViewMenus by lazy { binding.rvGridMenu }
-
     private val recyclerViewPerumahan by lazy { binding.rvPerumahan }
 
     override fun initView() {
+        getCurrentUser()
         getTipePerumahan()
         setupTipePerumahan()
         setupItems()
-        setupMenus()
+        setupMenu()
+    }
+
+    override fun initListener(){
+    }
+
+    private fun getCurrentUser() {
+        authViewModel.getCurrentUser()
     }
 
     private fun getTipePerumahan() {
         homeViewModel.tipeRumahGetAll()
+    }
+
+    private fun setupMenu() {
+        authViewModel.currentUser.observe(requireActivity()) { currentUser ->
+            if (currentUser != null) {
+                val listMenu = when (currentUser.role) {
+                    "direktur", "pegawai" -> AdminMenu.menus
+                    else -> KonsumenMenu.menus
+                }
+                setListMenu(listMenu)
+            }
+        }
     }
 
     private fun setupTipePerumahan() {
@@ -147,10 +123,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-    private fun setupMenus() {
+    private fun setListMenu(listMenu: List<Menu>) {
         recyclerViewMenus.setup {
             withLayoutManager(GridLayoutManager(context, 4))
-            withDataSource(dataSourceOf(itemsMenu))
+            withDataSource(dataSourceOf(listMenu))
             withItem<Menu, ItemMenuViewHolder>(R.layout.layout_item_menu){
                 onBind(::ItemMenuViewHolder){_, item ->
                     titleMenu.text = item.title
@@ -171,8 +147,5 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 }
             }
         }
-    }
-
-    override fun initListener(){
     }
 }
