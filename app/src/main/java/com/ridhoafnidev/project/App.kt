@@ -2,7 +2,7 @@ package com.ridhoafnidev.project
 
 import android.app.Application
 import com.ridhoafnidev.project.core_data.di.dataModule
-import com.ridhoafnidev.project.core_data.di.domainModule
+import com.ridhoafnidev.project.core_domain.di.domainModule
 import com.ridhoafnidev.project.feature.auth.authModule
 import com.ridhoafnidev.project.feature.calonpemilik.calonPemilikModule
 import com.ridhoafnidev.project.feature.detail_perumahan.detailPerumahanModule

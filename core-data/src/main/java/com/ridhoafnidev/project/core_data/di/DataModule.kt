@@ -15,6 +15,7 @@ import com.ridhoafnidev.project.core_data.data.local.room.CoreDatabase
 import com.ridhoafnidev.project.core_data.data.remote.ApiExecutor
 import com.ridhoafnidev.project.core_data.data.remote.apiClient
 import com.ridhoafnidev.project.core_data.data.remote.httpClient
+import com.ridhoafnidev.project.core_data.data.remote.service.AuthService
 import com.ridhoafnidev.project.core_data.data.remote.service.PerumahanService
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.Dispatchers
@@ -56,12 +57,15 @@ val Application.dataModule
         single { ApiExecutor(get()) }
 
         single { apiClient<PerumahanService>(BASE_URL, get()) }
+        single { apiClient<AuthService>(BASE_URL, get()) }
 
         single { get<CoreDatabase>().eventDao() }
+        single { get<CoreDatabase>().authDao() }
         single { LocalDataSource(get()) }
         single<IEventDbRepository> { EventRepository(get()) }
-        single<IAuthRepository> { AuthRepository() }
+//        single<IAuthRepository> { AuthRepository(get(), get(), get()) }
         single { PerumahanRepository(get(), get()) }
+        single { AuthRepository(get(), get(), get()) }
     }
 
 private const val TIMEOUT = 30L

@@ -1,14 +1,12 @@
 package com.ridhoafnidev.project.feature.auth.login
 
-import android.os.Handler
-import android.os.Looper
 import com.afollestad.vvalidator.form
 import com.google.android.material.snackbar.Snackbar
-import com.ridhoafnidev.project.core_util.Resource
+import com.ridhoafnidev.project.core_data.data.remote.ApiEvent
 import com.ridhoafnidev.project.core_navigation.ModuleNavigator
 import com.ridhoafnidev.project.core_resource.components.base.BaseFragment
 import com.ridhoafnidev.project.core_util.*
-import com.ridhoafnidev.project.feature.auth.AuthViewModel
+import com.ridhoafnidev.project.feature.auth.viewmodel.AuthViewModel
 import com.ridhoafnidev.project.feature_auth.R
 import com.ridhoafnidev.project.feature_auth.databinding.FragmentLoginBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -27,27 +25,22 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         getString(R.string.required_password)
     }
 
-    private val viewModel by viewModel<AuthViewModel>()
+    private val authViewModel by viewModel<AuthViewModel>()
 
     override fun initView() {
-        viewModel.isLogin.observe(viewLifecycleOwner){ auth ->
+        authViewModel.login.observe(viewLifecycleOwner){ auth ->
             when(auth){
-                is Resource.Loading -> {
+                is ApiEvent.OnProgress -> {
                     showProgress()
                 }
-                is Resource.Success -> {
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        hideProgress(true)
-                        navigateToHomeActivity()
-                    }, 1000L)
+                is ApiEvent.OnSuccess -> {
+                    hideProgress(true)
+                    navigateToHomeActivity()
                 }
-                is Resource.Error -> {
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        hideProgress(true)
-                    }, 1000L)
-                    auth?.message?.let { errorMessage ->
-                        showSnackBar(requireContext(), binding.parentLogin, errorMessage, Snackbar.LENGTH_LONG)
-                    }
+                is ApiEvent.OnFailed -> {
+                    hideProgress(true)
+
+                    showSnackBar(requireContext(), binding.parentLogin, "errorMessage", Snackbar.LENGTH_LONG)
                 }
             }
         }
@@ -66,10 +59,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                 submitWith(R.id.btn_login) {
                     dismissKeyboard()
 
-                    viewModel.emailOrPhoneNumber = edtEmailOrNumberPhone.text.toString()
-                    viewModel.password = edtPassword.text.toString()
+                    authViewModel.username = edtEmailOrNumberPhone.text.toString()
+                    authViewModel.password = edtPassword.text.toString()
 
-                    viewModel.login()
+                    authViewModel.login()
                 }
             }
             btnLogin.bindLifecycle(viewLifecycleOwner)

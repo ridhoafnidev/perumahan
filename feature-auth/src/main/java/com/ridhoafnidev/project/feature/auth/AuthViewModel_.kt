@@ -10,7 +10,7 @@ import com.ridhoafnidev.project.core_util.Resource
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class AuthViewModel(private val authUseCase: AuthUseCase) : ViewModel() {
+class AuthViewModel_(private val authUseCase: AuthUseCase) : ViewModel() {
 
     var emailOrPhoneNumber = ""
     var password = ""
@@ -24,9 +24,9 @@ class AuthViewModel(private val authUseCase: AuthUseCase) : ViewModel() {
             password = password
         )
         viewModelScope.launch {
-            authUseCase.login(auth).collect {
-                _isLogin.value = it
-            }
+//            authUseCase.login(auth).collect {
+//                _isLogin.value = it
+//            }
         }
     }
 
