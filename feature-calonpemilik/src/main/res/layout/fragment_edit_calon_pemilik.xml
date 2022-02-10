@@ -165,7 +165,6 @@
                     android:hint="@string/tipe_rumah"
                     android:inputType="text"
                     android:lines="1" />
-
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView

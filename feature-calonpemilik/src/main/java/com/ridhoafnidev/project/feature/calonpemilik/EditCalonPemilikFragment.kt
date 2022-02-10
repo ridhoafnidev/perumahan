@@ -14,7 +14,6 @@ import com.ridhoafnidev.project.core_resource.components.base.BaseFragment
 import com.ridhoafnidev.project.feature.calonpemilik.databinding.FragmentEditCalonPemilikBinding
 import com.ridhoafnidev.project.feature.calonpemilik.viewmodel.CalonPemilikViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class EditCalonPemilikFragment : BaseFragment<FragmentEditCalonPemilikBinding>(FragmentEditCalonPemilikBinding::inflate) {
 
@@ -142,7 +141,7 @@ class EditCalonPemilikFragment : BaseFragment<FragmentEditCalonPemilikBinding>(F
     }
 
     private fun setupEdtStatus(listStatus: List<String>) {
-        val adapter = ArrayAdapter(requireContext(), R.layout.item_perumahan, listStatus)
+        val adapter = ArrayAdapter(requireActivity(), R.layout.item_status_pengajuan, R.id.tv_item_status_pengajuan, listStatus)
         binding.edtStatus.setAdapter(adapter)
     }
 }
