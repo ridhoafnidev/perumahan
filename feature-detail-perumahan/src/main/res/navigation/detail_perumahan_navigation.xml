@@ -19,13 +19,5 @@
         android:name="com.ridhoafnidev.project.feature.detail_perumahan.CheckoutFragment"
         android:label="fragment_checkout"
         tools:layout="@layout/fragment_checkout" >
-        <action
-            android:id="@+id/action_checkoutFragment_to_previewDPActivity"
-            app:destination="@id/previewDPActivity" />
     </fragment>
-    <activity
-        android:id="@+id/previewDPActivity"
-        android:name="com.ridhoafnidev.project.feature.detail_perumahan.PreviewDPActivity"
-        android:label="activity_preview_dp_activity"
-        tools:layout="@layout/activity_preview_dp_activity" />
 </navigation>

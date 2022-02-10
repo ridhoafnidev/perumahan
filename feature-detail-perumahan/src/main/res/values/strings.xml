@@ -30,4 +30,5 @@
     <string name="nama_perumahan">Nama Perumahan</string>
     <string name="luas_tanah">Luas Tanah</string>
     <string name="keterangan">Keterangan</string>
+    <string name="title_checkout_perumahan">Checkout Perumahan</string>
 </resources>

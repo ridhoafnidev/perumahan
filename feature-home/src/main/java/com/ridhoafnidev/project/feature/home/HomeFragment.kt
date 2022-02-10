@@ -27,7 +27,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun initView() {
         getCurrentUser()
-        setupItems()
         setupMenu()
     }
 
@@ -41,6 +40,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private fun setupMenu() {
         authViewModel.currentUser.observe(requireActivity()) { currentUser ->
             if (currentUser != null) {
+                val name = currentUser.namaLengkap
+                setupItems(name)
                 val listMenu = when (currentUser.role) {
                     "direktur", "pegawai" -> AdminMenu.menus
                     else -> KonsumenMenu.menus
@@ -50,11 +51,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-    private fun setupItems() {
+    private fun setupItems(name: String) {
         with(binding){
             tvWelcome.text = Spanner().append("Halo ")
                 .append("${dayTimeGreeting(requireContext())}, \n")
-                .append(getString(R.string.welcome_name), bold())
+                .append(name, bold())
 
             ivUser.load(R.drawable.photo_male){
                 crossfade(true)

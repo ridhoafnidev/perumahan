@@ -9,6 +9,7 @@ import com.ridhoafnidev.project.core_data.data.APP_BUKTI_TRANSFER_PHOTO_URL
 import com.ridhoafnidev.project.core_data.data.remote.ApiEvent
 import com.ridhoafnidev.project.core_domain.model.detail_calon_pemilik.DetailCalonPemilik
 import com.ridhoafnidev.project.core_domain.model.status_pengajuan.ListStatusPengajuan
+import com.ridhoafnidev.project.core_resource.components.base.BaseActivity
 import com.ridhoafnidev.project.core_resource.components.base.BaseFragment
 import com.ridhoafnidev.project.feature.calonpemilik.databinding.FragmentEditCalonPemilikBinding
 import com.ridhoafnidev.project.feature.calonpemilik.viewmodel.CalonPemilikViewModel
@@ -28,6 +29,7 @@ class EditCalonPemilikFragment : BaseFragment<FragmentEditCalonPemilikBinding>(F
     override fun initView() {
         getDetailCalonPemilik(calonPemilikID)
         getStatusPengajuan()
+        setTitleName()
         setDetailCalonPemilik()
         setStatusPengajuan()
         setUpdateStatusPengajuan()
@@ -54,6 +56,11 @@ class EditCalonPemilikFragment : BaseFragment<FragmentEditCalonPemilikBinding>(F
 
     private fun getStatusPengajuan() {
         calonPemilikViewModel.getStatusPengajuanAll()
+    }
+
+    private fun setTitleName() {
+        (activity as BaseActivity<*>)
+            .setPageName(getString(R.string.title_edit_calon_pemilik))
     }
 
     private fun setDetailCalonPemilik() {
