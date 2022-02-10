@@ -35,8 +35,8 @@ fun ListPerumahanItem.toDomain(): ListPerumahanGetAll =
 fun PerumahanItem.toDomain(): PerumahanGetAll =
     PerumahanGetAll(
         id = id ?: 0,
-        namaPerumahan = namaPerumahan ?: "",
-        keterangan = keterangan ?: "",
+        namaPerumahan = namaPerumahan ?: "-",
+        keterangan = keterangan ?: "-",
         luasTanah = luasTanah ?: 0,
-        alamat = alamat ?: ""
+        alamat = alamat ?: "-"
     )

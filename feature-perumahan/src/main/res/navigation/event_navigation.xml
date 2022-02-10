@@ -9,5 +9,5 @@
         android:id="@+id/createEventFragment"
         android:name="com.ridhoafnidev.project.feature.perumahan.PerumahanFragment"
         android:label="Pakar"
-        tools:layout="@layout/fragment_create_event" />
+        tools:layout="@layout/fragment_perumahan" />
 </navigation>

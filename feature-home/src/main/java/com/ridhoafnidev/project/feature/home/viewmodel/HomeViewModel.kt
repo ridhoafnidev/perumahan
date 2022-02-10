@@ -15,17 +15,6 @@ class HomeViewModel(
     private val perumahanRepository: PerumahanRepository
 ) : ViewModel() {
 
-    private val _listTipeRumah = MutableLiveData<ApiEvent<ListTipePerumahanGetAll>>()
-    val listTipeRumah: LiveData<ApiEvent<ListTipePerumahanGetAll>>
-        get() = _listTipeRumah
 
-    fun tipeRumahGetAll() {
-        viewModelScope.launch {
-            perumahanRepository
-                .tipeRumahGetAll()
-                .onStart { emit(ApiEvent.OnProgress()) }
-                .collect { _listTipeRumah.value = it }
-        }
-    }
 
 }

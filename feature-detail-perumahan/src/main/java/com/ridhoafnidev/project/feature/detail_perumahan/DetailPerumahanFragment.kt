@@ -78,10 +78,22 @@ class DetailPerumahanFragment : Fragment() {
 
             tvNamaPerumahan.text = perumahanItem?.namaPerumahan ?: "-"
 
-            tbNamaPerumahan.text = getString(R.string.table_body, perumahanItem?.namaPerumahan ?: "-")
-            tbLuasTanahPerumahan.text = getString(R.string.table_body, perumahanItem?.luasTanah.toString() ?: "")
-            tbAlamatPerumahan.text = getString(R.string.table_body, perumahanItem?.alamat ?: "-")
-            tbKeteranganPerumahan.text = getString(R.string.table_body, perumahanItem?.keterangan ?: "-")
+            tbNamaPerumahan.text = getString(
+                R.string.table_body,
+                perumahanItem?.namaPerumahan ?: "-"
+            )
+            tbLuasTanahPerumahan.text = getString(
+                R.string.table_body,
+                perumahanItem?.luasTanah ?: "-"
+            )
+            tbAlamatPerumahan.text = getString(
+                R.string.table_body,
+                perumahanItem?.alamat ?: "-"
+            )
+            tbKeteranganPerumahan.text = getString(
+                R.string.table_body,
+                perumahanItem?.keterangan ?: "-"
+            )
 
             tvNamaTipePerumahan.text = perumahan.namaTipe
             tvHargaPerumahan.text = getString(R.string.harga, perumahan.harga)
