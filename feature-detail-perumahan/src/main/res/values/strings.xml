@@ -20,15 +20,16 @@
 
     <string name="harga">Rp. %s</string>
     <string name="jumlah_unit">%d Unit</string>
-    <string name="satuan_meter">%s Meter</string>
+    <string name="satuan_meter">%d Meter</string>
     <string name="table_body">: %s</string>
     <string name="table_body_ukuran">: %s Meter</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="kembali">Kembali</string>
     <string name="detail_tipe_rumah">Detail Tipe Rumah</string>
-    <string name="detail_perumahan">Detail Perumahan</string>
+    <string name="daftar_perumahan">Daftar Perumahan</string>
     <string name="nama_perumahan">Nama Perumahan</string>
     <string name="luas_tanah">Luas Tanah</string>
     <string name="keterangan">Keterangan</string>
     <string name="title_checkout_perumahan">Checkout Perumahan</string>
+    <string name="table_separate">:</string>
 </resources>

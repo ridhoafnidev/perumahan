@@ -1,48 +1,35 @@
 package com.ridhoafnidev.project.feature.detail_perumahan
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.afdhal_fa.imageslider.model.SlideUIModel
+import com.afollestad.recyclical.datasource.dataSourceOf
+import com.afollestad.recyclical.setup
+import com.afollestad.recyclical.withItem
 import com.ridhoafnidev.project.core_data.data.APP_TIPE_PERUMAHAN_PHOTO_URL
 import com.ridhoafnidev.project.core_data.data.remote.ApiEvent
+import com.ridhoafnidev.project.core_domain.model.PerumahanGetAll
 import com.ridhoafnidev.project.core_domain.model.detail_tipe_rumah.DetailTipeRumah
 import com.ridhoafnidev.project.core_navigation.EXTRA_PERUMAHAN_ID
 import com.ridhoafnidev.project.core_resource.components.base.BaseFragment
 import com.ridhoafnidev.project.feature.detail_perumahan.databinding.FragmentDetailPerumahanBinding
+import com.ridhoafnidev.project.feature.detail_perumahan.viewholder.DetailPerumahanViewHolder
 import com.ridhoafnidev.project.feature.detail_perumahan.viewmodel.DetailPerumahanViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
-class DetailPerumahanFragment : Fragment() {
-
-    private var _binding: FragmentDetailPerumahanBinding? = null
-    private val binding: FragmentDetailPerumahanBinding
-        get() = _binding!!
+class DetailPerumahanFragment : BaseFragment<FragmentDetailPerumahanBinding>(FragmentDetailPerumahanBinding::inflate) {
 
     private var perumahanId: Int? = 0
     private val detailPerumahanViewModel: DetailPerumahanViewModel by viewModel()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentDetailPerumahanBinding.inflate(inflater, container, false)
-        return _binding?.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initView() {
         perumahanId = activity?.intent?.getIntExtra(EXTRA_PERUMAHAN_ID, 0)
 
         getDetailPerumahan()
         observeDetailPerumahan()
+    }
 
+    override fun initListener() {
         binding.btnCheckout.setOnClickListener {
             val toCheckoutFragment = DetailPerumahanFragmentDirections
                 .actionDetailPerumahanFragmentToCheckoutFragment()
@@ -61,7 +48,9 @@ class DetailPerumahanFragment : Fragment() {
             when (detailPerumahanEvent) {
                 is ApiEvent.OnProgress -> {}
                 is ApiEvent.OnSuccess -> {
-                    setupDetailPerumahan(detailPerumahanEvent.getData())
+                    val detailPerumahan = detailPerumahanEvent.getData()
+                    setupDetailPerumahan(detailPerumahan)
+                    setupRvPerumahan(detailPerumahan.perumahan)
                 }
                 is ApiEvent.OnFailed -> {}
             }
@@ -69,7 +58,6 @@ class DetailPerumahanFragment : Fragment() {
     }
 
     private fun setupDetailPerumahan(perumahan: DetailTipeRumah) {
-        Timber.d(perumahan.toString())
         binding.apply {
             val unit = "${perumahan.jumlahUnit} Unit"
             chipJumlahPerumahan.text = unit
@@ -77,23 +65,6 @@ class DetailPerumahanFragment : Fragment() {
             val perumahanItem = if (perumahan.perumahan.isNotEmpty()) perumahan.perumahan[0] else null
 
             tvNamaPerumahan.text = perumahanItem?.namaPerumahan ?: "-"
-
-            tbNamaPerumahan.text = getString(
-                R.string.table_body,
-                perumahanItem?.namaPerumahan ?: "-"
-            )
-            tbLuasTanahPerumahan.text = getString(
-                R.string.table_body,
-                perumahanItem?.luasTanah ?: "-"
-            )
-            tbAlamatPerumahan.text = getString(
-                R.string.table_body,
-                perumahanItem?.alamat ?: "-"
-            )
-            tbKeteranganPerumahan.text = getString(
-                R.string.table_body,
-                perumahanItem?.keterangan ?: "-"
-            )
 
             tvNamaTipePerumahan.text = perumahan.namaTipe
             tvHargaPerumahan.text = getString(R.string.harga, perumahan.harga)
@@ -118,15 +89,24 @@ class DetailPerumahanFragment : Fragment() {
         }
     }
 
+    private fun setupRvPerumahan(listPerumahan: List<PerumahanGetAll>) {
+        binding.rvPerumahan.setup {
+            withDataSource(dataSourceOf(listPerumahan))
+            withItem<PerumahanGetAll, DetailPerumahanViewHolder>(R.layout.item_detail_perumahan) {
+                onBind(::DetailPerumahanViewHolder) { _, item ->
+                    tbNamaPerumahan_.text = item.namaPerumahan
+                    tbAlamatPerumahan.text = item.alamat
+                    tbLuasTanahPerumahan.text = getString(R.string.satuan_meter, item.luasTanah)
+                    tbKeteranganPerumahan.text = item.keterangan
+                }
+            }
+        }
+    }
+
     private fun setupPhotoPerumahan(imageList: List<SlideUIModel>) {
         binding.ivPerumahan.apply {
             setImageList(imageList)
             stopSliding()
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

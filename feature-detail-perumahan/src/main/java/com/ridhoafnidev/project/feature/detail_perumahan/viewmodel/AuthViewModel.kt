@@ -1,4 +1,4 @@
-package com.ridhoafnidev.project.feature.home.viewmodel
+package com.ridhoafnidev.project.feature.detail_perumahan.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

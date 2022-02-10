@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".DetailPerumahanFragment">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -90,7 +90,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_nama_tipe_perumahan"/>
 
             <TextView
-                android:id="@+id/detail_perumahan"
+                android:id="@+id/daftar_perumahan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/small"
@@ -99,75 +99,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider"
-                android:text="@string/detail_perumahan" />
+                android:text="@string/daftar_perumahan" />
 
-            <TableLayout
-                android:id="@+id/table_perumahan_detail"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_perumahan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/small"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detail_perumahan">
-
-                <TableRow>
-                    <TextView
-                        android:text="@string/nama_perumahan"
-                        android:padding="@dimen/small" />
-                    <TextView
-                        android:id="@+id/tb_nama_perumahan"
-                        tools:text=": Griya Insan Utama"
-                        android:padding="@dimen/small" />
-                </TableRow>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="?android:attr/listDivider"/>
-
-                <TableRow>
-                    <TextView
-                        android:text="@string/luas_tanah"
-                        android:padding="@dimen/small" />
-                    <TextView
-                        android:id="@+id/tb_luas_tanah_perumahan"
-                        tools:text=": 216"
-                        android:padding="@dimen/small" />
-                </TableRow>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="?android:attr/listDivider"/>
-
-                <TableRow
-                    android:overScrollMode="ifContentScrolls">
-                    <TextView
-                        android:text="@string/alamat"
-                        android:padding="@dimen/small" />
-                    <TextView
-                        android:id="@+id/tb_alamat_perumahan"
-                        tools:text=": Jalan pepaya ujung Perumahan Btn mutiara"
-                        android:padding="@dimen/small" />
-                </TableRow>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="?android:attr/listDivider"/>
-
-                <TableRow
-                    android:overScrollMode="ifContentScrolls">
-                    <TextView
-                        android:text="@string/keterangan"
-                        android:padding="@dimen/small" />
-                    <TextView
-                        android:id="@+id/tb_keterangan_perumahan"
-                        tools:text=": Dekat dengan pusat pembelanjaan"
-                        android:padding="@dimen/small" />
-                </TableRow>
-
-            </TableLayout>
+                app:layout_constraintTop_toBottomOf="@+id/daftar_perumahan"
+                tools:listitem="@layout/item_detail_perumahan" />
 
             <View
                 android:id="@+id/divider_1"
@@ -177,7 +121,7 @@
                 android:background="?android:attr/listDivider"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/table_perumahan_detail"/>
+                app:layout_constraintTop_toBottomOf="@+id/rv_perumahan"/>
 
             <TextView
                 android:id="@+id/detail_produk"
@@ -384,7 +328,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/table_tipe_perumahan_detail"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/container_btn_action"
