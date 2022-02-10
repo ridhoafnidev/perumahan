@@ -19,5 +19,14 @@
         android:name="com.ridhoafnidev.project.feature.detail_perumahan.CheckoutFragment"
         android:label="fragment_checkout"
         tools:layout="@layout/fragment_checkout" >
+        <argument
+            android:name="tipePerumahan"
+            app:argType="string" />
+        <argument
+            android:name="tipePerumahanId"
+            app:argType="integer" />
+        <argument
+            android:name="namaPerumahan"
+            app:argType="string" />
     </fragment>
 </navigation>

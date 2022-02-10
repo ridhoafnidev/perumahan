@@ -56,7 +56,6 @@
             <TextView android:text="@string/table_separate" />
             <TextView
                 android:id="@+id/tb_alamat_perumahan"
-                android:width="0dp"
                 tools:text="Jalan pepaya ujung Perumahan Btn mutiara"
                 android:padding="@dimen/small" />
         </TableRow>

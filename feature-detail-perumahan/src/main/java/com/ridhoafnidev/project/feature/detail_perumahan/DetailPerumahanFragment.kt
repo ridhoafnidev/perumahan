@@ -15,15 +15,17 @@ import com.ridhoafnidev.project.feature.detail_perumahan.databinding.FragmentDet
 import com.ridhoafnidev.project.feature.detail_perumahan.viewholder.DetailPerumahanViewHolder
 import com.ridhoafnidev.project.feature.detail_perumahan.viewmodel.DetailPerumahanViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class DetailPerumahanFragment : BaseFragment<FragmentDetailPerumahanBinding>(FragmentDetailPerumahanBinding::inflate) {
 
-    private var perumahanId: Int? = 0
+    private var tipePerumahId: Int? = 0
     private val detailPerumahanViewModel: DetailPerumahanViewModel by viewModel()
 
+    private var namaPerumahan = ""
+    private var tipePerumahan = ""
+
     override fun initView() {
-        perumahanId = activity?.intent?.getIntExtra(EXTRA_PERUMAHAN_ID, 0)
+        tipePerumahId = activity?.intent?.getIntExtra(EXTRA_PERUMAHAN_ID, 0)
 
         getDetailPerumahan()
         observeDetailPerumahan()
@@ -31,14 +33,20 @@ class DetailPerumahanFragment : BaseFragment<FragmentDetailPerumahanBinding>(Fra
 
     override fun initListener() {
         binding.btnCheckout.setOnClickListener {
-            val toCheckoutFragment = DetailPerumahanFragmentDirections
-                .actionDetailPerumahanFragmentToCheckoutFragment()
-            findNavController().navigate(toCheckoutFragment)
+            tipePerumahId?.let {
+                val toCheckoutFragment = DetailPerumahanFragmentDirections
+                    .actionDetailPerumahanFragmentToCheckoutFragment(
+                        tipePerumahan,
+                        it,
+                        namaPerumahan
+                    )
+                findNavController().navigate(toCheckoutFragment)
+            }
         }
     }
 
     private fun getDetailPerumahan() {
-        perumahanId?.let {
+        tipePerumahId?.let {
             detailPerumahanViewModel.getDetailTipeRumah(it)
         }
     }
@@ -63,6 +71,8 @@ class DetailPerumahanFragment : BaseFragment<FragmentDetailPerumahanBinding>(Fra
             chipJumlahPerumahan.text = unit
 
             val perumahanItem = if (perumahan.perumahan.isNotEmpty()) perumahan.perumahan[0] else null
+            namaPerumahan = perumahanItem?.namaPerumahan ?: "-"
+            tipePerumahan = perumahan.namaTipe
 
             tvNamaPerumahan.text = perumahanItem?.namaPerumahan ?: "-"
 

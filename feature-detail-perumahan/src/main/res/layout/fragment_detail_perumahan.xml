@@ -105,12 +105,12 @@
                 android:id="@+id/rv_perumahan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/small"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/daftar_perumahan"
+                app:layout_constraintBottom_toTopOf="@+id/divider_1"
                 tools:listitem="@layout/item_detail_perumahan" />
 
             <View
