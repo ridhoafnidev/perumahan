@@ -43,6 +43,14 @@ class CalonPemilikViewModel(
         }
     }
 
+    fun getCalonPemilikAllByKonsumen(id: Int) {
+        viewModelScope.launch {
+            perumahanRepository.calonPemilikGetAllByKonsumen(id)
+                .onStart { emit(ApiEvent.OnProgress()) }
+                .collect { _listCalonPemilik.value = it }
+        }
+    }
+
     fun getDetailCalonPemilik(id: Int) {
         viewModelScope.launch {
             perumahanRepository.getDetailCalonPemilik(id)

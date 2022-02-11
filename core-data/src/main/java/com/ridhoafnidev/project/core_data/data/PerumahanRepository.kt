@@ -80,6 +80,32 @@ class PerumahanRepository internal constructor(
         }
     }
 
+    fun calonPemilikGetAllByKonsumen(id: Int): Flow<ApiEvent<ListCalonPemilik>> = flow {
+        runCatching {
+            val apiId = PerumahanService.GetCalonPemilikAllByKonsumen
+            val apiResult = apiExecutor.callApi(apiId) {
+                perumahanService.getCalonPemilikAllByKonsumen(id)
+            }
+
+            val apiEvent: ApiEvent<ListCalonPemilik> = when (apiResult) {
+                is ApiResult.OnFailed -> apiResult.exception.toFailedEvent()
+                is ApiResult.OnSuccess -> with(apiResult.response.result) {
+                    toDomain().run {
+                        if (isEmpty()) {
+                            ApiEvent.OnSuccess.fromServer(emptyList())
+                        } else {
+                            ApiEvent.OnSuccess.fromServer(this)
+                        }
+                    }
+                }
+            }
+
+            emit(apiEvent)
+        }.onFailure {
+            emit(it.toFailedEvent())
+        }
+    }
+
     fun calonPemilikGetAll(): Flow<ApiEvent<ListCalonPemilik>> = flow {
         runCatching {
             val apiId = PerumahanService.GetCalonPemilikAll

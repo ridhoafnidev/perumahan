@@ -27,6 +27,11 @@ interface PerumahanService {
     @GET(GetCalonPemilikAll)
     suspend fun getCalonPemilikAll(): CalonPemilikResponse
 
+    @GET(GetCalonPemilikAllByKonsumen)
+    suspend fun getCalonPemilikAllByKonsumen(
+        @Path("id") id: Int
+    ): CalonPemilikResponse
+
     @GET(GetDetailCalonPemilik)
     suspend fun getDetailCalonPemilik(
         @Path("id")
@@ -63,6 +68,7 @@ interface PerumahanService {
         const val GetDetailTipePerumahan = "tipe-rumah/{id}"
         const val InsertCalonPemilik = "calon-pemilik"
         const val GetCalonPemilikAll = "calon-pemilik-all"
+        const val GetCalonPemilikAllByKonsumen = "calon-pemilik-all/{id}"
         const val GetDetailCalonPemilik = "calon-pemilik/{id}"
         const val GetPerumahan = "perumahan/{id}"
         const val GetStatusPengajuanAll = "status-pengajuan-all"

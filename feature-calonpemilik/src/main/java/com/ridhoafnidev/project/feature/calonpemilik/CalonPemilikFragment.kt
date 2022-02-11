@@ -10,15 +10,18 @@ import com.ridhoafnidev.project.core_domain.model.calon_pemilik.ListCalonPemilik
 import com.ridhoafnidev.project.core_navigation.ActionType
 import com.ridhoafnidev.project.core_resource.components.base.BaseFragment
 import com.ridhoafnidev.project.feature.calonpemilik.databinding.FragmentCalonPemilikBinding
+import com.ridhoafnidev.project.feature.calonpemilik.viewmodel.AuthViewModel
 import com.ridhoafnidev.project.feature.calonpemilik.viewmodel.CalonPemilikViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CalonPemilikFragment : BaseFragment<FragmentCalonPemilikBinding>(FragmentCalonPemilikBinding::inflate) {
 
+    private val authViewModel: AuthViewModel by viewModel()
     private val calonPemilikViewModel: CalonPemilikViewModel by viewModel()
 
     override fun initView() {
-        getCalonPemilik()
+        getCurrentUser()
+        setCurrentUser()
         setupCalonPemilik()
     }
 
@@ -26,9 +29,22 @@ class CalonPemilikFragment : BaseFragment<FragmentCalonPemilikBinding>(FragmentC
 
     }
 
-    private fun getCalonPemilik() {
-        calonPemilikViewModel
-            .getCalonPemilikAll()
+    private fun getCurrentUser() {
+        authViewModel.getCurrentUser()
+    }
+
+    private fun setCurrentUser() {
+        authViewModel.currentUser.observe(this) { currentUser ->
+            if (currentUser != null) {
+                if (currentUser.role == "konsumen") {
+                    calonPemilikViewModel
+                        .getCalonPemilikAllByKonsumen(currentUser.konsumenId)
+                } else {
+                    calonPemilikViewModel
+                        .getCalonPemilikAll()
+                }
+            }
+        }
     }
 
     private fun setupCalonPemilik() {
