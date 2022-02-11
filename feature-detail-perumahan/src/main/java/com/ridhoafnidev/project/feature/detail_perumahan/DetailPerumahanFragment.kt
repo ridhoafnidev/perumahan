@@ -35,10 +35,10 @@ class DetailPerumahanFragment : BaseFragment<FragmentDetailPerumahanBinding>(Fra
         binding.btnCheckout.setOnClickListener {
             tipePerumahId?.let {
                 val toCheckoutFragment = DetailPerumahanFragmentDirections
-                    .actionDetailPerumahanFragmentToCheckoutFragment(
-                        tipePerumahan,
+                    .actionDetailPerumahanFragmentToCheckoutActivity(
                         it,
-                        namaPerumahan
+                        namaPerumahan,
+                        tipePerumahan
                     )
                 findNavController().navigate(toCheckoutFragment)
             }

@@ -32,4 +32,7 @@
     <string name="keterangan">Keterangan</string>
     <string name="title_checkout_perumahan">Checkout Perumahan</string>
     <string name="table_separate">:</string>
+
+    <string name="field_error">%s harus diisi!</string>
+    <string name="image_error">Silahkan masukan bukti transfer, untuk melakukan checkout!</string>
 </resources>

@@ -11,22 +11,21 @@
         android:label="fragment_detail_perumahan"
         tools:layout="@layout/fragment_detail_perumahan" >
         <action
-            android:id="@+id/action_detailPerumahanFragment_to_checkoutFragment"
-            app:destination="@id/checkoutFragment" />
+            android:id="@+id/action_detailPerumahanFragment_to_checkoutActivity"
+            app:destination="@id/checkoutActivity" />
     </fragment>
-    <fragment
-        android:id="@+id/checkoutFragment"
-        android:name="com.ridhoafnidev.project.feature.detail_perumahan.CheckoutFragment"
-        android:label="fragment_checkout"
-        tools:layout="@layout/fragment_checkout" >
-        <argument
-            android:name="tipePerumahan"
-            app:argType="string" />
-        <argument
-            android:name="tipePerumahanId"
+    <activity
+        android:id="@+id/checkoutActivity"
+        android:name="com.ridhoafnidev.project.feature.detail_perumahan.CheckoutActivity"
+        android:label="activity_checkout"
+        tools:layout="@layout/activity_checkout" >
+        <argument android:name="tipePerumahanId"
             app:argType="integer" />
         <argument
             android:name="namaPerumahan"
             app:argType="string" />
-    </fragment>
+        <argument
+            android:name="tipePerumahan"
+            app:argType="string" />
+    </activity>
 </navigation>
