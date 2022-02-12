@@ -25,6 +25,9 @@
         <argument
             android:name="calonPemilikID"
             app:argType="integer" />
+        <argument
+            android:name="auth"
+            app:argType="com.ridhoafnidev.project.core_domain.model.auth.Auth" />
     </fragment>
     <activity
         android:id="@+id/previewDPActivity"

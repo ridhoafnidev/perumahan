@@ -1,6 +1,5 @@
 package com.ridhoafnidev.project.core_data.data.remote.service
 
-import com.ridhoafnidev.project.core_data.data.remote.request.CalonPemilikRequest
 import com.ridhoafnidev.project.core_data.data.remote.response.CommonResponse
 import com.ridhoafnidev.project.core_data.data.remote.response.calon_pemilik.CalonPemilikResponse
 import com.ridhoafnidev.project.core_data.data.remote.response.detail_calon_pemilik.DetailCalonPemilikResponse
@@ -8,7 +7,6 @@ import com.ridhoafnidev.project.core_data.data.remote.response.detail_tipe_rumah
 import com.ridhoafnidev.project.core_data.data.remote.response.perumahan.PerumahanResponse
 import com.ridhoafnidev.project.core_data.data.remote.response.status_pengajuan.StatusPengajuanResponse
 import com.ridhoafnidev.project.core_data.data.remote.response.tipe_rumah.TipeRumahResponse
-import com.ridhoafnidev.project.core_data.data.remote.service.PerumahanService.Companion.UpdateStatusPengajuan
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*

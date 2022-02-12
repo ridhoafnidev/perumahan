@@ -1,6 +1,8 @@
 package com.ridhoafnidev.project.feature.calonpemilik
 
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -26,9 +28,9 @@ class EditCalonPemilikFragment : BaseFragment<FragmentEditCalonPemilikBinding>(F
     private lateinit var listStatusPengajuan: ListStatusPengajuan
 
     override fun initView() {
+        setTitleByRole()
         getDetailCalonPemilik(calonPemilikID)
         getStatusPengajuan()
-        setTitleName()
         setDetailCalonPemilik()
         setStatusPengajuan()
         setUpdateStatusPengajuan()
@@ -36,16 +38,28 @@ class EditCalonPemilikFragment : BaseFragment<FragmentEditCalonPemilikBinding>(F
 
     override fun initListener() {
         binding.btnSubmit.setOnClickListener {
-            val selectedStatusPengajuan = binding.edtStatus.text.toString()
-            val statusPengajuan = listStatusPengajuan.find {
-                it.nama == selectedStatusPengajuan
+            if (args.auth.role != "konsumen") {
+                val selectedStatusPengajuan = binding.edtStatus.text.toString()
+                val statusPengajuan = listStatusPengajuan.find {
+                    it.nama == selectedStatusPengajuan
+                }
+                if (statusPengajuan != null) {
+                    calonPemilikViewModel.updateStatusPengajuan(
+                        calonPemilikID,
+                        statusPengajuan
+                    )
+                }
+            } else {
+                Toast.makeText(requireContext(), "Pengajuan diproses", Toast.LENGTH_SHORT).show()
             }
-            if (statusPengajuan != null) {
-                calonPemilikViewModel.updateStatusPengajuan(
-                    calonPemilikID,
-                    statusPengajuan
-                )
-            }
+        }
+    }
+
+    private fun setTitleByRole() {
+        if (args.auth.role == "konsumen") {
+            setTitleName(R.string.title_detail_checkout_perumahan)
+        } else {
+            setTitleName(R.string.title_edit_calon_pemilik)
         }
     }
 
@@ -54,12 +68,9 @@ class EditCalonPemilikFragment : BaseFragment<FragmentEditCalonPemilikBinding>(F
     }
 
     private fun getStatusPengajuan() {
-        calonPemilikViewModel.getStatusPengajuanAll()
-    }
-
-    private fun setTitleName() {
-        (activity as BaseActivity<*>)
-            .setPageName(getString(R.string.title_edit_calon_pemilik))
+        if (args.auth.role != "konsumen") {
+            calonPemilikViewModel.getStatusPengajuanAll()
+        }
     }
 
     private fun setDetailCalonPemilik() {
@@ -117,6 +128,13 @@ class EditCalonPemilikFragment : BaseFragment<FragmentEditCalonPemilikBinding>(F
 
     private fun setupFormAddCalonPemilik(calonPemilik: DetailCalonPemilik) {
         binding.apply {
+
+            if (args.auth.role == "konsumen") {
+                edtStatus.isEnabled = false
+                edtStatus.alpha = 0.8f
+                btnSubmit.text = getString(R.string.cancel)
+            }
+
             edtNamaLengkap.setText(calonPemilik.konsumenNama)
             edtAlamat.setText(calonPemilik.konsumenAlamat)
             edtNoHp.setText(calonPemilik.konsumenNoHp)

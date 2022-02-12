@@ -5,9 +5,9 @@ import com.afollestad.recyclical.datasource.dataSourceTypedOf
 import com.afollestad.recyclical.setup
 import com.afollestad.recyclical.withItem
 import com.ridhoafnidev.project.core_data.data.remote.ApiEvent
+import com.ridhoafnidev.project.core_domain.model.auth.Auth
 import com.ridhoafnidev.project.core_domain.model.calon_pemilik.CalonPemilik
 import com.ridhoafnidev.project.core_domain.model.calon_pemilik.ListCalonPemilik
-import com.ridhoafnidev.project.core_navigation.ActionType
 import com.ridhoafnidev.project.core_resource.components.base.BaseFragment
 import com.ridhoafnidev.project.feature.calonpemilik.databinding.FragmentCalonPemilikBinding
 import com.ridhoafnidev.project.feature.calonpemilik.viewmodel.AuthViewModel
@@ -18,6 +18,8 @@ class CalonPemilikFragment : BaseFragment<FragmentCalonPemilikBinding>(FragmentC
 
     private val authViewModel: AuthViewModel by viewModel()
     private val calonPemilikViewModel: CalonPemilikViewModel by viewModel()
+
+    private lateinit var auth: Auth
 
     override fun initView() {
         getCurrentUser()
@@ -36,10 +38,13 @@ class CalonPemilikFragment : BaseFragment<FragmentCalonPemilikBinding>(FragmentC
     private fun setCurrentUser() {
         authViewModel.currentUser.observe(this) { currentUser ->
             if (currentUser != null) {
+                auth = currentUser
                 if (currentUser.role == "konsumen") {
+                    setTitleName(R.string.title_daftar_checkout)
                     calonPemilikViewModel
                         .getCalonPemilikAllByKonsumen(currentUser.konsumenId)
                 } else {
+                    setTitleName(R.string.title_calon_pemilik)
                     calonPemilikViewModel
                         .getCalonPemilikAll()
                 }
@@ -72,7 +77,7 @@ class CalonPemilikFragment : BaseFragment<FragmentCalonPemilikBinding>(FragmentC
                 }
                 onClick {
                     val toAddCalonPemilikFragment = CalonPemilikFragmentDirections
-                        .actionCalonPemilikFragmentToAddCalonPemilikFragment(item.id)
+                        .actionCalonPemilikFragmentToAddCalonPemilikFragment(item.id, auth)
                     findNavController().navigate(toAddCalonPemilikFragment)
                 }
             }
