@@ -29,6 +29,11 @@ object KonsumenMenu {
             6,
             "Simulasi KPR",
             R.drawable.ic_simultion
+        ),
+        Menu(
+            9,
+            "Logout",
+            R.drawable.ic_logout
         )
     )
 }

@@ -82,8 +82,7 @@ class TipeRumahFragment : Fragment() {
                     }
                     btnDelete.setOnClickListener {
                         showAlertDialog(
-                            getString(R.string.delete_tipe_rumah_title),
-                            null
+                            getString(R.string.delete_tipe_rumah_title)
                         ) {
                             Toast.makeText(
                                 context,

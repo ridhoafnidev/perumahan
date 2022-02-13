@@ -39,6 +39,11 @@ object AdminMenu {
             8,
             "Laporan",
             R.drawable.ic_reservation
+        ),
+        Menu(
+            9,
+            "Logout",
+            R.drawable.ic_logout
         )
     )
 }

@@ -26,6 +26,8 @@ class AuthRepository internal constructor(
         ApiEvent.OnSuccess.fromCache(it)
     }
 
+    suspend fun logout() = authDao.truncate()
+
     fun login(loginRequest: LoginRequest): Flow<ApiEvent<Auth>> = flow {
         runCatching {
             val apiId = AuthService.Login

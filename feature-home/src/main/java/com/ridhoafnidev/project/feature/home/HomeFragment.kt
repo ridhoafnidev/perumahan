@@ -8,11 +8,12 @@ import com.afollestad.recyclical.setup
 import com.afollestad.recyclical.withItem
 import com.ridhoafnidev.home.R
 import com.ridhoafnidev.home.databinding.FragmentHomeBinding
-import com.ridhoafnidev.project.core_data.domain.MenuStatus
+import com.ridhoafnidev.project.core_domain.model.MenuStatus
 import com.ridhoafnidev.project.core_domain.model.Menu
 import com.ridhoafnidev.project.core_navigation.ModuleNavigator
 import com.ridhoafnidev.project.core_resource.components.base.BaseFragment
 import com.ridhoafnidev.project.core_util.dayTimeGreeting
+import com.ridhoafnidev.project.core_util.showAlertDialog
 import com.ridhoafnidev.project.feature.home.menu.AdminMenu
 import com.ridhoafnidev.project.feature.home.menu.KonsumenMenu
 import com.ridhoafnidev.project.feature.home.viewholder.ItemMenuViewHolder
@@ -82,6 +83,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                             }
                             MenuStatus.TipeRumah() -> {
                                 navigateToTipeRumahActivity()
+                            }
+                            MenuStatus.Logout() -> {
+                                showAlertDialog(getString(R.string.message_logout)) {
+                                    authViewModel.logout()
+                                    navigateToAuthActivity(true)
+                                }
                             }
                         }
                     }

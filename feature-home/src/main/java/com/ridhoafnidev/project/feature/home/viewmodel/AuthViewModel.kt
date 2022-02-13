@@ -24,4 +24,10 @@ class AuthViewModel(
                 .collect { _currentUser.value = it.getData()?.toDomain() }
         }
     }
+
+    fun logout() {
+        viewModelScope.launch {
+            authRepository.logout()
+        }
+    }
 }
