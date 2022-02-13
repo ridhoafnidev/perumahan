@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,5 +18,26 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+      android:id="@+id/tv_no_account"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/small"
+      android:text="@string/tidak_punya_akun"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/layout_form_login" />
+
+  <com.ridhoafnidev.project.core_resource.components.BaseTextView
+      android:id="@+id/btn_buat_akun"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="@dimen/small"
+      android:text="@string/buat_akun"
+      android:textColor="@color/colorTextAccent"
+      app:base_font_style="medium"
+      app:layout_constraintBottom_toBottomOf="@+id/tv_no_account"
+      app:layout_constraintStart_toEndOf="@+id/tv_no_account"
+      app:layout_constraintTop_toTopOf="@+id/tv_no_account" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,4 +11,10 @@
     <string name="requeired_email_or_phone_number">Email atau Nomor Ponsel harus diisi</string>
     <string name="required_password">Password harus diisi</string>
     <string name="message_error_login">Email atau Nomor Ponsel atau Password tidak cocok</string>
+    <string name="register">Register</string>
+    <string name="username">Username</string>
+    <string name="message_error_field">%s harus diisi!</string>
+    <string name="message_success_register">Registrasi berhasil, silahkan login!</string>
+    <string name="tidak_punya_akun">Tidak punya akun?</string>
+    <string name="buat_akun">Buat akun</string>
 </resources>

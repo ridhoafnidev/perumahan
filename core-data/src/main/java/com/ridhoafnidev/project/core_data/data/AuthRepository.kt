@@ -1,11 +1,12 @@
 package com.ridhoafnidev.project.core_data.data
 
-import androidx.lifecycle.LiveData
 import com.ridhoafnidev.project.core_data.data.local.room.AuthDao
-import com.ridhoafnidev.project.core_data.data.remote.ApiEvent
+import com.ridhoafnidev.project.core_data.data.remote.*
 import com.ridhoafnidev.project.core_data.data.remote.ApiExecutor
 import com.ridhoafnidev.project.core_data.data.remote.ApiResult
 import com.ridhoafnidev.project.core_data.data.remote.request.LoginRequest
+import com.ridhoafnidev.project.core_data.data.remote.request.RegisterUserRequest
+import com.ridhoafnidev.project.core_data.data.remote.response.CommonResponse
 import com.ridhoafnidev.project.core_data.data.remote.response.auth.toDomain
 import com.ridhoafnidev.project.core_data.data.remote.response.auth.toEntity
 import com.ridhoafnidev.project.core_data.data.remote.service.AuthService
@@ -37,6 +38,31 @@ class AuthRepository internal constructor(
                 is ApiResult.OnSuccess -> with(apiResult.response.result) {
                     authDao.replace(this.toEntity())
                     ApiEvent.OnSuccess.fromServer(this.toDomain())
+                }
+            }
+
+            emit(apiEvent)
+        }.onFailure {
+            emit(it.toFailedEvent())
+        }
+    }
+
+    fun register(registerUserRequest: RegisterUserRequest): Flow<ApiEvent<CommonResponse>> = flow {
+        runCatching {
+            val apiId = AuthService.Register
+            val apiResult = apiExecutor.callApi(apiId) {
+                authService.register(registerUserRequest)
+            }
+
+            val apiEvent: ApiEvent<CommonResponse> = when (apiResult) {
+                is ApiResult.OnFailed -> apiResult.exception.toFailedEvent()
+                is ApiResult.OnSuccess -> with (apiResult.response) {
+                    when {
+                        this.message.equals(ApiException.FailedResponse.MESSAGE_FAILED, true) -> {
+                            ApiException.FailedResponse(message).toFailedEvent()
+                        }
+                        else -> ApiEvent.OnSuccess.fromServer(this)
+                    }
                 }
             }
 

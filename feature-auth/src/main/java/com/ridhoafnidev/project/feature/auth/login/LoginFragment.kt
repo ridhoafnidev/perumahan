@@ -1,5 +1,6 @@
 package com.ridhoafnidev.project.feature.auth.login
 
+import androidx.navigation.fragment.findNavController
 import com.afollestad.vvalidator.form
 import com.google.android.material.snackbar.Snackbar
 import com.ridhoafnidev.project.core_data.data.remote.ApiEvent
@@ -9,13 +10,13 @@ import com.ridhoafnidev.project.core_util.*
 import com.ridhoafnidev.project.feature.auth.viewmodel.AuthViewModel
 import com.ridhoafnidev.project.feature_auth.R
 import com.ridhoafnidev.project.feature_auth.databinding.FragmentLoginBinding
+import com.ridhoafnidev.project.feature_auth.databinding.LayoutFormLoginBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate), ModuleNavigator {
 
-    private val textBtnLogin by lazy {
-        getString(R.string.text_login)
-    }
+    private val formBinding: LayoutFormLoginBinding
+        get() = binding.layoutFormLogin
 
     private val textHintEmptyEmailPhoneNumber by lazy {
         getString(R.string.requeired_email_or_phone_number)
@@ -31,15 +32,14 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         authViewModel.login.observe(viewLifecycleOwner){ auth ->
             when(auth){
                 is ApiEvent.OnProgress -> {
-                    showProgress()
+                    formBinding.btnLogin.showProgress()
                 }
                 is ApiEvent.OnSuccess -> {
-                    hideProgress(true)
+                    formBinding.btnLogin.hideProgress()
                     navigateToHomeActivity()
                 }
                 is ApiEvent.OnFailed -> {
-                    hideProgress(true)
-
+                    formBinding.btnLogin.hideProgress()
                     showSnackBar(requireContext(), binding.parentLogin, "errorMessage", Snackbar.LENGTH_LONG)
                 }
             }
@@ -67,30 +67,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             }
             btnLogin.bindLifecycle(viewLifecycleOwner)
         }
-    }
 
-    private fun showProgress() = with(binding.layoutFormLogin) {
-        listOf(
-            btnLogin, inputLayoutEmailOrNumberPhone, inputLayoutPassword
-        ).forEach { it.isEnabled = false }
-        btnLogin.showProgress()
-    }
-
-    private fun hideProgress(isEnable: Boolean) = with(binding.layoutFormLogin){
-        btnLogin.postDelayed(
-            {
-                listOf(
-                    btnLogin, edtEmailOrNumberPhone, edtPassword, inputLayoutEmailOrNumberPhone,
-                    inputLayoutPassword
-                ).forEach { it.isEnabled = true }
-            },1000L
-        )
-
-        btnLogin.hideProgress(textBtnLogin){
-            isEnable && with(binding.layoutFormLogin) {
-                "${edtEmailOrNumberPhone.text}".isNotBlank() && "${edtPassword.text}".isNotBlank()
-            }
+        binding.btnBuatAkun.setOnClickListener {
+            val toRegisterFragment = LoginFragmentDirections
+                .actionLoginFragmentToRegisterFragment()
+            findNavController()
+                .navigate(toRegisterFragment)
         }
     }
-
 }
