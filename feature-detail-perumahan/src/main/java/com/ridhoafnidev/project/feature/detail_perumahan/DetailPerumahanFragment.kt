@@ -23,6 +23,7 @@ class DetailPerumahanFragment : BaseFragment<FragmentDetailPerumahanBinding>(Fra
 
     private var namaPerumahan = ""
     private var tipePerumahan = ""
+    private var hargaProperti = 0
 
     override fun initView() {
         tipePerumahId = activity?.intent?.getIntExtra(EXTRA_PERUMAHAN_ID, 0)
@@ -42,6 +43,13 @@ class DetailPerumahanFragment : BaseFragment<FragmentDetailPerumahanBinding>(Fra
                     )
                 findNavController().navigate(toCheckoutFragment)
             }
+        }
+
+        binding.btnSimulasi.setOnClickListener {
+            val toSimulasiKPRActivity = DetailPerumahanFragmentDirections
+                .actionDetailPerumahanFragmentToSimulasiKPRActivity(hargaProperti)
+            findNavController()
+                .navigate(toSimulasiKPRActivity)
         }
     }
 
@@ -73,6 +81,7 @@ class DetailPerumahanFragment : BaseFragment<FragmentDetailPerumahanBinding>(Fra
             val perumahanItem = if (perumahan.perumahan.isNotEmpty()) perumahan.perumahan[0] else null
             namaPerumahan = perumahanItem?.namaPerumahan ?: "-"
             tipePerumahan = perumahan.namaTipe
+            hargaProperti = perumahan.harga.toInt()
 
             tvNamaPerumahan.text = perumahanItem?.namaPerumahan ?: "-"
 

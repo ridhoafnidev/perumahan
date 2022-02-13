@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_detailPerumahanFragment_to_checkoutActivity"
             app:destination="@id/checkoutActivity" />
+        <action
+            android:id="@+id/action_detailPerumahanFragment_to_simulasiKPRActivity"
+            app:destination="@id/simulasiKPRActivity" />
     </fragment>
     <activity
         android:id="@+id/checkoutActivity"
@@ -27,5 +30,13 @@
         <argument
             android:name="tipePerumahan"
             app:argType="string" />
+    </activity>
+    <activity
+        android:id="@+id/simulasiKPRActivity"
+        android:name="com.ridhoafnidev.project.feature.detail_perumahan.SimulasiKPRActivity"
+        android:label="SimulasiKPRActivity" >
+        <argument
+            android:name="hargaProperti"
+            app:argType="integer" />
     </activity>
 </navigation>

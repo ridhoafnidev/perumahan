@@ -4,6 +4,9 @@
 
     <application>
         <activity
+            android:name=".SimulasiKPRActivity"
+            android:exported="false" />
+        <activity
             android:name=".CheckoutActivity"
             android:exported="false" />
         <activity
