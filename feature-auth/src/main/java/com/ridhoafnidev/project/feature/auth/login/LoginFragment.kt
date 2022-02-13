@@ -19,7 +19,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         get() = binding.layoutFormLogin
 
     private val textHintEmptyEmailPhoneNumber by lazy {
-        getString(R.string.requeired_email_or_phone_number)
+        getString(R.string.username)
     }
 
     private val textHintEmptyPassword by lazy {
@@ -40,7 +40,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                 }
                 is ApiEvent.OnFailed -> {
                     formBinding.btnLogin.hideProgress()
-                    showSnackBar(requireContext(), binding.parentLogin, "errorMessage", Snackbar.LENGTH_LONG)
+                    showSnackBar(requireContext(), binding.parentLogin, "Username atau Password salah!", Snackbar.LENGTH_LONG)
                 }
             }
         }

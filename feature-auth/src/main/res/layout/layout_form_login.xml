@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             style="@style/BaseTheme.EditText.Primary"
             android:layout_height="wrap_content"
-            android:hint="@string/email_or_phone_number"
+            android:hint="@string/username"
             android:lines="1"
             android:inputType="text"/>
 
