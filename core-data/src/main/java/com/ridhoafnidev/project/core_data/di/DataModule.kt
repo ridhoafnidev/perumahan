@@ -8,8 +8,6 @@ import com.ridhoafnidev.project.core_data.BuildConfig.DB_NAME
 import com.ridhoafnidev.project.core_data.data.AuthRepository
 import com.ridhoafnidev.project.core_data.data.EventRepository
 import com.ridhoafnidev.project.core_data.data.PerumahanRepository
-import com.ridhoafnidev.project.core_domain.repository.IAuthRepository
-import com.ridhoafnidev.project.core_domain.repository.IEventDbRepository
 import com.ridhoafnidev.project.core_data.data.local.LocalDataSource
 import com.ridhoafnidev.project.core_data.data.local.room.CoreDatabase
 import com.ridhoafnidev.project.core_data.data.remote.ApiExecutor
@@ -17,6 +15,7 @@ import com.ridhoafnidev.project.core_data.data.remote.apiClient
 import com.ridhoafnidev.project.core_data.data.remote.httpClient
 import com.ridhoafnidev.project.core_data.data.remote.service.AuthService
 import com.ridhoafnidev.project.core_data.data.remote.service.PerumahanService
+import com.ridhoafnidev.project.core_domain.repository.IEventDbRepository
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -63,7 +62,6 @@ val Application.dataModule
         single { get<CoreDatabase>().authDao() }
         single { LocalDataSource(get()) }
         single<IEventDbRepository> { EventRepository(get()) }
-//        single<IAuthRepository> { AuthRepository(get(), get(), get()) }
         single { PerumahanRepository(get(), get()) }
         single { AuthRepository(get(), get(), get()) }
     }

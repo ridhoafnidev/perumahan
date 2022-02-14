@@ -17,7 +17,7 @@ object KonsumenMenu {
         ),
         Menu(
             3,
-            "Calon Pembeli",
+            "Histori Checkout",
             R.drawable.ic_seller
         ),
         Menu(
