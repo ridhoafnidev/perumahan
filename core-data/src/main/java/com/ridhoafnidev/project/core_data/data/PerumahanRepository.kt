@@ -6,6 +6,7 @@ import com.ridhoafnidev.project.core_data.data.remote.response.CommonResponse
 import com.ridhoafnidev.project.core_data.data.remote.response.calon_pemilik.toDomain
 import com.ridhoafnidev.project.core_data.data.remote.response.detail_calon_pemilik.toDomain
 import com.ridhoafnidev.project.core_data.data.remote.response.detail_tipe_rumah.toDomain
+import com.ridhoafnidev.project.core_data.data.remote.response.laporan.toDomain
 import com.ridhoafnidev.project.core_data.data.remote.response.status_pengajuan.toDomain
 import com.ridhoafnidev.project.core_data.data.remote.response.tipe_rumah.toDomain
 import com.ridhoafnidev.project.core_data.data.remote.response.toDomain
@@ -14,6 +15,7 @@ import com.ridhoafnidev.project.core_domain.model.ListPerumahanGetAll
 import com.ridhoafnidev.project.core_domain.model.calon_pemilik.ListCalonPemilik
 import com.ridhoafnidev.project.core_domain.model.detail_calon_pemilik.DetailCalonPemilik
 import com.ridhoafnidev.project.core_domain.model.detail_tipe_rumah.DetailTipeRumah
+import com.ridhoafnidev.project.core_domain.model.laporan.ListLaporan
 import com.ridhoafnidev.project.core_domain.model.status_pengajuan.ListStatusPengajuan
 import com.ridhoafnidev.project.core_domain.model.status_pengajuan.StatusPengajuan
 import com.ridhoafnidev.project.core_domain.model.tipe_rumah.ListTipePerumahanGetAll
@@ -258,6 +260,35 @@ class PerumahanRepository internal constructor(
                             ApiException.FailedResponse(message).toFailedEvent()
                         }
                         else -> ApiEvent.OnSuccess.fromServer(this)
+                    }
+                }
+            }
+
+            emit(apiEvent)
+        }.onFailure {
+            emit(it.toFailedEvent())
+        }
+    }
+
+    fun getLaporan(
+        start: String,
+        end: String
+    ): Flow<ApiEvent<ListLaporan>> = flow {
+        runCatching {
+            val apiId = PerumahanService.GetLaporan
+            val apiResult = apiExecutor.callApi(apiId) {
+                perumahanService.getLaporan(start, end)
+            }
+
+            val apiEvent: ApiEvent<ListLaporan> = when (apiResult) {
+                is ApiResult.OnFailed -> apiResult.exception.toFailedEvent()
+                is ApiResult.OnSuccess -> with(apiResult.response.result) {
+                    toDomain().run {
+                        if (isEmpty()) {
+                            ApiEvent.OnSuccess.fromServer(emptyList())
+                        } else {
+                            ApiEvent.OnSuccess.fromServer(this)
+                        }
                     }
                 }
             }

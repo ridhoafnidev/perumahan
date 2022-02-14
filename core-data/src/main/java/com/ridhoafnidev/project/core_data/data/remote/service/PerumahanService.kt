@@ -4,6 +4,7 @@ import com.ridhoafnidev.project.core_data.data.remote.response.CommonResponse
 import com.ridhoafnidev.project.core_data.data.remote.response.calon_pemilik.CalonPemilikResponse
 import com.ridhoafnidev.project.core_data.data.remote.response.detail_calon_pemilik.DetailCalonPemilikResponse
 import com.ridhoafnidev.project.core_data.data.remote.response.detail_tipe_rumah.DetailTipeRumahResponse
+import com.ridhoafnidev.project.core_data.data.remote.response.laporan.LaporanResponse
 import com.ridhoafnidev.project.core_data.data.remote.response.perumahan.PerumahanResponse
 import com.ridhoafnidev.project.core_data.data.remote.response.status_pengajuan.StatusPengajuanResponse
 import com.ridhoafnidev.project.core_data.data.remote.response.tipe_rumah.TipeRumahResponse
@@ -61,6 +62,12 @@ interface PerumahanService {
         @Part buktiTransfer: MultipartBody.Part
     ): CommonResponse
 
+    @GET(GetLaporan)
+    suspend fun getLaporan(
+        @Path("start") start: String,
+        @Path("end") end: String
+    ): LaporanResponse
+
     companion object {
         const val GetTipePerumahanAll = "tipe-rumah-all"
         const val GetDetailTipePerumahan = "tipe-rumah/{id}"
@@ -68,6 +75,7 @@ interface PerumahanService {
         const val GetCalonPemilikAll = "calon-pemilik-all"
         const val GetCalonPemilikAllByKonsumen = "calon-pemilik-all/{id}"
         const val GetDetailCalonPemilik = "calon-pemilik/{id}"
+        const val GetLaporan = "calon-pemilik/{start}/{end}"
         const val GetPerumahan = "perumahan/{id}"
         const val GetStatusPengajuanAll = "status-pengajuan-all"
         const val UpdateStatusPengajuan = "update-status-calon-pemilik/{id}"

@@ -73,22 +73,25 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 onBind(::ItemMenuViewHolder){_, item ->
                     titleMenu.text = item.title
                     ivMenu.load(item.image)
-                    ivMenu.setOnClickListener {
-                        when(item.id){
-                            MenuStatus.Perumahan() -> {
-                                navigateToPerumahanActivity()
-                            }
-                            MenuStatus.CalonPembeli() -> {
-                                navigateToCalonPembeliActivity()
-                            }
-                            MenuStatus.TipeRumah() -> {
-                                navigateToTipeRumahActivity()
-                            }
-                            MenuStatus.Logout() -> {
-                                showAlertDialog(getString(R.string.message_logout)) {
-                                    authViewModel.logout()
-                                    navigateToAuthActivity(true)
-                                }
+                }
+                onClick {
+                    when(item.id){
+                        MenuStatus.Perumahan() -> {
+                            navigateToPerumahanActivity()
+                        }
+                        MenuStatus.CalonPembeli() -> {
+                            navigateToCalonPembeliActivity()
+                        }
+                        MenuStatus.TipeRumah() -> {
+                            navigateToTipeRumahActivity()
+                        }
+                        MenuStatus.Laporan() -> {
+                            navigateToLaporanActivity()
+                        }
+                        MenuStatus.Logout() -> {
+                            showAlertDialog(getString(R.string.message_logout)) {
+                                authViewModel.logout()
+                                navigateToAuthActivity(true)
                             }
                         }
                     }

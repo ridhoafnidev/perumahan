@@ -7,6 +7,7 @@ import com.ridhoafnidev.project.feature.auth.authModule
 import com.ridhoafnidev.project.feature.calonpemilik.calonPemilikModule
 import com.ridhoafnidev.project.feature.detail_perumahan.detailPerumahanModule
 import com.ridhoafnidev.project.feature.home.homeModule
+import com.ridhoafnidev.project.feature.laporan.laporanModule
 import com.ridhoafnidev.project.feature.perumahan.createEventModule
 import io.armcha.debugBanner.Banner
 import io.armcha.debugBanner.DebugBanner
@@ -14,6 +15,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
 
+@Suppress("UNUSED")
 class App : Application() {
 
     override fun onCreate() {
@@ -42,7 +44,8 @@ class App : Application() {
                     createEventModule,
                     homeModule,
                     detailPerumahanModule,
-                    calonPemilikModule
+                    calonPemilikModule,
+                    laporanModule
                 )
             )
         }
