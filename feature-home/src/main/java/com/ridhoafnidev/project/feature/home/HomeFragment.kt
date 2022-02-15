@@ -82,6 +82,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                         MenuStatus.Perumahan() -> {
                             navigateToPerumahanActivity()
                         }
+                        MenuStatus.Pengguna() -> {
+                            navigateToPenggunaActivity()
+                        }
                         MenuStatus.CalonPembeli() -> {
                             navigateToCalonPembeliActivity()
                         }

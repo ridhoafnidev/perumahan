@@ -6,6 +6,7 @@ import android.content.Intent
 enum class ActivityClassPath(private val className: String) {
     Auth("$BASE_PATH.auth.AuthActivity"),
     Home("$BASE_PATH.home.HomeActivity"),
+    Pengguna("$BASE_PATH.pengguna.PenggunaActivity"),
     Perumahan("$BASE_PATH.perumahan.PerumahanActivity"),
     Pemilik("$BASE_PATH.calonpemilik.CalonPemilikActivity"),
     DetailPerumahan("$BASE_PATH.detail_perumahan.DetailPerumahanActivity"),

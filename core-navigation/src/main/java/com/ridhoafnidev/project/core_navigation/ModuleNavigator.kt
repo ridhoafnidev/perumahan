@@ -38,6 +38,12 @@ interface ModuleNavigator{
         startActivity(ActivityClassPath.Perumahan, finishCurrent)
     }
 
+    fun<T> T.navigateToPenggunaActivity(
+        finishCurrent: Boolean = false
+    ) where T : Fragment, T : ModuleNavigator {
+        startActivity(ActivityClassPath.Pengguna, finishCurrent)
+    }
+
     fun<T> T.navigateToCalonPembeliActivity(
         finishCurrent: Boolean = false
     ) where T : Fragment, T : ModuleNavigator {
