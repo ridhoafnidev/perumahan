@@ -1,6 +1,7 @@
 package com.ridhoafnidev.project.feature.auth.register
 
 import android.widget.Toast
+import androidx.annotation.StringRes
 import com.afollestad.vvalidator.form
 import com.google.android.material.textfield.TextInputEditText
 import com.ridhoafnidev.project.core_data.data.remote.ApiEvent
@@ -27,6 +28,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
     }
 
     override fun initListener() {
+        val formHints = resources.getStringArray(R.array.form_hints)
         formBinding.apply {
             form {
                 useRealTimeValidation(disableSubmit = true)
@@ -37,10 +39,10 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                     inputLayoutPassword,
                     inputLayoutEmail,
                     inputLayoutNoHp
-                ).forEach { textInputLayout ->
+                ).forEachIndexed { index, textInputLayout ->
                     inputLayout(textInputLayout) {
                         isNotEmpty()
-                            .description(getString(R.string.message_error_field, textInputLayout.hint))
+                            .description(getString(R.string.message_error_field, formHints[index]))
                     }
                 }
                 submitWith(btnRegister) {
