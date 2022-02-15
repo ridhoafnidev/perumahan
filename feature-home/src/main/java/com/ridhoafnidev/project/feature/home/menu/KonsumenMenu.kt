@@ -6,11 +6,6 @@ import com.ridhoafnidev.project.core_domain.model.Menu
 object KonsumenMenu {
     val menus = listOf(
         Menu(
-            1,
-            "Pengguna",
-            R.drawable.ic_user
-        ),
-        Menu(
             2,
             "Perumahan",
             R.drawable.ic_houses
