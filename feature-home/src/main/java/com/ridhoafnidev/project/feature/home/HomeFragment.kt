@@ -85,6 +85,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                         MenuStatus.TipeRumah() -> {
                             navigateToTipeRumahActivity()
                         }
+                        MenuStatus.Persyaratan() -> {
+                            navigateToPersyaratanActivity()
+                        }
                         MenuStatus.Laporan() -> {
                             navigateToLaporanActivity()
                         }

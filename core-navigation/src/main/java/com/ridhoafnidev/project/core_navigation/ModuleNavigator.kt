@@ -61,6 +61,12 @@ interface ModuleNavigator{
         )
     }
 
+    fun<T> T.navigateToPersyaratanActivity(
+        finishCurrent: Boolean = false
+    ) where T : Fragment, T : ModuleNavigator {
+        startActivity(ActivityClassPath.Persyaratan, finishCurrent)
+    }
+
     fun<T> T.navigateToLaporanActivity(
         finishCurrent: Boolean = false
     ) where T : Fragment, T : ModuleNavigator {

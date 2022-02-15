@@ -36,6 +36,7 @@
         <entry key="..\:/Users/Abdul Hafiz Ramadan/AndroidStudioProjects/XML/perumahan/feature-detail-perumahan/src/main/res/layout/item_perumahan.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Abdul Hafiz Ramadan/AndroidStudioProjects/XML/perumahan/feature-detail-perumahan/src/main/res/layout/item_simulasi_kpr.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Abdul Hafiz Ramadan/AndroidStudioProjects/XML/perumahan/feature-detail-perumahan/src/main/res/layout/item_status_pengajuan.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/Abdul Hafiz Ramadan/AndroidStudioProjects/XML/perumahan/feature-home/src/main/res/layout/activity_home.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Abdul Hafiz Ramadan/AndroidStudioProjects/XML/perumahan/feature-home/src/main/res/layout/fragment_home.xml" value="0.23529411764705882" />
         <entry key="..\:/Users/Abdul Hafiz Ramadan/AndroidStudioProjects/XML/perumahan/feature-home/src/main/res/layout/layout_item_current_event.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Abdul Hafiz Ramadan/AndroidStudioProjects/XML/perumahan/feature-home/src/main/res/layout/layout_item_menu.xml" value="0.27291666666666664" />
@@ -44,6 +45,8 @@
         <entry key="..\:/Users/Abdul Hafiz Ramadan/AndroidStudioProjects/XML/perumahan/feature-laporan/src/main/res/layout/fragment_laporan.xml" value="0.2578125" />
         <entry key="..\:/Users/Abdul Hafiz Ramadan/AndroidStudioProjects/XML/perumahan/feature-laporan/src/main/res/layout/item_laporan.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Abdul Hafiz Ramadan/AndroidStudioProjects/XML/perumahan/feature-laporan/src/main/res/menu/laporan_menu.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/Abdul Hafiz Ramadan/AndroidStudioProjects/XML/perumahan/feature-persyaratan/src/main/res/layout/activity_persyaratan.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/Abdul Hafiz Ramadan/AndroidStudioProjects/XML/perumahan/feature-persyaratan/src/main/res/layout/syarat_kpr.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Abdul Hafiz Ramadan/AndroidStudioProjects/XML/perumahan/feature-perumahan/src/main/res/layout/activity_create_event.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Abdul Hafiz Ramadan/AndroidStudioProjects/XML/perumahan/feature-perumahan/src/main/res/layout/activity_perumahan.xml" value="0.14322916666666666" />
         <entry key="..\:/Users/Abdul Hafiz Ramadan/AndroidStudioProjects/XML/perumahan/feature-perumahan/src/main/res/layout/fragment_add_perumahan.xml" value="0.14322916666666666" />
