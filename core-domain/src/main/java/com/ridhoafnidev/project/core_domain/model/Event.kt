@@ -10,7 +10,7 @@ typealias ListEvents = List<Event>
 @Suppress("MagicNumber")
 enum class MenuStatus(val value: Int){
     Pengguna(1), Perumahan(2), CalonPembeli(3), TipeRumah(4),
-    Persyaratan(5), SimulasiKpr(6), InfoPerumahan(7), Laporan(8), Logout(9);
+    Persyaratan(5), SimulasiKPR(6), InfoPerumahan(7), Laporan(8), Logout(9);
 
     operator fun invoke() = value
 }

@@ -1,5 +1,6 @@
 package com.ridhoafnidev.project.feature.home
 
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.GridLayoutManager
 import coil.load
 import coil.transform.CircleCropTransformation
@@ -10,6 +11,8 @@ import com.ridhoafnidev.home.R
 import com.ridhoafnidev.home.databinding.FragmentHomeBinding
 import com.ridhoafnidev.project.core_domain.model.MenuStatus
 import com.ridhoafnidev.project.core_domain.model.Menu
+import com.ridhoafnidev.project.core_navigation.ActivityClassPath
+import com.ridhoafnidev.project.core_navigation.EXTRA_HARGA_PROPERTI
 import com.ridhoafnidev.project.core_navigation.ModuleNavigator
 import com.ridhoafnidev.project.core_resource.components.base.BaseFragment
 import com.ridhoafnidev.project.core_util.dayTimeGreeting
@@ -87,6 +90,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                         }
                         MenuStatus.Persyaratan() -> {
                             navigateToPersyaratanActivity()
+                        }
+                        MenuStatus.SimulasiKPR() -> {
+                            navigateToSimulasiKPRActivity(extras = bundleOf(EXTRA_HARGA_PROPERTI to 0))
                         }
                         MenuStatus.Laporan() -> {
                             navigateToLaporanActivity()

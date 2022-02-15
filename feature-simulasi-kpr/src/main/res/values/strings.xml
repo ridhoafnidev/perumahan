@@ -1,0 +1,21 @@
+<resources>
+    <string name="title_simulasi_kpr">Simulasi KPR</string>
+
+    <string name="field_error">%s harus diisi!</string>
+    <string name="image_error">Silahkan masukan bukti transfer, untuk melakukan checkout!</string>
+    <string name="harga_properti">Harga Properti</string>
+    <string name="jangka_waktu">Jangka Waktu/Tahun</string>
+    <string name="suku_bunga">Suku Bunga/Tahun</string>
+    <string name="uang_muka_dp_20">Uang Muka / DP 20%</string>
+    <string name="jumlah_pinjaman">Jumlah Pinjaman</string>
+    <string name="angsuran_per_bulan">Angsuran per bulan :</string>
+    <string name="simulasi">Simulasi</string>
+
+    <string-array name="form_simulasi_hints">
+        <item>Harga Properti</item>
+        <item>Uang Muka</item>
+        <item>Jangka Waktu Pinjaman</item>
+        <item>Suku Bunga Pinjaman</item>
+        <item>Jumlah Pinjaman</item>
+    </string-array>
+</resources>

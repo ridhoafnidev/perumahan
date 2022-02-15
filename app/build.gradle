@@ -37,6 +37,7 @@ dependencies {
     implementation project(':feature-detail-perumahan')
     implementation project(':feature-laporan')
     implementation project(':feature-persyaratan')
+    implementation project(':feature-simulasi-kpr')
 
     implementation deps.koin
 
