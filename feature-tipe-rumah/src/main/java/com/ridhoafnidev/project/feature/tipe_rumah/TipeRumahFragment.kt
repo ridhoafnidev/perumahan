@@ -36,7 +36,7 @@ class TipeRumahFragment : Fragment() {
 
         val dummyTipeRumah = arrayListOf<TipeRumah>()
 
-        (1..10).forEach {
+        (36..41).forEach {
             dummyTipeRumah.add(
                 TipeRumah(
                     id = it.toString(),
