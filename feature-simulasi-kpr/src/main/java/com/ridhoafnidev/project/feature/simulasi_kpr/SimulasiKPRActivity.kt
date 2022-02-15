@@ -1,5 +1,6 @@
 package com.ridhoafnidev.project.feature.simulasi_kpr
 
+import android.annotation.SuppressLint
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.ArrayAdapter
@@ -16,8 +17,6 @@ class SimulasiKPRActivity : BaseActivity<ActivitySimulasiKprActivityBinding>(Act
 
     private val hargaProperti: Long
         get() = intent.getIntExtra(EXTRA_HARGA_PROPERTI, 0).toLong()
-    private val jumlahPinjaman: BigDecimal
-        get() = hargaProperti.toPercent()
 
     private val listJangkaWaktuPinjaman = (1..30).toList()
     private val listSukuBunga = listOf(
@@ -97,9 +96,10 @@ class SimulasiKPRActivity : BaseActivity<ActivitySimulasiKprActivityBinding>(Act
         })
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setFormSimulasiKPR(hargaProperti: Long) {
         if (hargaProperti > 0) {
-            val jumlahDP = hargaProperti.toPercent(20.0)
+            val jumlahDP = hargaProperti.toPercent(20.0).toString()
             val jumlahPinjaman = hargaProperti.toPercent()
             val defaultSukuBunga = listSukuBunga[0]
             val defaultSukuBungaFormated = "${sukuBungaFormat.format(defaultSukuBunga)}%"
@@ -111,11 +111,11 @@ class SimulasiKPRActivity : BaseActivity<ActivitySimulasiKprActivityBinding>(Act
                 )
 
             binding.apply {
-                edtHargaProperty.setText(hargaProperti.toRupiah())
-                edtUangMuka.setText(jumlahDP.toRupiah())
+                edtHargaProperty.setText(hargaProperti.toString())
+                edtUangMuka.setText(jumlahDP.toString())
                 edtJangkaWaktuPinjaman.setText(defaultJangkaWaktuPinjaman.toString())
                 edtSukuBunga.setText(defaultSukuBungaFormated)
-                edtJumlahPinjaman.setText(jumlahPinjaman.toRupiah())
+                edtJumlahPinjaman.setText(jumlahPinjaman.toString())
                 tvAnguranPerbulan.text = angsuranPerBulan.toRupiah()
             }
         }

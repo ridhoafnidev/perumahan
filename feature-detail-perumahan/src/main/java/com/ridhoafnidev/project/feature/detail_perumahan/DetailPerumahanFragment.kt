@@ -1,5 +1,6 @@
 package com.ridhoafnidev.project.feature.detail_perumahan
 
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.afdhal_fa.imageslider.model.SlideUIModel
 import com.afollestad.recyclical.datasource.dataSourceOf
@@ -9,14 +10,18 @@ import com.ridhoafnidev.project.core_data.data.APP_TIPE_PERUMAHAN_PHOTO_URL
 import com.ridhoafnidev.project.core_data.data.remote.ApiEvent
 import com.ridhoafnidev.project.core_domain.model.PerumahanGetAll
 import com.ridhoafnidev.project.core_domain.model.detail_tipe_rumah.DetailTipeRumah
+import com.ridhoafnidev.project.core_navigation.EXTRA_HARGA_PROPERTI
 import com.ridhoafnidev.project.core_navigation.EXTRA_PERUMAHAN_ID
+import com.ridhoafnidev.project.core_navigation.ModuleNavigator
 import com.ridhoafnidev.project.core_resource.components.base.BaseFragment
 import com.ridhoafnidev.project.feature.detail_perumahan.databinding.FragmentDetailPerumahanBinding
 import com.ridhoafnidev.project.feature.detail_perumahan.viewholder.DetailPerumahanViewHolder
 import com.ridhoafnidev.project.feature.detail_perumahan.viewmodel.DetailPerumahanViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DetailPerumahanFragment : BaseFragment<FragmentDetailPerumahanBinding>(FragmentDetailPerumahanBinding::inflate) {
+class DetailPerumahanFragment :
+    BaseFragment<FragmentDetailPerumahanBinding>(FragmentDetailPerumahanBinding::inflate),
+    ModuleNavigator {
 
     private var tipePerumahId: Int? = 0
     private val detailPerumahanViewModel: DetailPerumahanViewModel by viewModel()
@@ -46,10 +51,9 @@ class DetailPerumahanFragment : BaseFragment<FragmentDetailPerumahanBinding>(Fra
         }
 
         binding.btnSimulasi.setOnClickListener {
-            val toSimulasiKPRActivity = DetailPerumahanFragmentDirections
-                .actionDetailPerumahanFragmentToSimulasiKPRActivity(hargaProperti)
-            findNavController()
-                .navigate(toSimulasiKPRActivity)
+            navigateToSimulasiKPRActivity(
+                bundleOf(EXTRA_HARGA_PROPERTI to hargaProperti)
+            )
         }
     }
 
