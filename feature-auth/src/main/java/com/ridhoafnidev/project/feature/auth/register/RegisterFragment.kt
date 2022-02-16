@@ -36,7 +36,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                     inputLayoutNamaLengkap,
                     inputLayoutAlamat,
                     inputLayoutUsername,
-                    inputLayoutPassword,
                     inputLayoutEmail,
                     inputLayoutNoHp
                 ).forEachIndexed { index, textInputLayout ->
@@ -45,6 +44,11 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                             .description(getString(R.string.message_error_field, formHints[index]))
                     }
                 }
+
+                inputLayout(inputLayoutPassword) {
+                    length().greaterThan(5).description(R.string.message_error_password)
+                }
+
                 submitWith(btnRegister) {
                     dismissKeyboard()
 

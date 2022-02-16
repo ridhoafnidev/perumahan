@@ -16,6 +16,7 @@
     <string name="message_success_register">Registrasi berhasil, silahkan login!</string>
     <string name="tidak_punya_akun">Tidak punya akun?</string>
     <string name="buat_akun">Buat akun</string>
+    <string name="message_error_password">Password minimal 6 karakter!</string>
 
     <string-array name="form_hints">
         <item>Nama Lengkap</item>
