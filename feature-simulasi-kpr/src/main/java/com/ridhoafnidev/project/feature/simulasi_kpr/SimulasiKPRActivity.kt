@@ -9,6 +9,7 @@ import com.ridhoafnidev.project.core_navigation.EXTRA_HARGA_PROPERTI
 import com.ridhoafnidev.project.core_resource.components.base.BaseActivity
 import com.ridhoafnidev.project.core_util.setSystemBarColor
 import com.ridhoafnidev.project.feature.simulasi_kpr.databinding.ActivitySimulasiKprActivityBinding
+import timber.log.Timber
 import java.math.BigDecimal
 import java.text.NumberFormat
 import java.util.*
@@ -50,16 +51,24 @@ class SimulasiKPRActivity : BaseActivity<ActivitySimulasiKprActivityBinding>(Act
 
                 submitWith(btnSimulasi) {
                     if (it.success()) {
-                        val jumlahPinjaman = BigDecimal(edtJumlahPinjaman.text.toString())
-                        val jangkaWaktuPinjaman = edtJangkaWaktuPinjaman.text.toString().toInt()
-                        val sukuBunga = edtSukuBunga.text.toString().dropLast(1).toDouble()
+                        var jumlahPinjaman = BigDecimal(0)
+                        var jangkaWaktuPinjaman = 0
+                        var sukuBunga = 0.0
+
+                        try {
+                            jumlahPinjaman = BigDecimal(edtJumlahPinjaman.text.toString())
+                            jangkaWaktuPinjaman = edtJangkaWaktuPinjaman.text.toString().toInt()
+                            sukuBunga = edtSukuBunga.text.toString().dropLast(1).toDouble()
+
+                        } catch (err: NumberFormatException) {
+                            sukuBunga = edtSukuBunga.text.toString().replace(",", ".").dropLast(1).toDouble()
+                        }
 
                         val angsuranPerBulan = jumlahPinjaman
                             .toAngsuranPerbulan(
                                 sukuBunga,
                                 jangkaWaktuPinjaman
                             )
-
                         tvAnguranPerbulan.text = angsuranPerBulan.toRupiah()
                     }
                 }
