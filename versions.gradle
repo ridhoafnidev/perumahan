@@ -75,8 +75,10 @@ ext.versions = [
         recycler_view_divider: '3.5.0',
         time_picker          : '1.0.3',
         glide                : '4.12.0',
-        subsampling_scale_image_view: '3.10.0',
-
+        ZoomImageView_android: '1.02',
+        Auto_Image_Slider    : '1.0',
+        imagepicker_support  : '1.7.1',
+        lottie               : '3.4.0'
         // endregion
 ]
 
@@ -190,6 +192,9 @@ ext.deps = [
                 "com.github.bumptech.glide:glide:$versions.glide",
                 "com.github.bumptech.glide:compiler:$versions.glide"
         ],
-        subsampling_scale_image_view : "com.davemorrissey.labs:subsampling-scale-image-view:$versions.subsampling_scale_image_view"
+        ZoomImageView_android: "com.github.sheetalkumar105:ZoomImageView-android:$versions.ZoomImageView_android",
+        Auto_Image_Slider    : "com.github.Fuadafdhal:Auto-Image-Slider:$versions.Auto_Image_Slider",
+        imagepicker_support  : "com.github.dhaval2404:imagepicker-support:$versions.imagepicker_support",
+        lottie               : "com.airbnb.android:lottie:$versions.lottie"
         // endregion
 ]

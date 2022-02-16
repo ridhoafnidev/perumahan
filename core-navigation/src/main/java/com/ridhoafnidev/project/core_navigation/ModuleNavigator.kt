@@ -38,6 +38,12 @@ interface ModuleNavigator{
         startActivity(ActivityClassPath.Perumahan, finishCurrent)
     }
 
+    fun<T> T.navigateToPenggunaActivity(
+        finishCurrent: Boolean = false
+    ) where T : Fragment, T : ModuleNavigator {
+        startActivity(ActivityClassPath.Pengguna, finishCurrent)
+    }
+
     fun<T> T.navigateToCalonPembeliActivity(
         finishCurrent: Boolean = false
     ) where T : Fragment, T : ModuleNavigator {
@@ -59,6 +65,29 @@ interface ModuleNavigator{
             extras = extras,
             finishCurrent = finishCurrent
         )
+    }
+
+    fun<T> T.navigateToPersyaratanActivity(
+        finishCurrent: Boolean = false
+    ) where T : Fragment, T : ModuleNavigator {
+        startActivity(ActivityClassPath.Persyaratan, finishCurrent)
+    }
+
+    fun<T> T.navigateToSimulasiKPRActivity(
+        extras: Bundle,
+        finishCurrent: Boolean = false
+    ) where T : Fragment, T : ModuleNavigator {
+        startActivity(
+            activityClassPath = ActivityClassPath.SimulasiKPR,
+            extras = extras,
+            finishCurrent = finishCurrent
+        )
+    }
+
+    fun<T> T.navigateToLaporanActivity(
+        finishCurrent: Boolean = false
+    ) where T : Fragment, T : ModuleNavigator {
+        startActivity(ActivityClassPath.Laporan, finishCurrent)
     }
 
     fun<T> T.navigateToPerumahanActivity(

@@ -1,0 +1,13 @@
+<resources>
+    <string name="bullet">•</string>
+    <string name="syarat_kpr">Syarat Pengajuan KPR</string>
+    <string name="fotokopi_ktp_pemohon">Fotokopi KTP Pemohon</string>
+    <string name="fotokopi_ktp_suami_atau_istri">Fotokopi KTP Suami atau Istri</string>
+    <string name="fotokopi_kartu_keluarga_kk">Fotokopi Kartu Keluarga (KK)</string>
+    <string name="fotokopi_surat_nikah_atau_cerai">Fotokopi Surat Nikah atau Cerai</string>
+    <string name="fotokopi_npwp_pribadi">Fotokopi NPWP Pribadi</string>
+    <string name="slip_gaji_asli_atau_surat_keterangan_penghasilan_minimal_1_bulan_terakhir">Slip Gaji Asli atau Surat Keterangan Penghasilan, minimal 1 bulan terakhir.</string>
+    <string name="fotokopi_rekening_koran">Fotokopi Rekening Koran</string>
+    <string name="surat_rekomendasi_perusahaan">Surat Rekomendasi Perusahaan</string>
+    <string name="title_persyaratan">Syarat Pengajuan KPR</string>
+</resources>

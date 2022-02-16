@@ -1,53 +1,46 @@
 package com.ridhoafnidev.project.feature.auth.login
 
-import android.os.Handler
-import android.os.Looper
+import androidx.navigation.fragment.findNavController
 import com.afollestad.vvalidator.form
 import com.google.android.material.snackbar.Snackbar
-import com.ridhoafnidev.project.core_util.Resource
+import com.ridhoafnidev.project.core_data.data.remote.ApiEvent
 import com.ridhoafnidev.project.core_navigation.ModuleNavigator
 import com.ridhoafnidev.project.core_resource.components.base.BaseFragment
 import com.ridhoafnidev.project.core_util.*
-import com.ridhoafnidev.project.feature.auth.AuthViewModel
+import com.ridhoafnidev.project.feature.auth.viewmodel.AuthViewModel
 import com.ridhoafnidev.project.feature_auth.R
 import com.ridhoafnidev.project.feature_auth.databinding.FragmentLoginBinding
+import com.ridhoafnidev.project.feature_auth.databinding.LayoutFormLoginBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate), ModuleNavigator {
 
-    private val textBtnLogin by lazy {
-        getString(R.string.text_login)
-    }
+    private val formBinding: LayoutFormLoginBinding
+        get() = binding.layoutFormLogin
 
     private val textHintEmptyEmailPhoneNumber by lazy {
-        getString(R.string.requeired_email_or_phone_number)
+        getString(R.string.username)
     }
 
     private val textHintEmptyPassword by lazy {
         getString(R.string.required_password)
     }
 
-    private val viewModel by viewModel<AuthViewModel>()
+    private val authViewModel by viewModel<AuthViewModel>()
 
     override fun initView() {
-        viewModel.isLogin.observe(viewLifecycleOwner){ auth ->
+        authViewModel.login.observe(viewLifecycleOwner){ auth ->
             when(auth){
-                is Resource.Loading -> {
-                    showProgress()
+                is ApiEvent.OnProgress -> {
+                    formBinding.btnLogin.showProgress()
                 }
-                is Resource.Success -> {
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        hideProgress(true)
-                        navigateToHomeActivity()
-                    }, 1000L)
+                is ApiEvent.OnSuccess -> {
+                    formBinding.btnLogin.hideProgress()
+                    navigateToHomeActivity()
                 }
-                is Resource.Error -> {
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        hideProgress(true)
-                    }, 1000L)
-                    auth?.message?.let { errorMessage ->
-                        showSnackBar(requireContext(), binding.parentLogin, errorMessage, Snackbar.LENGTH_LONG)
-                    }
+                is ApiEvent.OnFailed -> {
+                    formBinding.btnLogin.hideProgress()
+                    showSnackBar(requireContext(), binding.parentLogin, "Username atau Password salah!", Snackbar.LENGTH_LONG)
                 }
             }
         }
@@ -66,38 +59,20 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                 submitWith(R.id.btn_login) {
                     dismissKeyboard()
 
-                    viewModel.emailOrPhoneNumber = edtEmailOrNumberPhone.text.toString()
-                    viewModel.password = edtPassword.text.toString()
+                    authViewModel.username = edtEmailOrNumberPhone.text.toString()
+                    authViewModel.password = edtPassword.text.toString()
 
-                    viewModel.login()
+                    authViewModel.login()
                 }
             }
             btnLogin.bindLifecycle(viewLifecycleOwner)
         }
-    }
 
-    private fun showProgress() = with(binding.layoutFormLogin) {
-        listOf(
-            btnLogin, inputLayoutEmailOrNumberPhone, inputLayoutPassword
-        ).forEach { it.isEnabled = false }
-        btnLogin.showProgress()
-    }
-
-    private fun hideProgress(isEnable: Boolean) = with(binding.layoutFormLogin){
-        btnLogin.postDelayed(
-            {
-                listOf(
-                    btnLogin, edtEmailOrNumberPhone, edtPassword, inputLayoutEmailOrNumberPhone,
-                    inputLayoutPassword
-                ).forEach { it.isEnabled = true }
-            },1000L
-        )
-
-        btnLogin.hideProgress(textBtnLogin){
-            isEnable && with(binding.layoutFormLogin) {
-                "${edtEmailOrNumberPhone.text}".isNotBlank() && "${edtPassword.text}".isNotBlank()
-            }
+        binding.btnBuatAkun.setOnClickListener {
+            val toRegisterFragment = LoginFragmentDirections
+                .actionLoginFragmentToRegisterFragment()
+            findNavController()
+                .navigate(toRegisterFragment)
         }
     }
-
 }

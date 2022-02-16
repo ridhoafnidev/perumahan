@@ -20,7 +20,11 @@
             <option value="$PROJECT_DIR$/feature-calonpemilik" />
             <option value="$PROJECT_DIR$/feature-detail-perumahan" />
             <option value="$PROJECT_DIR$/feature-home" />
+            <option value="$PROJECT_DIR$/feature-laporan" />
+            <option value="$PROJECT_DIR$/feature-pengguna" />
+            <option value="$PROJECT_DIR$/feature-persyaratan" />
             <option value="$PROJECT_DIR$/feature-perumahan" />
+            <option value="$PROJECT_DIR$/feature-simulasi-kpr" />
             <option value="$PROJECT_DIR$/feature-tipe-rumah" />
           </set>
         </option>

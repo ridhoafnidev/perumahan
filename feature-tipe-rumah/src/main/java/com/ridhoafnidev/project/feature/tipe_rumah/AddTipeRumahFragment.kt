@@ -62,7 +62,7 @@ class AddTipeRumahFragment : Fragment() {
 
     private fun setupFormTipeRumah() {
         binding.apply {
-            edtNamaTipe.setText("Wajik")
+            edtNamaTipe.setText("Rumah tipe 36")
             edtPondasi.setText("Bata Bakar")
             edtLantai.setText("Granit")
             edtPintuDepan.setText("Kayu Jati")

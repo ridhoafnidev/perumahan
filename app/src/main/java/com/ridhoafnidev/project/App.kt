@@ -1,10 +1,13 @@
 package com.ridhoafnidev.project
 
 import android.app.Application
-import com.ridhoafnidev.project.core_data.dataModule
-import com.ridhoafnidev.project.core_data.di.domainModule
+import com.ridhoafnidev.project.core_data.di.dataModule
+import com.ridhoafnidev.project.core_domain.di.domainModule
 import com.ridhoafnidev.project.feature.auth.authModule
+import com.ridhoafnidev.project.feature.calonpemilik.calonPemilikModule
+import com.ridhoafnidev.project.feature.detail_perumahan.detailPerumahanModule
 import com.ridhoafnidev.project.feature.home.homeModule
+import com.ridhoafnidev.project.feature.laporan.laporanModule
 import com.ridhoafnidev.project.feature.perumahan.createEventModule
 import io.armcha.debugBanner.Banner
 import io.armcha.debugBanner.DebugBanner
@@ -12,6 +15,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
 
+@Suppress("UNUSED")
 class App : Application() {
 
     override fun onCreate() {
@@ -38,7 +42,10 @@ class App : Application() {
                     authModule,
                     domainModule,
                     createEventModule,
-                    homeModule
+                    homeModule,
+                    detailPerumahanModule,
+                    calonPemilikModule,
+                    laporanModule
                 )
             )
         }

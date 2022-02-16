@@ -50,6 +50,13 @@ abstract class BaseFragment<VB: ViewBinding>(
         initListener()
     }
 
+    fun setTitleName(@StringRes title: Int) {
+        if (activity is BaseActivity<*>) {
+            (activity as BaseActivity<*>)
+                .setPageName(getString(title), true)
+        }
+    }
+
 //    fun setTitle(title: String? = null, line: Boolean = true, gravity: Int) {
 //        baseActivity?.let { activity ->
 //            activity.setTitleGravity(gravity)
@@ -66,4 +73,7 @@ abstract class BaseFragment<VB: ViewBinding>(
         _binding = null
     }
 
+    companion object {
+        private const val FIRST_LOAD = "first_load"
+    }
 }

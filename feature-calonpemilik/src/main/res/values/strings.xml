@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">feature-calon-pemilik</string>
-    <string name="title_create_perumahan">Tambah Data Calon Pemilik</string>
+    <string name="title_calon_pemilik">Daftar Calon Pemilik</string>
+    <string name="title_create_calon_pemilik">Tambah Data Calon Pemilik</string>
+    <string name="title_edit_calon_pemilik">Edit Calon Pemilik</string>
+    <string name="title_daftar_checkout">Daftar Checkout</string>
+    <string name="title_detail_checkout_perumahan">Detail Checkout Perumahan</string>
 </resources>

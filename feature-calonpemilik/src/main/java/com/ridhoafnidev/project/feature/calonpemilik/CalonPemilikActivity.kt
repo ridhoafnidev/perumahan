@@ -9,7 +9,7 @@ class CalonPemilikActivity : BaseActivity<ActivityCalonPemilikBinding>(ActivityC
     override fun initView() {
         setSystemBarColor(R.color.colorBackgroundSecondary)
         initToolbar(back = true, primary = true)
-        setPageName(getString(R.string.title_create_perumahan))
+        setPageName(getString(R.string.title_calon_pemilik))
     }
 
     override fun initListener() {

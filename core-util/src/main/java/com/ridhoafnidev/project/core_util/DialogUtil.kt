@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 
 fun Fragment.showAlertDialog(
     title: String,
-    message: String?,
+    message: String? = null,
     action: () -> Unit
 ) {
     val alertBuilder = AlertDialog.Builder(requireContext())

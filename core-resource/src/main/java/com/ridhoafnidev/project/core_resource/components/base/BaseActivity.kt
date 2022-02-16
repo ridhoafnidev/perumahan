@@ -80,10 +80,12 @@ abstract class BaseActivity<VB: ViewBinding>(
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
-            finish()
+            onBackPressed()
 //            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
         return super.onOptionsItemSelected(item)
     }
+
+
 
 }

@@ -2,7 +2,7 @@ package com.ridhoafnidev.project.core_data.data.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.ridhoafnidev.project.core_data.domain.Event
+import com.ridhoafnidev.project.core_domain.model.Event
 
 @Entity
 data class EventEntity(

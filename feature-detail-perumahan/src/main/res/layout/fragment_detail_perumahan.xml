@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".DetailPerumahanFragment">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,27 +18,43 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <com.afdhal_fa.imageslider.ImageSlider
                 android:id="@+id/iv_perumahan"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
+                app:iss_with_title="false"
+                app:iss_with_background="false"
+                app:iss_image_scaleType="centerCrop"
+                app:iss_placeholder="@color/cardview_dark_background"
                 android:contentDescription="@string/photo_perumahan"
-                android:src="@drawable/dummy_rumah"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_harga_perumahan"
+                android:id="@+id/tv_nama_perumahan"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small"
                 android:layout_marginHorizontal="@dimen/small"
                 android:textSize="@dimen/text_large"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/chip_jumlah_perumahan"
                 app:layout_constraintTop_toBottomOf="@+id/iv_perumahan"
+                tools:text="Griya Insan Utama" />
+
+            <TextView
+                android:id="@+id/tv_harga_perumahan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/small"
+                android:textSize="@dimen/text_medium"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/chip_jumlah_perumahan"
+                app:layout_constraintTop_toBottomOf="@+id/tv_nama_perumahan"
                 tools:text="Rp. 2.050.000" />
 
             <TextView
@@ -74,7 +90,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_nama_tipe_perumahan"/>
 
             <TextView
-                android:id="@+id/detail_produk"
+                android:id="@+id/daftar_perumahan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/small"
@@ -83,11 +99,44 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider"
-                android:text="@string/detail_produk" />
+                android:text="@string/daftar_perumahan" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_perumahan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/daftar_perumahan"
+                app:layout_constraintBottom_toTopOf="@+id/divider_1"
+                tools:listitem="@layout/item_detail_perumahan" />
+
+            <View
+                android:id="@+id/divider_1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/small"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_perumahan"/>
+
+            <TextView
+                android:id="@+id/detail_produk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small"
+                android:textSize="@dimen/text_medium_fit"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider_1"
+                android:text="@string/detail_tipe_rumah" />
 
             <TableLayout
-                android:id="@+id/table_perumahan_detail"
+                android:id="@+id/table_tipe_perumahan_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/small"
@@ -157,8 +206,8 @@
 
                 <TableRow>
                     <TextView
-                        android:text="@string/plafon"
-                        android:padding="@dimen/small" />
+                        android:padding="@dimen/small"
+                        android:text="@string/plafon" />
                     <TextView
                         android:id="@+id/tb_plafon"
                         tools:text=": Sunda Plafon"
@@ -277,9 +326,9 @@
                 android:layout_height="@dimen/large"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/table_perumahan_detail"/>
+                app:layout_constraintTop_toBottomOf="@+id/table_tipe_perumahan_detail"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/container_btn_action"

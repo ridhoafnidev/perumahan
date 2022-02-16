@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardUseCompatPadding="true">
+
+    <TableLayout
+        android:id="@+id/table_perumahan_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/small">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/small"/>
+
+        <TableRow>
+            <TextView
+                android:text="@string/nama_perumahan"
+                android:padding="@dimen/small" />
+            <TextView android:text="@string/table_separate" />
+            <TextView
+                android:id="@+id/tb_nama_perumahan_"
+                tools:text="Griya Insan Utama"
+                android:padding="@dimen/small" />
+        </TableRow>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"/>
+
+        <TableRow>
+            <TextView
+                android:text="@string/luas_tanah"
+                android:padding="@dimen/small" />
+            <TextView android:text="@string/table_separate" />
+            <TextView
+                android:id="@+id/tb_luas_tanah_perumahan"
+                tools:text="216 Meter"
+                android:padding="@dimen/small" />
+        </TableRow>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"/>
+
+        <TableRow>
+            <TextView
+                android:text="@string/alamat"
+                android:padding="@dimen/small" />
+            <TextView android:text="@string/table_separate" />
+            <TextView
+                android:id="@+id/tb_alamat_perumahan"
+                tools:text="Jalan pepaya ujung Perumahan Btn mutiara"
+                android:padding="@dimen/small" />
+        </TableRow>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"/>
+
+        <TableRow
+            android:overScrollMode="ifContentScrolls">
+            <TextView
+                android:text="@string/keterangan"
+                android:padding="@dimen/small" />
+            <TextView android:text="@string/table_separate" />
+            <TextView
+                android:id="@+id/tb_keterangan_perumahan"
+                tools:text="Dekat dengan pusat pembelanjaan"
+                android:padding="@dimen/small"
+                android:layout_marginBottom="@dimen/small"/>
+        </TableRow>
+
+    </TableLayout>
+</androidx.cardview.widget.CardView>

@@ -1,4 +1,5 @@
 <resources>
+    <string name="title_perumahan">Daftar Perumahan</string>
     <string name="title_create_perumahan">Tambah Perumahan</string>
     <string name="hint_nama_perusahaan">Nama Perumahan</string>
     <string name="hint_luas_tanah">Luas Tanah (m<sup>2</sup>)</string>
@@ -9,4 +10,8 @@
     <string name="require_alamat">Alamat harus diisi!</string>
     <string name="require_keterangan">Keterangan diisi!</string>
     <string name="submit">SIMPAN</string>
+
+    <string name="ukuran">%s Meter</string>
+    <string name="total">%s Unit</string>
+    <string name="harga">Rp. %s</string>
 </resources>

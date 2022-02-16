@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <fragment
-        android:id="@+id/tipe_rumah_navigation"
+        android:id="@+id/detail_perumahan_navigation"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"

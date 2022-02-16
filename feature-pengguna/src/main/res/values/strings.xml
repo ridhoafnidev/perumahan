@@ -1,0 +1,5 @@
+<resources>
+    <string name="title_pengguna">Daftar Pengguna</string>
+    <string name="username">Username</string>
+    <string name="role">Role</string>
+</resources>

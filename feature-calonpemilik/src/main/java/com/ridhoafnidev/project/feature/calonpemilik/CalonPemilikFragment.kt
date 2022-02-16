@@ -1,78 +1,86 @@
 package com.ridhoafnidev.project.feature.calonpemilik
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.navigation.fragment.findNavController
 import com.afollestad.recyclical.datasource.dataSourceTypedOf
 import com.afollestad.recyclical.setup
 import com.afollestad.recyclical.withItem
-import com.ridhoafnidev.project.core_domain.model.CalonPemilik
-import com.ridhoafnidev.project.core_navigation.ActionType
+import com.ridhoafnidev.project.core_data.data.remote.ApiEvent
+import com.ridhoafnidev.project.core_domain.model.auth.Auth
+import com.ridhoafnidev.project.core_domain.model.calon_pemilik.CalonPemilik
+import com.ridhoafnidev.project.core_domain.model.calon_pemilik.ListCalonPemilik
+import com.ridhoafnidev.project.core_resource.components.base.BaseFragment
 import com.ridhoafnidev.project.feature.calonpemilik.databinding.FragmentCalonPemilikBinding
-import java.util.ArrayList
+import com.ridhoafnidev.project.feature.calonpemilik.viewmodel.AuthViewModel
+import com.ridhoafnidev.project.feature.calonpemilik.viewmodel.CalonPemilikViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CalonPemilikFragment : Fragment() {
+class CalonPemilikFragment : BaseFragment<FragmentCalonPemilikBinding>(FragmentCalonPemilikBinding::inflate) {
 
-    private var _binding: FragmentCalonPemilikBinding? = null
-    private val binding: FragmentCalonPemilikBinding
-        get() = _binding!!
+    private val authViewModel: AuthViewModel by viewModel()
+    private val calonPemilikViewModel: CalonPemilikViewModel by viewModel()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentCalonPemilikBinding.inflate(inflater, container, false)
-        return _binding?.root
+    private lateinit var auth: Auth
+
+    override fun initView() {
+        getCurrentUser()
+        setCurrentUser()
+        setupCalonPemilik()
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initListener() {
 
-        val listCalonPemilik = arrayListOf<CalonPemilik>()
-
-        (1..10).forEach {
-            listCalonPemilik.add(
-                CalonPemilik(
-                    namaLengkap = "Nama ke $it",
-                    alamat = "Jl. Merbau $it",
-                    status = "Belum Dihubungi",
-                    tipeRumah = "Enau - Perumahan Citra $it",
-                    noHp = "0902390213901",
-                    email = "fwfw@gmail.com",
-                    perumahan = "Perumahan $it"
-                )
-            )
-        }
-
-        setupRvCalonPemilik(listCalonPemilik)
     }
 
-    private fun setupRvCalonPemilik(listCalonPemilik: ArrayList<CalonPemilik>) {
-        val dataSource = dataSourceTypedOf(listCalonPemilik)
-        binding.rvCalonPemilik.setup {
-            withDataSource(dataSource)
-            withItem<CalonPemilik, CalonPemilikViewHolder>(R.layout.item_calon_pemilik) {
-                onBind(::CalonPemilikViewHolder) { _, item ->
-                    tvNamaCalonPemilik.text = item.namaLengkap
-                    tvAlamatCalonPemilik.text = item.alamat
-                    tvTipeRumahCalonPemilik.text = item.tipeRumah
-                    chipStatusCalonPemilik.text = item.status
-                }
-                onClick {
-                    val toAddCalonPemilikFragment = CalonPemilikFragmentDirections
-                        .actionCalonPemilikFragmentToAddCalonPemilikFragment(ActionType.Edit)
-                    findNavController().navigate(toAddCalonPemilikFragment)
+    private fun getCurrentUser() {
+        authViewModel.getCurrentUser()
+    }
+
+    private fun setCurrentUser() {
+        authViewModel.currentUser.observe(this) { currentUser ->
+            if (currentUser != null) {
+                auth = currentUser
+                if (currentUser.role == "konsumen") {
+                    setTitleName(R.string.title_daftar_checkout)
+                    calonPemilikViewModel
+                        .getCalonPemilikAllByKonsumen(currentUser.konsumenId)
+                } else {
+                    setTitleName(R.string.title_calon_pemilik)
+                    calonPemilikViewModel
+                        .getCalonPemilikAll()
                 }
             }
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun setupCalonPemilik() {
+        calonPemilikViewModel.listCalonPemilik.observe(requireActivity()) { calonPemilikEvent ->
+            when (calonPemilikEvent) {
+                is ApiEvent.OnProgress -> {}
+                is ApiEvent.OnSuccess -> {
+                    setupRvCalonPemilik(calonPemilikEvent.getData())
+                }
+                is ApiEvent.OnFailed -> {}
+            }
+        }
+    }
+
+    private fun setupRvCalonPemilik(listCalonPemilik: ListCalonPemilik) {
+        val dataSource = dataSourceTypedOf(listCalonPemilik)
+        binding.rvCalonPemilik.setup {
+            withDataSource(dataSource)
+            withItem<CalonPemilik, CalonPemilikViewHolder>(R.layout.item_calon_pemilik) {
+                onBind(::CalonPemilikViewHolder) { _, item ->
+                    tvNamaCalonPemilik.text = item.nama
+                    tvAlamatCalonPemilik.text = item.alamat
+                    tvTipeRumahCalonPemilik.text = item.tipeRumah
+                    chipStatusCalonPemilik.text = item.statusPengajuan
+                }
+                onClick {
+                    val toAddCalonPemilikFragment = CalonPemilikFragmentDirections
+                        .actionCalonPemilikFragmentToAddCalonPemilikFragment(item.id, auth)
+                    findNavController().navigate(toAddCalonPemilikFragment)
+                }
+            }
+        }
     }
 }
