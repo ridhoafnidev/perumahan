@@ -15,5 +15,7 @@ data class CalonPemilikRequest(
     @Json(name = "jumlah_dp")
     val jumlahDp: Int,
     @Json(name = "bukti_transfer")
-    val buktiTransfer: MultipartBody.Part
+    val buktiTransfer: MultipartBody.Part,
+    @Json(name = "dokumen_pengajuan")
+    val dokumenPengajuan: MultipartBody.Part
 )

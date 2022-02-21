@@ -14,6 +14,7 @@ class PreviewDPActivity : BaseActivity<ActivityPreviewDpActivityBinding>(Activit
     override fun initView() {
         Glide.with(application)
             .load(photoUrl)
+            .error(R.drawable.ic_broken_image)
             .into(binding.subDpPreview)
     }
 

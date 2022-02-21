@@ -22,7 +22,6 @@
         <item>Nama Lengkap</item>
         <item>Alamat</item>
         <item>Username</item>
-        <item>Password</item>
         <item>Email</item>
         <item>No Hp</item>
     </string-array>

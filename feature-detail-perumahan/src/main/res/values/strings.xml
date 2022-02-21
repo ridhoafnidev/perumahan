@@ -34,7 +34,8 @@
     <string name="table_separate">:</string>
 
     <string name="field_error">%s harus diisi!</string>
-    <string name="image_error">Silahkan masukan bukti transfer, untuk melakukan checkout!</string>
+    <string name="bukti_transfer_error">Silahkan masukan bukti transfer, untuk melakukan checkout!</string>
+    <string name="dokumen_pengajuan_error">Silahkan masukan dokumen pengajuan, untuk melakukan checkout!</string>
     <string name="harga_properti">Harga Properti</string>
     <string name="jangka_waktu">Jangka Waktu/Tahun</string>
     <string name="suku_bunga">Suku Bunga/Tahun</string>
@@ -42,4 +43,7 @@
     <string name="jumlah_pinjaman">Jumlah Pinjaman</string>
     <string name="angsuran_per_bulan">Angsuran per bulan :</string>
     <string name="title_simulasi_kpr">Simulasi KPR</string>
+    <string name="upload_dokumen_pengajuan">Upload Dokumen Pengajuan (Gambar)</string>
+    <string name="checkout_berhasil">Checkout Perumahan Berhasil</string>
+    <string name="message_checkout_berhasil">Checkout akan diperiksa oleh admin, silahkan ke menu history checkout untuk melihat detail checkout kamu!</string>
 </resources>

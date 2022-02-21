@@ -82,14 +82,14 @@ class TipeRumahFragment : Fragment() {
                     }
                     btnDelete.setOnClickListener {
                         showAlertDialog(
-                            getString(R.string.delete_tipe_rumah_title)
-                        ) {
-                            Toast.makeText(
-                                context,
-                                "Tipe rumah berhasil dihapus!",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
+                                getString(R.string.delete_tipe_rumah_title)
+                            ) {
+                                Toast.makeText(
+                                    context,
+                                    "Tipe rumah berhasil dihapus!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                     }
                 }
                 onClick {

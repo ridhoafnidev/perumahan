@@ -235,10 +235,14 @@ class PerumahanRepository internal constructor(
         tipePerumahanId: Int,
         rumahId: Int,
         jumlahDp: Int,
-        buktiTransfer: File
+        buktiTransfer: File,
+        dokumenPengajuan: File
     ): Flow<ApiEvent<CommonResponse>> = flow {
-        val requestBody = UploadRequestBody(buktiTransfer, "image")
-        val multiPart = MultipartBody.Part.createFormData("bukti_transfer", buktiTransfer.name, requestBody)
+        val buktiTransferRequestBody = UploadRequestBody(buktiTransfer, "image")
+        val dokumenPengajuabRequestBody = UploadRequestBody(dokumenPengajuan, "image")
+
+        val buktiTransferMultipart = MultipartBody.Part.createFormData("bukti_transfer", buktiTransfer.name, buktiTransferRequestBody)
+        val dokumenPengajuanMultipart = MultipartBody.Part.createFormData("dokumen_pengajuan", dokumenPengajuan.name, dokumenPengajuabRequestBody)
 
         runCatching {
             val apiId = PerumahanService.InsertCalonPemilik
@@ -248,7 +252,8 @@ class PerumahanRepository internal constructor(
                     tipePerumahanId = toRequestBody(tipePerumahanId.toString()),
                     rumahId = toRequestBody(rumahId.toString()),
                     jumlahDp = toRequestBody(jumlahDp.toString()),
-                    buktiTransfer = multiPart
+                    buktiTransfer = buktiTransferMultipart,
+                    dokumenPengajuan = dokumenPengajuanMultipart
                 )
             }
 

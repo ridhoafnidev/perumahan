@@ -38,7 +38,8 @@ class CheckoutViewModel(
         tipePerumahanId: Int,
         rumahId: Int,
         jumlahDp: Int,
-        buktiTransfer: File
+        buktiTransfer: File,
+        dokumenPengajuan: File
     ) {
         viewModelScope.launch {
             perumahanRepository.insertCalonPemilik(
@@ -46,7 +47,8 @@ class CheckoutViewModel(
                 tipePerumahanId = tipePerumahanId,
                 rumahId = rumahId,
                 jumlahDp = jumlahDp,
-                buktiTransfer = buktiTransfer
+                buktiTransfer = buktiTransfer,
+                dokumenPengajuan = dokumenPengajuan
             ).onStart { emit(ApiEvent.OnProgress()) }
              .collect { _insertCalonPemilikResponse.value = it }
         }

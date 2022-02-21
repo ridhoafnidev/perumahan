@@ -32,7 +32,7 @@
     <string name="no_hp">No Hp</string>
     <string name="alamat">Alamat</string>
     <string name="nama_lengkap">Nama Lengkap</string>
-    <string name="upload_bukti_dp">Upload bukti DP</string>
+    <string name="bukti_dp">Bukti DP</string>
     <string name="dp">Masukan DP</string>
     <string name="status">Status</string>
     <string name="kembali">Kembali</string>

@@ -11,6 +11,7 @@ data class DetailCalonPemilik(
     val statusPengajuan: String,
     val tipeRumah: String,
     val buktiTransfer: String,
+    val dokumenPengajuan: String,
     val konsumenNoHp: String,
     val tanggalPengajuan: String
 )

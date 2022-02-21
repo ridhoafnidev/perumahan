@@ -2,16 +2,15 @@ package com.ridhoafnidev.project.feature.calonpemilik
 
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.ridhoafnidev.project.core_data.data.APP_BUKTI_TRANSFER_PHOTO_URL
+import com.ridhoafnidev.project.core_data.data.APP_DOKUMEN_PENGAJUAN_URL
 import com.ridhoafnidev.project.core_data.data.remote.ApiEvent
 import com.ridhoafnidev.project.core_domain.model.detail_calon_pemilik.DetailCalonPemilik
 import com.ridhoafnidev.project.core_domain.model.status_pengajuan.ListStatusPengajuan
-import com.ridhoafnidev.project.core_resource.components.base.BaseActivity
 import com.ridhoafnidev.project.core_resource.components.base.BaseFragment
 import com.ridhoafnidev.project.feature.calonpemilik.databinding.FragmentEditCalonPemilikBinding
 import com.ridhoafnidev.project.feature.calonpemilik.viewmodel.CalonPemilikViewModel
@@ -143,15 +142,29 @@ class EditCalonPemilikFragment : BaseFragment<FragmentEditCalonPemilikBinding>(F
             edtStatus.setText(calonPemilik.statusPengajuan)
             edtTipeRumah.setText(calonPemilik.tipeRumah)
 
-            val photoUrl = APP_BUKTI_TRANSFER_PHOTO_URL + calonPemilik.buktiTransfer
+            val buktiDpUrl = APP_BUKTI_TRANSFER_PHOTO_URL + calonPemilik.buktiTransfer
+            val dokumenPengajuanUrl = APP_DOKUMEN_PENGAJUAN_URL + calonPemilik.dokumenPengajuan
 
             Glide.with(requireActivity())
-                .load(photoUrl)
+                .load(buktiDpUrl)
+                .error(R.drawable.ic_broken_image)
                 .into(btnBuktiDp)
+
+            Glide.with(requireActivity())
+                .load(dokumenPengajuanUrl)
+                .error(R.drawable.ic_broken_image)
+                .into(btnDokumenPengajuan)
 
             binding.btnBuktiDp.setOnClickListener {
                 val toPreviewDPActivity = EditCalonPemilikFragmentDirections
-                    .actionEditCalonPemilikFragmentToPreviewDPActivity(photoUrl)
+                    .actionEditCalonPemilikFragmentToPreviewDPActivity(buktiDpUrl)
+                findNavController()
+                    .navigate(toPreviewDPActivity)
+            }
+
+            binding.btnDokumenPengajuan.setOnClickListener {
+                val toPreviewDPActivity = EditCalonPemilikFragmentDirections
+                    .actionEditCalonPemilikFragmentToPreviewDPActivity(dokumenPengajuanUrl)
                 findNavController()
                     .navigate(toPreviewDPActivity)
             }

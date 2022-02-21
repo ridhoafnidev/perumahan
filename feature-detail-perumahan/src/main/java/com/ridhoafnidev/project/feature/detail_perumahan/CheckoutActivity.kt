@@ -29,6 +29,9 @@ class CheckoutActivity : BaseActivity<ActivityCheckoutBinding>(ActivityCheckoutB
     private val listPerumahan = mutableListOf<PerumahanGetAll>()
 
     private lateinit var buktiTransferFile: File
+    private lateinit var dokumenPengajuanFile: File
+
+    private lateinit var fileType: FileType
 
     override fun initView() {
         setSystemBarColor(R.color.colorBackgroundSecondary)
@@ -43,12 +46,23 @@ class CheckoutActivity : BaseActivity<ActivityCheckoutBinding>(ActivityCheckoutB
     }
 
     override fun initListener() {
-        binding.btnBuktiDp.setOnClickListener {
-            ImagePicker.with(this)
-                .compress(2048)
-                .crop()
-                .start()
+        arrayOf(
+            binding.btnBuktiDp,
+            binding.btnDokumenPengajuan
+        ).forEachIndexed { index, imgButton ->
+            imgButton.setOnClickListener {
+                fileType = if (index == 0) {
+                    FileType.BuktiTransfer
+                } else {
+                    FileType.DokumenPengajuan
+                }
+                ImagePicker.with(this)
+                    .compress(2048)
+                    .crop()
+                    .start()
+            }
         }
+
         binding.btnSubmit.setOnClickListener {
             if (validateFormCheckoutPerumahan()) {
                 return@setOnClickListener
@@ -57,6 +71,7 @@ class CheckoutActivity : BaseActivity<ActivityCheckoutBinding>(ActivityCheckoutB
             val perumahanId = listPerumahan.find {
                 it.namaPerumahan == binding.edtPerumahan.text.toString()
             }?.id
+
             val jumlahDP = binding.edtDp.text.toString().toInt()
 
             if (perumahanId != null) {
@@ -65,7 +80,8 @@ class CheckoutActivity : BaseActivity<ActivityCheckoutBinding>(ActivityCheckoutB
                     tipePerumahanId = arguments.tipePerumahanId,
                     rumahId = perumahanId,
                     jumlahDp = jumlahDP,
-                    buktiTransfer = buktiTransferFile
+                    buktiTransfer = buktiTransferFile,
+                    dokumenPengajuan = dokumenPengajuanFile
                 )
             }
         }
@@ -76,9 +92,20 @@ class CheckoutActivity : BaseActivity<ActivityCheckoutBinding>(ActivityCheckoutB
         when (resultCode) {
             Activity.RESULT_OK -> {
                 val uri = data?.data
-                uri?.apply {
-                    buktiTransferFile = File(path)
-                    binding.btnBuktiDp.setImageURI(uri)
+
+                when (fileType) {
+                    FileType.BuktiTransfer -> {
+                        uri?.apply {
+                            buktiTransferFile = File(path)
+                            binding.btnBuktiDp.setImageURI(uri)
+                        }
+                    }
+                    FileType.DokumenPengajuan -> {
+                        uri?.apply {
+                            dokumenPengajuanFile = File(path)
+                            binding.btnDokumenPengajuan.setImageURI(uri)
+                        }
+                    }
                 }
             }
             ImagePicker.RESULT_ERROR -> {
@@ -170,7 +197,11 @@ class CheckoutActivity : BaseActivity<ActivityCheckoutBinding>(ActivityCheckoutB
             }
 
             if (btnBuktiDp.drawable == null) {
-                Toast.makeText(this@CheckoutActivity, R.string.image_error, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CheckoutActivity, R.string.bukti_transfer_error, Toast.LENGTH_SHORT).show()
+                return true
+            }
+            if (btnDokumenPengajuan.drawable == null) {
+                Toast.makeText(this@CheckoutActivity, R.string.dokumen_pengajuan_error, Toast.LENGTH_SHORT).show()
                 return true
             }
         }
@@ -181,5 +212,12 @@ class CheckoutActivity : BaseActivity<ActivityCheckoutBinding>(ActivityCheckoutB
     private fun setupEdtPerumahan(listPerumahan: List<String>) {
         val arrayAdapter = ArrayAdapter(this, R.layout.item_nama_perumahan, R.id.tv_item_nama_perumahan, listPerumahan)
         binding.edtPerumahan.setAdapter(arrayAdapter)
+    }
+
+    companion object {
+        sealed class FileType {
+            object BuktiTransfer : FileType()
+            object DokumenPengajuan : FileType()
+        }
     }
 }

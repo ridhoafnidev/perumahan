@@ -37,6 +37,9 @@ data class DetailCalonPemilikItem(
 	@Json(name="bukti_transfer")
 	val buktiTransfer: String? = null,
 
+	@Json(name="dokumen_pengajuan")
+	val dokumenPengajuan: String? = null,
+
 	@Json(name="konsumen_no_hp")
 	val konsumenNoHp: String? = null,
 
@@ -56,6 +59,7 @@ fun DetailCalonPemilikItem.toDomain(): DetailCalonPemilik =
 		tipeRumah = tipeRumah ?: "",
 		jumlahDp = jumlahDp ?: 0,
 		buktiTransfer = buktiTransfer ?: "",
+		dokumenPengajuan = dokumenPengajuan ?: "",
 		tanggalPengajuan = tanggalPengajuan ?: "",
 		tanggalUpdateBuktiTransfer = tanggalUpdateBuktiTransfer ?: ""
 	)

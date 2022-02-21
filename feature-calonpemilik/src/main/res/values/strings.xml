@@ -5,4 +5,5 @@
     <string name="title_edit_calon_pemilik">Edit Calon Pemilik</string>
     <string name="title_daftar_checkout">Daftar Checkout</string>
     <string name="title_detail_checkout_perumahan">Detail Checkout Perumahan</string>
+    <string name="upload_dokumen_pengajuan">Dokumen Pengajuan</string>
 </resources>

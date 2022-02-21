@@ -59,7 +59,8 @@ interface PerumahanService {
         @Part("tipe_perumahan_id") tipePerumahanId: RequestBody,
         @Part("rumah_id") rumahId: RequestBody,
         @Part("jumlah_dp") jumlahDp: RequestBody,
-        @Part buktiTransfer: MultipartBody.Part
+        @Part buktiTransfer: MultipartBody.Part,
+        @Part dokumenPengajuan: MultipartBody.Part
     ): CommonResponse
 
     @GET(GetLaporan)
